@@ -17,7 +17,6 @@ function creaListaDesplegable(
     }
 
     foreach ($datos as $dato) {
-        // TODO: comprobar la lista de estados del buscador
         if ($dato[$camposDatos['valor']] == $valorPorDefecto) {
             $html .= "<option value='{$dato[$camposDatos['valor']]}' selected='selected'>{$dato[$camposDatos['desc']]}</option>\n";
         } else {

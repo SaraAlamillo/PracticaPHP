@@ -1,11 +1,17 @@
 <?php ob_start() ?>
+
+<?php if (isset($params['mensaje'])) : ?>
+    <b>
+        <span style="color: red;"><?= $params['mensaje'] ?></span>
+    </b>
+<?php endif; ?>
+
 <form name="formBuscar" action="index.php?action=<?= $params['action'] ?>" method="POST">
     <table>
         <label for="codigo">
             <tr>
                 <th>Código</th>
-                <td><?= creaListaDesplegable("tipocodigo", 
-                        $params['tipo_busqueda']['numero']) ?></td>
+                <td><?= creaListaDesplegable("tipocodigo", $params['tipo_busqueda']['numero']) ?></td>
                 <td>
                     <input type="text" name="valorcodigo" />
                     <input type="hidden" name="codigo" />
@@ -15,8 +21,7 @@
         <label for="destinatario">
             <tr>
                 <th>Destinatario</th>
-                <td><?= creaListaDesplegable("tipodestinatario", 
-                        $params['tipo_busqueda']['palabra']) ?></td>
+                <td><?= creaListaDesplegable("tipodestinatario", $params['tipo_busqueda']['palabra'])?></td>
                 <td><input type="text" name="valordestinatario" /></td>
             </tr>
         </label>
@@ -65,8 +70,7 @@
                 <th>Provincia</th>
                 <td><?= creaListaDesplegable("tipoprovincia", $params['tipo_busqueda']['lista']) ?></td>
                 <td>
-                    <?= creaListaDesplegable("valorprovincia", $params['provincias'], 0,
-                        [ 'nombre' => '--Seleccionar--', 'codigo' => 0 ]) ?>
+                    <?= creaListaDesplegable("valorprovincia", $params['provincias'], "0", [ 'nombre' => '--Seleccionar--', 'codigo' => "0"])?>
                     <input type="hidden" name="provincia" />
                 </td>
             </tr>
@@ -86,8 +90,7 @@
                 <th>Estado</th>
                 <td><?= creaListaDesplegable("tipoestado", $params['tipo_busqueda']['lista']) ?></td>
                 <td>
-                    <?= creaListaDesplegable("valorestado", $params['estados'], 0,
-                        [ 'nombre' => '--Seleccionar--', 'codigo' => 0 ]) ?>
+                    <?= creaListaDesplegable("valorestado", $params['estados'], "0", [ 'nombre' => '--Seleccionar--', 'codigo' => "0"])?>
                     <input type="hidden" name="estado" />
                 </td>
             </tr>

@@ -82,15 +82,10 @@ class DataBase {
         }
 
         $sql = "select $campos from $tabla $camposCondicion $orden $limite";
-echo "<pre>";
-echo $sql;
-echo "</pre>";
+
         $registros = $this->link->query($sql);
 
         $resultados = [];
-echo "<pre>";
-print_r($resultados);
-echo "</pre>";
         
         while ($registro = $registros->fetch_assoc()) {
             $resultados[] = $registro;

@@ -24,8 +24,8 @@ class Controller {
     }
 
 // TODO: implementar la paginación
-    public function listar() {
-        $params = $this->model->listarEnvios(NULL);
+    public function listar($condiciones = NULL) {
+        $params = $this->model->listarEnvios($condiciones);
 
         if ($params == NULL) {
             require RUTA_VIEWS . 'noDatos.php';
@@ -59,7 +59,6 @@ class Controller {
         require RUTA_VIEWS . 'formInsertar.php';
     }
 
-// TODO: desarrollar el buscador
     public function buscar() {
         $params = [
             "action" => $_GET['action'],
@@ -74,7 +73,7 @@ class Controller {
 
             foreach ($_POST as $clavePOST => $valorPOST) {
                 if (in_array($clavePOST, $camposFormulario)) {
-                    if ($_POST["valor$clavePOST"] != NULL || $_POST["valor$clavePOST"] != "") {
+                    if ($_POST["valor$clavePOST"] != NULL && $_POST["valor$clavePOST"] != "" && $_POST["valor$clavePOST"] != "0") {
                         $datos[] = [
                             "campo" => $clavePOST,
                             "conector" => $_POST["tipo$clavePOST"],
@@ -84,12 +83,12 @@ class Controller {
                 }
             }
 
-            $params = $this->model->listarEnvios($datos);
-
-            if ($params == NULL) {
-                require RUTA_VIEWS . 'noDatos.php';
+            if (empty($datos)) {
+                $params['mensaje'] = "No se ha introducido ningún criterio de búsqueda.";
+                
+                require RUTA_VIEWS . 'formBuscar.php';
             } else {
-                require RUTA_VIEWS . 'listar.php';
+             $this->listar($datos);
             }
         } else {
             require RUTA_VIEWS . 'formBuscar.php';

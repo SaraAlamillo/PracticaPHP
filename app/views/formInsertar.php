@@ -55,7 +55,7 @@ ob_start() ?>
             <tr>
                 <th>Provincia</th>
                 <td>
-                    <?=creaListaDesplegable("provincia", $params['provincias'], NULL) ?>
+                    <?=creaListaDesplegable("provincia", $params['provincias'], "0", ['nombre' => "--Seleccionar--", 'codigo' => "0"]) ?>
                 </td>
             </tr>
         </label>
