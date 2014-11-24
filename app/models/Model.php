@@ -260,11 +260,5 @@ class Model {
             'observaciones'
         ];
     }
-    
-    public function cantidadTotalEnvios() {
-        $resultado = $this->conexion->Seleccionar("envios", "count(*) as total", NULL, NULL, NULL);
-        
-        return $resultado[0]['total'];
-    }
 
 }

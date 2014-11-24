@@ -1,4 +1,7 @@
 <?php
+session_name('envios');
+session_start();
+
 define("RUTA_ROOT", $_SERVER['DOCUMENT_ROOT'] . "/PracticaPHP/");
 define("RUTA_APP", RUTA_ROOT . "App/");
 define("RUTA_CONTROLLERS", RUTA_APP . "controllers/");
@@ -49,7 +52,6 @@ $controlador = $map[$ruta];
 if (method_exists($controlador['controller'], $controlador['action'])) {
     call_user_func(array(new $controlador['controller'], $controlador['action']));
 } else {
-
     header('Status: 404 Not Found');
     echo '<html>'
     . '<body>'

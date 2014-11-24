@@ -33,17 +33,18 @@ class Controller {
             $inicio = ($pagina - 1) * MaxPagina;
         }
         $params = [
-            'numeroDePaginas' => ceil($this->model->cantidadTotalEnvios() / MaxPagina),
+            'datos' => $this->model->listarEnvios($condiciones, $inicio . "," . MaxPagina),
             'action' => $accion,
             'paginaActual' => $pagina,
-            'datos' => $this->model->listarEnvios($condiciones, $inicio . "," . MaxPagina),
-            'controles' => [
+            'controlesActivos' => [
                 'primero' => '',
                 'anterior' => '',
                 'siguiente' => '',
                 'ultimo' => ''
             ]
         ];
+        
+        $params['numeroDePaginas'] = ceil(count($params['datos']) / MaxPagina);
 
         if ($pagina == 1) {
             $params['controlesActivos']['primero'] = "disabled='disabled'";
@@ -97,8 +98,14 @@ class Controller {
             "provincias" => $this->model->obtenerTodasProvincias(),
             "tipo_busqueda" => $this->model->obtenerTiposBusqueda()
         ];
+        
+        if(isset($_GET['nueva'])) {
+            unset($_SESSION['criteriosBusqueda']);
+        }
 
-        if ($_POST) {
+        if (isset($_SESSION['criteriosBusqueda'])) {
+            $this->paginar($_GET['action'], $_GET['pagina'], $_SESSION['criteriosBusqueda']);
+        } else if ($_POST) {
             $datos = [];
             $camposFormulario = $this->model->obtenerCamposFormulario();
 
@@ -119,7 +126,8 @@ class Controller {
 
                 require RUTA_VIEWS . 'formBuscar.php';
             } else {
-                $this->paginar($_GET['action'], $_GET['pagina'], $datos);
+                $_SESSION['criteriosBusqueda'] = $datos;
+                $this->paginar($_GET['action'], $_GET['pagina'], $_SESSION['criteriosBusqueda']);
             }
         } else {
             require RUTA_VIEWS . 'formBuscar.php';

@@ -1,4 +1,7 @@
 <?php ob_start() ?>
+<a href="index.php?action=<?=$params['action'] ?>&pagina=<?=$params['paginaActual'] ?>&nueva=true">
+    <p>Nueva búsqueda</p>
+</a>
 <table border="1">
     <tr>
         <th>Código</th>
@@ -36,13 +39,21 @@
 </table>
 <script src="<?= URL_JS ?>paginacion.js"></script>
 <p>
-    <button <?= $params['controlesActivos']['primero'] ?> onchange="cambiarPagina('<?= $params['action'] ?>')"><<</button>
-    <button <?= $params['controlesActivos']['anterior'] ?> onchange="cambiarPagina('<?= $params['action'] ?>')"><</button>
+    <a href="index.php?action=<?= $params['action'] ?>&pagina=1">
+        <button <?= $params['controlesActivos']['primero'] ?>><<</button>
+    </a>
+    <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['paginaActual'] - 1 ?>">
+        <button <?= $params['controlesActivos']['anterior'] ?>><</button>
+    </a>
 
     <input type="number" id="paginaBuscada" value="<?= $params['paginaActual'] ?>" onchange="cambiarPagina('<?= $params['action'] ?>')" min="1" max="<?= $params['numeroDePaginas'] ?>" /> de <?= $params['numeroDePaginas'] ?>
 
-    <button <?= $params['controlesActivos']['siguiente'] ?> onchange="cambiarPagina('<?= $params['action'] ?>')">></button>
-    <button <?= $params['controlesActivos']['ultimo'] ?> onchange="cambiarPagina('<?= $params['action'] ?>')">>></button>
+    <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['paginaActual'] + 1 ?>">
+        <button <?= $params['controlesActivos']['siguiente'] ?>>></button>
+    </a>
+    <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['numeroDePaginas'] ?>">
+        <button <?= $params['controlesActivos']['ultimo'] ?>>>></button>
+    </a>
 
 </p>
 <?php
