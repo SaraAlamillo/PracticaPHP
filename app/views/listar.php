@@ -15,7 +15,7 @@
         <th>Observaciones</th>
     </tr>
     <?php
-    foreach ($params as $envio):
+    foreach ($params['datos'] as $envio):
         ?>
         <tr>
             <?php foreach ($envio as $clave => $campo): ?>
@@ -32,9 +32,19 @@
                 <a href="index.php?action=eliminar&id=<?= $envio['codigo'] ?>" title="Eliminar envío">Eliminar</a>
             </td>
         </tr>
-<?php endforeach; ?>
+    <?php endforeach; ?>
 </table>
+<script src="<?= URL_JS ?>paginacion.js"></script>
+<p>
+    <button <?= $params['controlesActivos']['primero'] ?> onchange="cambiarPagina('<?= $params['action'] ?>')"><<</button>
+    <button <?= $params['controlesActivos']['anterior'] ?> onchange="cambiarPagina('<?= $params['action'] ?>')"><</button>
 
+    <input type="number" id="paginaBuscada" value="<?= $params['paginaActual'] ?>" onchange="cambiarPagina('<?= $params['action'] ?>')" min="1" max="<?= $params['numeroDePaginas'] ?>" /> de <?= $params['numeroDePaginas'] ?>
+
+    <button <?= $params['controlesActivos']['siguiente'] ?> onchange="cambiarPagina('<?= $params['action'] ?>')">></button>
+    <button <?= $params['controlesActivos']['ultimo'] ?> onchange="cambiarPagina('<?= $params['action'] ?>')">>></button>
+
+</p>
 <?php
 $contenido = ob_get_clean();
 include 'layout.php';

@@ -22,16 +22,47 @@ class Controller {
 
         require RUTA_VIEWS . 'inicio.php';
     }
+    
+    private function paginar($accion, &$pagina, $condiciones = NULL){
+        define("MaxPagina", 2);
 
-// TODO: implementar la paginación
-    public function listar($condiciones = NULL) {
-        $params = $this->model->listarEnvios($condiciones);
+        if (empty($pagina)) {
+            $inicio = 0;
+            $pagina = 1;
+        } else {
+            $inicio = ($pagina - 1) * MaxPagina;
+        }
+        $params = [
+            'numeroDePaginas' => ceil($this->model->cantidadTotalEnvios() / MaxPagina),
+            'action' => $accion,
+            'paginaActual' => $pagina,
+            'datos' => $this->model->listarEnvios($condiciones, $inicio . "," . MaxPagina),
+            'controles' => [
+                'primero' => '',
+                'anterior' => '',
+                'siguiente' => '',
+                'ultimo' => ''
+            ]
+        ];
 
-        if ($params == NULL) {
+        if ($pagina == 1) {
+            $params['controlesActivos']['primero'] = "disabled='disabled'";
+            $params['controlesActivos']['anterior'] = "disabled='disabled'";
+        }
+        if ($pagina == $params['numeroDePaginas']) {
+            $params['controlesActivos']['siguiente'] = "disabled='disabled'";
+            $params['controlesActivos']['ultimo'] = "disabled='disabled'";
+        }
+
+        if ($params['datos'] == NULL) {
             require RUTA_VIEWS . 'noDatos.php';
         } else {
             require RUTA_VIEWS . 'listar.php';
         }
+    }
+
+    public function listar() {
+        $this->paginar($_GET['action'], $_GET['pagina']);
     }
 
     public function insertar() {
@@ -85,10 +116,10 @@ class Controller {
 
             if (empty($datos)) {
                 $params['mensaje'] = "No se ha introducido ningún criterio de búsqueda.";
-                
+
                 require RUTA_VIEWS . 'formBuscar.php';
             } else {
-             $this->listar($datos);
+                $this->paginar($_GET['action'], $_GET['pagina'], $datos);
             }
         } else {
             require RUTA_VIEWS . 'formBuscar.php';

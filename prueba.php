@@ -5,6 +5,4 @@ include "app/models/Model.php";
 
 $model = new Model();
 
-echo "<pre>";
-print_r($model->obtenerTodasProvincias());
-echo "</pre>";
+

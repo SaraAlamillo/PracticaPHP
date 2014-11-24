@@ -15,9 +15,9 @@ class Model {
         $this->conexion = DataBase::getInstance();
     }
 
-//TODO: añadir paginador
-    public function listarEnvios($condiciones) {
-        $resultado = $this->conexion->Seleccionar("envios", "*", $condiciones, NULL, "fecha_creacion desc");
+
+    public function listarEnvios($condiciones, $limite = NULL) {
+        $resultado = $this->conexion->Seleccionar("envios", "*", $condiciones, $limite, "fecha_creacion desc");
 
         foreach ($resultado as &$registro) {
             foreach ($registro as $clave => &$valor) {
@@ -259,6 +259,12 @@ class Model {
             'fecha_entrega',
             'observaciones'
         ];
+    }
+    
+    public function cantidadTotalEnvios() {
+        $resultado = $this->conexion->Seleccionar("envios", "count(*) as total", NULL, NULL, NULL);
+        
+        return $resultado[0]['total'];
     }
 
 }
