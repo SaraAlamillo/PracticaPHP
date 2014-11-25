@@ -7,16 +7,13 @@
 
     </head>
     <body>
-        <!-- Encabezado -->
         <?= CargaVista(RUTA_VIEWS . "encabezado.php") ?>
-        <!-- Menú -->
         <?= CargaVista(RUTA_VIEWS . "menu.php") ?>
         
         <div id="contenido">
             <?= $contenido ?>
         </div>
-
-        <!-- Pie -->
+        
         <?= CargaVista(RUTA_VIEWS . "pie.php") ?>
     </body>
 </html>
