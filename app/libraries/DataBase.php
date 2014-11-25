@@ -59,9 +59,12 @@ class DataBase {
         if ($condiciones != NULL) {
 
             foreach ($condiciones as $condicion) {
-
+                if ($condicion['conector'] == 'like') {
+                    $camposCondicion[] = $condicion['campo'] . " like concat('%', '" . $condicion['valor'] . "', '%')";
+                } else {
                 $condicion['valor'] = "'{$condicion['valor']}'";
                 $camposCondicion[] = $condicion['campo'] . $condicion['conector'] . $condicion['valor'];
+                }
             }
             $camposCondicion = implode(" and ", $camposCondicion);
             $camposCondicion = " where " . $camposCondicion;
