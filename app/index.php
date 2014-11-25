@@ -18,6 +18,7 @@ define("URL_JS", URL_ROOT . "Assets/js/");
 require_once RUTA_APP. 'Config.php';
 require_once RUTA_MODELS . 'Model.php';
 require_once RUTA_CONTROLLERS . 'Controller.php';
+require_once RUTA_LIBRARIES . 'validacion.php';
 
 // enrutamiento
 $map = array(

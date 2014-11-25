@@ -6,7 +6,37 @@
  * @author Sara
  */
 class Controller {
-
+    public static $criterios = array(
+        'destinatario' => array(
+            'filter' => FILTER_CALLBACK,
+            'options' => "TratamientoFormularios::alfabetico"),
+        'telefono' => array(
+            'filter' => FILTER_CALLBACK,
+            'options' => "TratamientoFormularios::numerico"),
+        'direccion' => array(
+            'filter' => FILTER_CALLBACK,
+            'options' => "TratamientoFormularios::alfanumericoSimbolos"),
+        'poblacion' => array(
+            'filter' => FILTER_CALLBACK,
+            'options' => "TratamientoFormularios::alfabetico"),
+        'cod_postal' => array(
+            'filter' => FILTER_CALLBACK,
+            'options' => "TratamientoFormularios::cp"),
+        'provincia' => array(
+            'filter' => FILTER_CALLBACK,
+            'options' => "TratamientoFormularios::provincias"),
+        'email' => array(
+            'filter' => FILTER_VALIDATE_EMAIL),
+        'observaciones' => array(
+            'filter' => FILTER_CALLBACK,
+            'options' => "TratamientoFormularios::alfanumericoSimbolos"),
+        /*'fecha_entrega' => array(
+            'filter' => FILTER_CALLBACK,
+            'options' => "TratamientoFormularios::fecha"),
+        'fecha_creacion' => array(
+            'filter' => FILTER_CALLBACK,
+            'options' => "TratamientoFormularios::fecha")*/
+    );
     private $model;
 
     public function __construct() {
@@ -84,7 +114,13 @@ class Controller {
         ];
 
         if ($_POST) {
+            $datosError = TratamientoFormularios::validarArray($this::$criterios);
+            
+            if (empty($datosError)){
             $this->model->insertarEnvio($_POST);
+            } else {
+                echo "ok";
+            }
         }
 
         require RUTA_VIEWS . 'formInsertar.php';
