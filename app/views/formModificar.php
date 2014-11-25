@@ -1,5 +1,3 @@
-<?php 
-ob_start() ?>
 <form name="formModificar" action="index.php?action=<?=$params['action'] ?>&id=<?=$params['id'] ?>&confirmacion=<?=$params['confirmacion'] ?>" method="POST">
     <table>
         <label for="codigo">
@@ -105,8 +103,3 @@ ob_start() ?>
     </table>
     <input type="submit" value="<?=$params['action'] ?>" />
 </form>
-
-<?php
-$contenido = ob_get_clean();
-include 'layout.php';
-?>

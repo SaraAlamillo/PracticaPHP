@@ -7,29 +7,16 @@
 
     </head>
     <body>
-        <div id="cabecera">
-            <h1>Administración de los Envíos</h1>
-        </div>
-
-        <div id="menu">
-            <hr/>
-            <a href="index.php?action=inicio">home</a> |
-            <a href="index.php?action=listar">listar</a> |
-            <a href="index.php?action=insertar">insertar</a> |
-            <a href="index.php?action=buscar">buscar</a> |
-            <a href="index.php?action=eliminar">eliminar</a> |
-            <a href="index.php?action=recepcionar">anotar recepción</a> |
-            <a href="index.php?action=modificar">modificar datos</a>
-            <hr/>
-        </div>
-
+        <!-- Encabezado -->
+        <?= CargaVista(RUTA_VIEWS . "encabezado.php") ?>
+        <!-- Menú -->
+        <?= CargaVista(RUTA_VIEWS . "menu.php") ?>
+        
         <div id="contenido">
             <?= $contenido ?>
         </div>
 
-        <div id="pie">
-            <hr/>
-            <div align="center">(: Sara Alamillo Arroyo :)</div>
-        </div>
+        <!-- Pie -->
+        <?= CargaVista(RUTA_VIEWS . "pie.php") ?>
     </body>
 </html>

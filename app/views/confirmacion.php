@@ -1,6 +1,3 @@
-<?php
-ob_start();
-?>
 <form name="formEliminar" action="index.php" method="GET">
     ¿Está seguro que desea <?=$params['action'] ?> el envío <?=$params['id'] ?>?
     <input type="hidden" name="action" value="<?=$params['action'] ?>" />
@@ -8,7 +5,3 @@ ob_start();
     <input type="submit" name="confirmacion" value="Si" />
     <input type="submit" name="confirmacion" value="No" />
 </form>
-<?php
-$contenido = ob_get_clean();
-include RUTA_VIEWS . 'layout.php';
-?>

@@ -1,5 +1,3 @@
-<?php ob_start() ?>
-
 <?php if (isset($params['mensaje'])) : ?>
     <b>
         <span style="color: red;"><?= $params['mensaje'] ?></span>
@@ -128,8 +126,3 @@
     </table>
     <input type="submit" value="<?= $params['action'] ?>" />
 </form>
-
-<?php
-$contenido = ob_get_clean();
-include 'layout.php';
-?>

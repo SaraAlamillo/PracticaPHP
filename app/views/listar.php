@@ -1,4 +1,3 @@
-<?php ob_start() ?>
 <a href="index.php?action=<?=$params['action'] ?>&pagina=<?=$params['paginaActual'] ?>&nueva=true">
     <p>Nueva búsqueda</p>
 </a>
@@ -56,7 +55,3 @@
     </a>
 
 </p>
-<?php
-$contenido = ob_get_clean();
-include 'layout.php';
-?>

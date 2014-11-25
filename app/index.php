@@ -8,6 +8,7 @@ define("RUTA_CONTROLLERS", RUTA_APP . "controllers/");
 define("RUTA_LIBRARIES", RUTA_APP . "libraries/");
 define("RUTA_MODELS", RUTA_APP . "models/");
 define("RUTA_VIEWS", RUTA_APP . "views/");
+define("RUTA_HELPER", RUTA_APP . "helper/");
 define("URL_ROOT", "http://" . $_SERVER['SERVER_NAME'] . "/PracticaPHP/");
 define("URL_CSS", URL_ROOT . "Assets/css/");
 define("URL_IMAGES", URL_ROOT . "Assets/images/");
@@ -50,7 +51,16 @@ $controlador = $map[$ruta];
 // Ejecución del controlador asociado a la ruta
 
 if (method_exists($controlador['controller'], $controlador['action'])) {
+    require_once RUTA_HELPER . 'plantillas.php';
+    ob_start();
+
     call_user_func(array(new $controlador['controller'], $controlador['action']));
+    
+    $contenido = ob_get_clean();
+    include RUTA_VIEWS . 'layout.php';
+    
+
+    
 } else {
     header('Status: 404 Not Found');
     echo '<html>'

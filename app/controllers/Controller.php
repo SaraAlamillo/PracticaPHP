@@ -1,7 +1,5 @@
 <?php
 
-include RUTA_VIEWS . 'helper.php';
-
 /**
  * Contiene diferentes funciones que emulan los diferentes controladores
  *
@@ -67,6 +65,7 @@ class Controller {
     }
 
     public function insertar() {
+        include RUTA_HELPER . 'formularios.php';
         $params = [
             "action" => $_GET['action'],
             "datos" => [
@@ -92,6 +91,7 @@ class Controller {
     }
 
     public function buscar() {
+        include RUTA_HELPER . 'formularios.php';
         $params = [
             "action" => $_GET['action'],
             "estados" => $this->model->obtenerEstados(),
@@ -200,6 +200,7 @@ class Controller {
     }
 
     public function modificar() {
+        include RUTA_HELPER . 'formularios.php';
         $params = [
             "action" => $_GET['action']
         ];
