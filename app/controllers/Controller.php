@@ -20,8 +20,8 @@ class Controller {
 
         require RUTA_VIEWS . 'inicio.php';
     }
-    
-    private function paginar($accion, &$pagina, $condiciones = NULL){
+
+    private function paginar($accion, &$pagina, $condiciones = NULL) {
         define("MaxPagina", 2);
 
         if (empty($pagina)) {
@@ -30,10 +30,12 @@ class Controller {
         } else {
             $inicio = ($pagina - 1) * MaxPagina;
         }
+
         $params = [
             'datos' => $this->model->listarEnvios($condiciones, $inicio . "," . MaxPagina),
             'action' => $accion,
             'paginaActual' => $pagina,
+            'numeroDePaginas' => ceil(count($this->model->listarEnvios($condiciones)) / MaxPagina),
             'controlesActivos' => [
                 'primero' => '',
                 'anterior' => '',
@@ -41,8 +43,6 @@ class Controller {
                 'ultimo' => ''
             ]
         ];
-        
-        $params['numeroDePaginas'] = ceil(count($params['datos']) / MaxPagina);
 
         if ($pagina == 1) {
             $params['controlesActivos']['primero'] = "disabled='disabled'";
@@ -98,8 +98,8 @@ class Controller {
             "provincias" => $this->model->obtenerTodasProvincias(),
             "tipo_busqueda" => $this->model->obtenerTiposBusqueda()
         ];
-        
-        if(isset($_GET['nueva'])) {
+
+        if (isset($_GET['nueva'])) {
             unset($_SESSION['criteriosBusqueda']);
         }
 
