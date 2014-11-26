@@ -1,8 +1,8 @@
 <?php
 include "app/Config.php";
 include "app/libraries/DataBase.php";
-include "app/models/Model.php";
+include "app/models/ModelEnvios.php";
 
-$model = new Model();
+$model = new ModelEnvios();
 
 

@@ -1,30 +1,32 @@
 <?php
 
-include RUTA_LIBRARIES . 'DataBase.php';
 
 /**
  * Contiene las diferentes funciones que emulan los modelos
  *
  * @author Sara
  */
-class Model {
+class ModelEnvios {
 
     private $conexion;
+    private $modelEnvios;
+    private $tabla = "envios";
 
     public function __construct() {
         $this->conexion = DataBase::getInstance();
+        $this->modelEnvios = new ModelProvincias();
     }
 
 
     public function listarEnvios($condiciones, $limite = NULL) {
-        $resultado = $this->conexion->Seleccionar("envios", "*", $condiciones, $limite, "fecha_creacion desc");
+        $resultado = $this->conexion->Seleccionar($this->tabla, "*", $condiciones, $limite, "fecha_creacion desc");
 
         foreach ($resultado as &$registro) {
             foreach ($registro as $clave => &$valor) {
                 if ($clave == 'estado') {
                     $valor = $this->obtenerEstadoCompleto($valor);
                 } else if ($clave == 'provincia') {
-                    $valor = $this->obtenerUnaProvincia($valor);
+                    $valor = $this->modelEnvios->obtenerUnaProvincia($valor);
                 } else if ($clave == 'fecha_creacion') {
                     $valor = $this->mostrarFecha($valor);
                 } else if ($clave == 'fecha_entrega') {
@@ -49,14 +51,14 @@ class Model {
             ]
         ];
 
-        $resultado = $this->conexion->Seleccionar("envios", "*", $condiciones, NULL, "fecha_creacion desc");
+        $resultado = $this->conexion->Seleccionar($this->tabla, "*", $condiciones, NULL, "fecha_creacion desc");
 
         foreach ($resultado as &$registro) {
             foreach ($registro as $clave => &$valor) {
                 if ($clave == 'estado') {
                     $valor = $this->obtenerEstadoCompleto($valor);
                 } else if ($clave == 'provincia') {
-                    $valor = $this->obtenerUnaProvincia($valor);
+                    $valor = $this->modelEnvios->obtenerUnaProvincia($valor);
                 } else if ($clave == 'fecha_creacion') {
                     $valor = $this->mostrarFecha($valor);
                 } else if ($clave == 'fecha_entrega') {
@@ -71,39 +73,11 @@ class Model {
         }
     }
 
-    public function obtenerTodasProvincias() {
-
-        $resultado = $this->conexion->Seleccionar("provincias", "*", NULL, NULL, "nombre asc");
-        return $resultado;
-        /*
-        if (count($resultado) != 0) {
-            return $resultado;
-        } else {
-            return NULL;
-        }
-         * 
-         */
-    }
-
-    public function obtenerUnaProvincia($codigo) {
-        $condiciones = [
-            [
-                "campo" => "codigo",
-                "conector" => "=",
-                "valor" => $codigo
-            ]
-        ];
-
-        $resultado = $this->conexion->Seleccionar("provincias", "nombre", $condiciones, NULL, NULL);
-
-        return $resultado[0]['nombre'];
-    }
-
     public function insertarEnvio($valores) {
         // comprobar campos formulario
         //if ($this->validarDatos($valores)) {
         $valores['estado'] = "P";
-        $this->conexion->Insertar("envios", $valores);
+        $this->conexion->Insertar($this->tabla, $valores);
         //header('Location: index.php?action=insertar');
         /* } else {
           $params = array(
@@ -124,24 +98,15 @@ class Model {
     }
 
     public function modificarEnvio($codigo, $datos) {
-        return $this->conexion->Actualizar("envios", $codigo, $datos);
+        return $this->conexion->Actualizar($this->tabla, $codigo, $datos);
     }
 
     public function eliminarEnvio($id) {
-        return $this->conexion->Borrar("envios", $id);
-    }
-
-    public function buscarEnvio() {
-        
-    }
-
-    // TODO: hacer función validarDatos(Modelo)
-    public function validarDatos($valores) {
-        
+        return $this->conexion->Borrar($this->tabla, $id);
     }
 
     public function existeEnvio($codigo) {
-        return $this->conexion->existeElemento("envios", $codigo);
+        return $this->conexion->existeElemento($this->tabla, ["codigo" => $codigo]);
     }
 
     public function obtenerEstadoCompleto($letra) {

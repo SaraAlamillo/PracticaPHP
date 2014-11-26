@@ -1,4 +1,5 @@
 <?php
+
 session_name('envios');
 session_start();
 
@@ -15,24 +16,32 @@ define("URL_IMAGES", URL_ROOT . "Assets/images/");
 define("URL_JS", URL_ROOT . "Assets/js/");
 
 // carga del modelo y los controladores
-require_once RUTA_APP. 'Config.php';
-require_once RUTA_MODELS . 'Model.php';
-require_once RUTA_CONTROLLERS . 'Controller.php';
+require_once RUTA_APP . 'Config.php';
+require_once RUTA_MODELS . 'ModelEnvios.php';
+require_once RUTA_MODELS . 'ModelProvincias.php';
+require_once RUTA_MODELS . 'ModelUsuarios.php';
+require_once RUTA_CONTROLLERS . 'ControllerEnvios.php';
+require_once RUTA_CONTROLLERS . 'ControllerUsuarios.php';
 require_once RUTA_LIBRARIES . 'validacion.php';
+require_once RUTA_LIBRARIES . 'DataBase.php';
+require_once RUTA_HELPER . 'formularios.php';
+require_once RUTA_HELPER . 'plantillas.php';
+
 
 // enrutamiento
-$map = array(
-    'inicio' => array('controller' => 'Controller', 'action' => 'inicio'),
-    'listar' => array('controller' => 'Controller', 'action' => 'listar'),
-    'insertar' => array('controller' => 'Controller', 'action' => 'insertar'),
-    'buscar' => array('controller' => 'Controller', 'action' => 'buscar'),
-    'eliminar' => array('controller' => 'Controller', 'action' => 'eliminar'),
-    'recepcionar' => array('controller' => 'Controller', 'action' => 'recepcionar'),
-    'modificar' => array('controller' => 'Controller', 'action' => 'modificar')
-);
+$map = [
+    'inicio' => array('controller' => 'ControllerEnvios', 'action' => 'inicio'),
+    'listar' => array('controller' => 'ControllerEnvios', 'action' => 'listar'),
+    'insertar' => array('controller' => 'ControllerEnvios', 'action' => 'insertar'),
+    'buscar' => array('controller' => 'ControllerEnvios', 'action' => 'buscar'),
+    'eliminar' => array('controller' => 'ControllerEnvios', 'action' => 'eliminar'),
+    'recepcionar' => array('controller' => 'ControllerEnvios', 'action' => 'recepcionar'),
+    'modificar' => array('controller' => 'ControllerEnvios', 'action' => 'modificar'),
+    'login' => array('controller' => 'ControllerUsuarios', 'action' => 'acceder')
+];
 
 // Parseo de la ruta
-if (isset($_GET['action'])) {
+if (isset($_GET['action']) && isset($_SESSION['usuarioValidado'])) {
     if (isset($map[$_GET['action']])) {
         $ruta = $_GET['action'];
     } else {
@@ -45,23 +54,19 @@ if (isset($_GET['action'])) {
         exit;
     }
 } else {
-    $ruta = 'inicio';
+    $ruta = 'login';
 }
 
 $controlador = $map[$ruta];
 // Ejecución del controlador asociado a la ruta
 
 if (method_exists($controlador['controller'], $controlador['action'])) {
-    require_once RUTA_HELPER . 'plantillas.php';
     ob_start();
 
     call_user_func(array(new $controlador['controller'], $controlador['action']));
-    
+
     $contenido = ob_get_clean();
     include RUTA_VIEWS . 'layout.php';
-    
-
-    
 } else {
     header('Status: 404 Not Found');
     echo '<html>'

@@ -5,7 +5,7 @@
  *
  * @author Sara
  */
-class Controller {
+class ControllerEnvios {
     public static $criterios = array(
         'destinatario' => array(
             'filter' => FILTER_CALLBACK,
@@ -37,10 +37,12 @@ class Controller {
             'filter' => FILTER_CALLBACK,
             'options' => "TratamientoFormularios::fecha")*/
     );
-    private $model;
+    private $modelEnvios;
+    private $modelProvincias;
 
     public function __construct() {
-        $this->model = new Model();
+        $this->modelEnvios = new ModelEnvios();
+        $this->modelProvincias = new ModelProvincias();
     }
 
     public function inicio() {
@@ -62,10 +64,10 @@ class Controller {
         }
 
         $params = [
-            'datos' => $this->model->listarEnvios($condiciones, $inicio . "," . MaxPagina),
+            'datos' => $this->modelEnvios->listarEnvios($condiciones, $inicio . "," . MaxPagina),
             'action' => $accion,
             'paginaActual' => $pagina,
-            'numeroDePaginas' => ceil(count($this->model->listarEnvios($condiciones)) / MaxPagina),
+            'numeroDePaginas' => ceil(count($this->modelEnvios->listarEnvios($condiciones)) / MaxPagina),
             'controlesActivos' => [
                 'primero' => '',
                 'anterior' => '',
@@ -95,7 +97,6 @@ class Controller {
     }
 
     public function insertar() {
-        include RUTA_HELPER . 'formularios.php';
         $params = [
             "action" => $_GET['action'],
             "datos" => [
@@ -110,14 +111,14 @@ class Controller {
                 'fecha_creacion' => date("Y-m-d"),
                 'observaciones' => ''
             ],
-            "provincias" => $this->model->obtenerTodasProvincias()
+            "provincias" => $this->modelProvincias->obtenerTodasProvincias()
         ];
 
         if ($_POST) {
             $datosError = TratamientoFormularios::validarArray($this::$criterios);
             
             if (empty($datosError)){
-            $this->model->insertarEnvio($_POST);
+            $this->modelEnvios->insertarEnvio($_POST);
             } else {
                 echo "ok";
             }
@@ -127,12 +128,11 @@ class Controller {
     }
 
     public function buscar() {
-        include RUTA_HELPER . 'formularios.php';
         $params = [
             "action" => $_GET['action'],
-            "estados" => $this->model->obtenerEstados(),
-            "provincias" => $this->model->obtenerTodasProvincias(),
-            "tipo_busqueda" => $this->model->obtenerTiposBusqueda()
+            "estados" => $this->modelEnvios->obtenerEstados(),
+            "provincias" => $this->modelProvincias->obtenerTodasProvincias(),
+            "tipo_busqueda" => $this->modelEnvios->obtenerTiposBusqueda()
         ];
 
         if (isset($_GET['nueva'])) {
@@ -143,7 +143,7 @@ class Controller {
             $this->paginar($_GET['action'], $_GET['pagina'], $_SESSION['criteriosBusqueda']);
         } else if ($_POST) {
             $datos = [];
-            $camposFormulario = $this->model->obtenerCamposFormulario();
+            $camposFormulario = $this->modelEnvios->obtenerCamposFormulario();
 
             foreach ($_POST as $clavePOST => $valorPOST) {
                 if (in_array($clavePOST, $camposFormulario)) {
@@ -179,10 +179,10 @@ class Controller {
             require RUTA_VIEWS . 'formCodEnvio.php';
         } else {
             $params['id'] = $_GET['id'];
-            if ($this->model->existeEnvio($_GET['id'])) {
+            if ($this->modelEnvios->existeEnvio($_GET['id'])) {
                 if (isset($_GET['confirmacion'])) {
                     if ($_GET['confirmacion'] == "Si") {
-                        if ($this->model->eliminarEnvio($_GET['id'])) {
+                        if ($this->modelEnvios->eliminarEnvio($_GET['id'])) {
                             require RUTA_VIEWS . 'finalBien.php';
                         } else {
                             require RUTA_VIEWS . 'finalMal.php';
@@ -209,7 +209,7 @@ class Controller {
             require RUTA_VIEWS . 'formCodEnvio.php';
         } else {
             $params['id'] = $_GET['id'];
-            if ($this->model->existeEnvio($_GET['id'])) {
+            if ($this->modelEnvios->existeEnvio($_GET['id'])) {
                 if (isset($_GET['confirmacion'])) {
                     $params['confirmacion'] = $_GET['confirmacion'];
                     if ($_GET['confirmacion'] == "Si") {
@@ -217,7 +217,7 @@ class Controller {
                             "fecha_entrega" => date("Y-m-d"),
                             "estado" => "E"
                         ];
-                        if ($this->model->modificarEnvio($_GET['id'], $datos)) {
+                        if ($this->modelEnvios->modificarEnvio($_GET['id'], $datos)) {
                             require RUTA_VIEWS . 'finalBien.php';
                         } else {
                             require RUTA_VIEWS . 'finalMal.php';
@@ -236,7 +236,6 @@ class Controller {
     }
 
     public function modificar() {
-        include RUTA_HELPER . 'formularios.php';
         $params = [
             "action" => $_GET['action']
         ];
@@ -245,15 +244,15 @@ class Controller {
             require RUTA_VIEWS . 'formCodEnvio.php';
         } else {
             $params['id'] = $_GET['id'];
-            if ($this->model->existeEnvio($_GET['id'])) {
+            if ($this->modelEnvios->existeEnvio($_GET['id'])) {
                 if (isset($_GET['confirmacion'])) {
                     $params['confirmacion'] = $_GET['confirmacion'];
                     if ($_GET['confirmacion'] == "Si") {
-                        $params['provincias'] = $this->model->obtenerTodasProvincias();
-                        $params['estados'] = $this->model->obtenerEstados();
-                        $params['antiguo'] = $this->model->listarUnEnvio($_GET['id']);
+                        $params['provincias'] = $this->modelProvincias->obtenerTodasProvincias();
+                        $params['estados'] = $this->modelEnvios->obtenerEstados();
+                        $params['antiguo'] = $this->modelEnvios->listarUnEnvio($_GET['id']);
                         if ($_POST) {
-                            if ($this->model->modificarEnvio($_GET['id'], $_POST)) {
+                            if ($this->modelEnvios->modificarEnvio($_GET['id'], $_POST)) {
                                 require RUTA_VIEWS . 'finalBien.php';
                             } else {
                                 require RUTA_VIEWS . 'finalMal.php';

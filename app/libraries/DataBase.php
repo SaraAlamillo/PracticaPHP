@@ -62,8 +62,8 @@ class DataBase {
                 if ($condicion['conector'] == 'like') {
                     $camposCondicion[] = $condicion['campo'] . " like concat('%', '" . $condicion['valor'] . "', '%')";
                 } else {
-                $condicion['valor'] = "'{$condicion['valor']}'";
-                $camposCondicion[] = $condicion['campo'] . $condicion['conector'] . $condicion['valor'];
+                    $condicion['valor'] = "'{$condicion['valor']}'";
+                    $camposCondicion[] = $condicion['campo'] . $condicion['conector'] . $condicion['valor'];
                 }
             }
             $camposCondicion = implode(" and ", $camposCondicion);
@@ -77,7 +77,7 @@ class DataBase {
         } else {
             $limite = "";
         }
-        
+
         if ($orden != NULL) {
             $orden = " order by " . $orden;
         } else {
@@ -89,11 +89,11 @@ class DataBase {
         $registros = $this->link->query($sql);
 
         $resultados = [];
-        
+
         while ($registro = $registros->fetch_assoc()) {
             $resultados[] = $registro;
         }
-        
+
         return $resultados;
     }
 
@@ -153,15 +153,17 @@ class DataBase {
         return $resultado;
     }
 
-    public function existeElemento($tabla, $codigo) {
-        $condiciones = [
-            [
-            "campo" => "codigo",
-            "conector" => "=",
-            "valor" => $codigo
-                ]
-        ];
-        
+    public function existeElemento($tabla, $campos) {
+
+        foreach ($campos as $key => $value) {
+            $condiciones[] = [
+                        "campo" => $key,
+                        "conector" => "=",
+                        "valor" => $value
+                    ];
+        }
+
+
         $resultado = $this->Seleccionar($tabla, "*", $condiciones, NULL, NULL);
 
         if (count($resultado) == 0) {
