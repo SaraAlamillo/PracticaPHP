@@ -17,10 +17,16 @@ class ControllerUsuarios {
         } else {
             if ($this->modelUsuarios->existeUsuario($_POST['nombre'], $_POST['clave'])) {
                 $_SESSION['usuarioValidado'] = TRUE;
+                $_SESSION['hora'] = date("H:m:s");
                 header("Location: index.php?action=inicio");
             } else {
                 echo 'mal';
             }
         }
+    }
+    
+    public function salir() {
+        session_destroy();
+        header("Location: index.php");
     }
 }

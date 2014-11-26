@@ -37,7 +37,8 @@ $map = [
     'eliminar' => array('controller' => 'ControllerEnvios', 'action' => 'eliminar'),
     'recepcionar' => array('controller' => 'ControllerEnvios', 'action' => 'recepcionar'),
     'modificar' => array('controller' => 'ControllerEnvios', 'action' => 'modificar'),
-    'login' => array('controller' => 'ControllerUsuarios', 'action' => 'acceder')
+    'login' => array('controller' => 'ControllerUsuarios', 'action' => 'acceder'),
+    'salir' => array('controller' => 'ControllerUsuarios', 'action' => 'salir')
 ];
 
 // Parseo de la ruta

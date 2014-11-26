@@ -7,13 +7,17 @@
 
     </head>
     <body>
-        <?= CargaVista(RUTA_VIEWS . "encabezado.php") ?>
-        <?= CargaVista(RUTA_VIEWS . "menu.php") ?>
-        
+        <?= CargaVista(RUTA_VIEWS . "encabezado.php", ['hora' => isset($_SESSION['hora'])? $_SESSION['hora'] : NULL, 'validado' => isset($_SESSION['usuarioValidado'])? $_SESSION['usuarioValidado'] : NULL]) ?>
+        <?php
+        if (isset($_SESSION['usuarioValidado'])) {
+            CargaVista(RUTA_VIEWS . "menu.php");
+        }
+        ?>
+
         <div id="contenido">
             <?= $contenido ?>
         </div>
-        
+
         <?= CargaVista(RUTA_VIEWS . "pie.php") ?>
     </body>
 </html>
