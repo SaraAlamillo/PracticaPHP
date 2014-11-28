@@ -38,7 +38,11 @@ $map = [
     'recepcionar' => array('controller' => 'ControllerEnvios', 'action' => 'recepcionar'),
     'modificar' => array('controller' => 'ControllerEnvios', 'action' => 'modificar'),
     'login' => array('controller' => 'ControllerUsuarios', 'action' => 'acceder'),
-    'salir' => array('controller' => 'ControllerUsuarios', 'action' => 'salir')
+    'salir' => array('controller' => 'ControllerUsuarios', 'action' => 'salir'),
+    'listarUsuarios' => array('controller' => 'ControllerUsuarios', 'action' => 'listarUsuarios'),
+    'insertarUsuario' => array('controller' => 'ControllerUsuarios', 'action' => 'insertarUsuario'),
+    'eliminarUsuario' => array('controller' => 'ControllerUsuarios', 'action' => 'eliminarUsuario'),
+    'modificarUsuario' => array('controller' => 'ControllerUsuarios', 'action' => 'modificarUsuario')
 ];
 
 // Parseo de la ruta

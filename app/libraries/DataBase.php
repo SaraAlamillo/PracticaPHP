@@ -106,7 +106,7 @@ class DataBase {
      *
      * @return boolean
      */
-    public function Actualizar($tabla, $id, $datos) {
+    public function Actualizar($tabla, $id, $campoID, $datos) {
         $campos = [];
 
         foreach ($datos as $clave => $valor) {
@@ -116,9 +116,9 @@ class DataBase {
         }
 
         $campos = implode(",", $campos);
-        $consulta = "update $tabla set $campos where codigo = $id";
+        $consulta = "update $tabla set $campos where $campoID = '$id'";
         $resultado = $this->link->query($consulta);
-
+echo $consulta;
         return $resultado;
     }
 
@@ -136,6 +136,7 @@ class DataBase {
                 . "VALUES ('" . implode("', '", $datos) . "') ";
 
         $this->link->query($sql);
+        echo $sql;
     }
 
     /**
@@ -146,10 +147,10 @@ class DataBase {
      * 
      * @return boolean	    	
      */
-    public function Borrar($tabla, $id) {
-        $consulta = "delete from $tabla where codigo = $id";
+    public function Borrar($tabla, $campo, $valorCampo) {
+        $consulta = "delete from $tabla where $campo = '$valorCampo'";
         $resultado = $this->link->query($consulta);
-
+        echo $consulta;
         return $resultado;
     }
 

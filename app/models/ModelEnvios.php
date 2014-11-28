@@ -102,7 +102,7 @@ class ModelEnvios {
     }
 
     public function eliminarEnvio($id) {
-        return $this->conexion->Borrar($this->tabla, $id);
+        return $this->conexion->Borrar($this->tabla, "codigo", $id);
     }
 
     public function existeEnvio($codigo) {

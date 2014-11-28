@@ -50,7 +50,7 @@ class ControllerEnvios {
             'mensaje' => 'Práctica 1ª Evaluación - Desarrollo Web en Entorno Servidor',
         ];
 
-        require RUTA_VIEWS . 'inicio.php';
+        require RUTA_VIEWS . 'envios/inicio.php';
     }
 
     private function paginar($accion, &$pagina, $condiciones = NULL) {
@@ -86,9 +86,9 @@ class ControllerEnvios {
         }
 
         if ($params['datos'] == NULL) {
-            require RUTA_VIEWS . 'noDatos.php';
+            require RUTA_VIEWS . 'envios/noDatos.php';
         } else {
-            require RUTA_VIEWS . 'listar.php';
+            require RUTA_VIEWS . 'envios/listar.php';
         }
     }
 
@@ -124,7 +124,7 @@ class ControllerEnvios {
             }
         }
 
-        require RUTA_VIEWS . 'formInsertar.php';
+        require RUTA_VIEWS . 'envios/formInsertar.php';
     }
 
     public function buscar() {
@@ -160,13 +160,13 @@ class ControllerEnvios {
             if (empty($datos)) {
                 $params['mensaje'] = "No se ha introducido ningún criterio de búsqueda.";
 
-                require RUTA_VIEWS . 'formBuscar.php';
+                require RUTA_VIEWS . 'envios/formBuscar.php';
             } else {
                 $_SESSION['criteriosBusqueda'] = $datos;
                 $this->paginar($_GET['action'], $_GET['pagina'], $_SESSION['criteriosBusqueda']);
             }
         } else {
-            require RUTA_VIEWS . 'formBuscar.php';
+            require RUTA_VIEWS . 'envios/formBuscar.php';
         }
     }
 
@@ -176,26 +176,26 @@ class ControllerEnvios {
         ];
 
         if (empty($_GET['id'])) {
-            require RUTA_VIEWS . 'formCodEnvio.php';
+            require RUTA_VIEWS . 'envios/formCodEnvio.php';
         } else {
             $params['id'] = $_GET['id'];
             if ($this->modelEnvios->existeEnvio($_GET['id'])) {
                 if (isset($_GET['confirmacion'])) {
                     if ($_GET['confirmacion'] == "Si") {
                         if ($this->modelEnvios->eliminarEnvio($_GET['id'])) {
-                            require RUTA_VIEWS . 'finalBien.php';
+                            require RUTA_VIEWS . 'envios/finalBien.php';
                         } else {
-                            require RUTA_VIEWS . 'finalMal.php';
+                            require RUTA_VIEWS . 'envios/finalMal.php';
                         }
                     } else {
-                        require RUTA_VIEWS . 'formCodEnvio.php';
+                        require RUTA_VIEWS . 'envios/formCodEnvio.php';
                     }
                 } else {
-                    require RUTA_VIEWS . 'confirmacion.php';
+                    require RUTA_VIEWS . 'envios/confirmacion.php';
                 }
             } else {
                 $params['error'] = "El código de envío introducido no existe";
-                require RUTA_VIEWS . 'formCodEnvio.php';
+                require RUTA_VIEWS . 'envios/formCodEnvio.php';
             }
         }
     }
@@ -206,7 +206,7 @@ class ControllerEnvios {
         ];
 
         if (empty($_GET['id'])) {
-            require RUTA_VIEWS . 'formCodEnvio.php';
+            require RUTA_VIEWS . 'envios/formCodEnvio.php';
         } else {
             $params['id'] = $_GET['id'];
             if ($this->modelEnvios->existeEnvio($_GET['id'])) {
@@ -218,19 +218,19 @@ class ControllerEnvios {
                             "estado" => "E"
                         ];
                         if ($this->modelEnvios->modificarEnvio($_GET['id'], $datos)) {
-                            require RUTA_VIEWS . 'finalBien.php';
+                            require RUTA_VIEWS . 'envios/finalBien.php';
                         } else {
-                            require RUTA_VIEWS . 'finalMal.php';
+                            require RUTA_VIEWS . 'envios/finalMal.php';
                         }
                     } else {
-                        require RUTA_VIEWS . 'formCodEnvio.php';
+                        require RUTA_VIEWS . 'envios/formCodEnvio.php';
                     }
                 } else {
-                    require RUTA_VIEWS . 'confirmacion.php';
+                    require RUTA_VIEWS . 'envios/confirmacion.php';
                 }
             } else {
                 $params['error'] = "El código de envío introducido no existe";
-                require RUTA_VIEWS . 'formCodEnvio.php';
+                require RUTA_VIEWS . 'envios/formCodEnvio.php';
             }
         }
     }
@@ -241,7 +241,7 @@ class ControllerEnvios {
         ];
 
         if (empty($_GET['id'])) {
-            require RUTA_VIEWS . 'formCodEnvio.php';
+            require RUTA_VIEWS . 'envios/formCodEnvio.php';
         } else {
             $params['id'] = $_GET['id'];
             if ($this->modelEnvios->existeEnvio($_GET['id'])) {
@@ -253,22 +253,22 @@ class ControllerEnvios {
                         $params['antiguo'] = $this->modelEnvios->listarUnEnvio($_GET['id']);
                         if ($_POST) {
                             if ($this->modelEnvios->modificarEnvio($_GET['id'], $_POST)) {
-                                require RUTA_VIEWS . 'finalBien.php';
+                                require RUTA_VIEWS . 'envios/finalBien.php';
                             } else {
-                                require RUTA_VIEWS . 'finalMal.php';
+                                require RUTA_VIEWS . 'envios/finalMal.php';
                             }
                         } else {
-                            require RUTA_VIEWS . 'formModificar.php';
+                            require RUTA_VIEWS . 'envios/formModificar.php';
                         }
                     } else {
-                        require RUTA_VIEWS . 'formCodEnvio.php';
+                        require RUTA_VIEWS . 'envios/formCodEnvio.php';
                     }
                 } else {
-                    require RUTA_VIEWS . 'confirmacion.php';
+                    require RUTA_VIEWS . 'envios/confirmacion.php';
                 }
             } else {
                 $params['error'] = "El código de envío introducido no existe";
-                require RUTA_VIEWS . 'formCodEnvio.php';
+                require RUTA_VIEWS . 'envios/formCodEnvio.php';
             }
         }
     }
