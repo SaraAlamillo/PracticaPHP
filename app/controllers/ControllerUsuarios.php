@@ -13,6 +13,12 @@ class ControllerUsuarios {
 
     public function acceder() {
         if (! isset($_SESSION['usuarioValidado'])) {
+            $params = [
+                "datos" => [
+                    "nombre" => "",
+                    "clave" => ""
+                ]
+            ];
         if (! $_POST) {
             require RUTA_VIEWS . 'usuarios/login.php';
         } else {
@@ -24,7 +30,9 @@ class ControllerUsuarios {
                 }
                 header("Location: index.php?action=inicio");
             } else {
-                echo 'mal';
+                $params['mensaje'] = "Usuario o contraseña incorrecta";
+                $params['datos'] = $_POST;
+                require RUTA_VIEWS . 'usuarios/login.php';
             }
         }
         } else {
