@@ -118,7 +118,7 @@ class DataBase {
         $campos = implode(",", $campos);
         $consulta = "update $tabla set $campos where $campoID = '$id'";
         $resultado = $this->link->query($consulta);
-echo $consulta;
+
         return $resultado;
     }
 

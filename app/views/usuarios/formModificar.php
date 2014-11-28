@@ -2,10 +2,18 @@
     <table>
             <tr>
                 <th>
+                    Código
+                </th>
+                <td>
+                    <input type="text" name="nombre" value="<?= $params['antiguo']['codigo'] ?>" readonly="readonly" />
+                </td>
+            </tr>
+            <tr>
+                <th>
                     Nombre
                 </th>
                 <td>
-                    <input type="text" name="nombre" value="<?= $params['antiguo']['nombre'] ?>" readonly="readonly" />
+                    <input type="text" name="nombre" value="<?= $params['antiguo']['nombre'] ?>" />
                 </td>
             </tr>
             <tr>

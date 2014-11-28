@@ -12,6 +12,7 @@ class ControllerUsuarios {
     }
 
     public function acceder() {
+        if (! isset($_SESSION['usuarioValidado'])) {
         if (! $_POST) {
             require RUTA_VIEWS . 'usuarios/login.php';
         } else {
@@ -25,6 +26,9 @@ class ControllerUsuarios {
             } else {
                 echo 'mal';
             }
+        }
+        } else {
+            header("Location: index.php?action=inicio");
         }
     }
     
@@ -148,9 +152,6 @@ class ControllerUsuarios {
                     $params['confirmacion'] = $_GET['confirmacion'];
                     if ($_GET['confirmacion'] == "Si") {
                         $params['antiguo'] = $this->modelUsuarios->listarUnUsuario($_GET['usuario']);
-                        echo "<pre>";
-                        print_r($params);
-                        echo "</pre>";
                         if ($_POST) {
                             if ($this->modelUsuarios->modificarUsuario($_GET['usuario'], $_POST)) {
                                 require RUTA_VIEWS . 'usuarios/finalBien.php';

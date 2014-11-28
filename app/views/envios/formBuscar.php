@@ -1,10 +1,4 @@
-<?php if (isset($params['mensaje'])) : ?>
-    <b>
-        <span style="color: red;"><?= $params['mensaje'] ?></span>
-    </b>
-<?php endif; ?>
-
-<form name="formBuscar" action="index.php?action=<?= $params['action'] ?>" method="POST">
+<form action="index.php?action=<?= $params['action'] ?>" method="POST">
     <table>
         <tr>
             <th>Código</th>

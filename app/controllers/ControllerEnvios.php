@@ -50,7 +50,7 @@ class ControllerEnvios {
             'mensaje' => 'Práctica 1ª Evaluación - Desarrollo Web en Entorno Servidor',
         ];
 
-        require RUTA_VIEWS . 'envios/inicio.php';
+        require RUTA_VIEWS . 'inicio.php';
     }
 
     private function paginar($accion, &$pagina, $condiciones = NULL) {
