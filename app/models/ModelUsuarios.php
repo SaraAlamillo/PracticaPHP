@@ -32,7 +32,7 @@ class ModelUsuarios {
     }
 
     public function insertarUsuario($valores) {
-        $this->conexion->Insertar($this->tabla, $valores);
+        return $this->conexion->Insertar($this->tabla, $valores);
     }
 
     public function modificarUsuario($codigo, $datos) {

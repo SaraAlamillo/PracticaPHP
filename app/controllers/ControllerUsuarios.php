@@ -1,10 +1,12 @@
 <?php
+
 /**
  * Contiene diferentes funciones que emulan los diferentes controladores
  *
  * @author Sara
  */
 class ControllerUsuarios {
+
     private $modelUsuarios;
 
     public function __construct() {
@@ -12,34 +14,34 @@ class ControllerUsuarios {
     }
 
     public function acceder() {
-        if (! isset($_SESSION['usuarioValidado'])) {
+        if (!isset($_SESSION['usuarioValidado'])) {
             $params = [
                 "datos" => [
                     "nombre" => "",
                     "clave" => ""
                 ]
             ];
-        if (! $_POST) {
-            require RUTA_VIEWS . 'usuarios/login.php';
-        } else {
-            if ($this->modelUsuarios->existeUsuario($_POST['nombre'], "nombre", $_POST['clave'])) {
-                $_SESSION['usuarioValidado'] = TRUE;
-                $_SESSION['hora'] = date("H:m:s");
-                if ($this->modelUsuarios->esAdministrador($_POST['nombre'], $_POST['clave'])) {
-                    $_SESSION['admin'] = TRUE;
-                }
-                header("Location: index.php?action=inicio");
-            } else {
-                $params['mensaje'] = "Usuario o contraseña incorrecta";
-                $params['datos'] = $_POST;
+            if (!$_POST) {
                 require RUTA_VIEWS . 'usuarios/login.php';
+            } else {
+                if ($this->modelUsuarios->existeUsuario($_POST['nombre'], "nombre", $_POST['clave'])) {
+                    $_SESSION['usuarioValidado'] = TRUE;
+                    $_SESSION['hora'] = date("H:m:s");
+                    if ($this->modelUsuarios->esAdministrador($_POST['nombre'], $_POST['clave'])) {
+                        $_SESSION['admin'] = TRUE;
+                    }
+                    header("Location: index.php?action=inicio");
+                } else {
+                    $params['mensaje'] = "Usuario o contraseña incorrecta";
+                    $params['datos'] = $_POST;
+                    require RUTA_VIEWS . 'usuarios/login.php';
+                }
             }
-        }
         } else {
             header("Location: index.php?action=inicio");
         }
     }
-    
+
     public function salir() {
         session_destroy();
         header("Location: index.php");
@@ -47,11 +49,7 @@ class ControllerUsuarios {
 
     public function listarUsuarios() {
         paginar(
-                $_GET['action'], 
-                $_GET['pagina'], 
-                $this->modelUsuarios, 
-                "listarUsuarios", 
-                $params
+                $_GET['action'], $_GET['pagina'], $this->modelUsuarios, "listarUsuarios", $params
         );
 
         if ($params['datos'] == NULL) {
@@ -60,34 +58,36 @@ class ControllerUsuarios {
             require RUTA_VIEWS . 'usuarios/listar.php';
         }
     }
-    
-   public function insertarUsuario() {
+
+    public function insertarUsuario() {
         $params = [
             "action" => $_GET['action'],
             "datos" => [
                 'nombre' => '',
                 'clave' => '',
-                'rol' => ''
+                'rol' => 'Usuario'
             ],
             "roles" => $this->modelUsuarios->obtenerRoles()
         ];
 
         if ($_POST) {
-            if ($this->modelUsuarios->existeNombre($_POST['nombre'])) {
-                $params['datos'] = [
-                    'nombre' => $_POST['nombre'],
-                    'clave' => $_POST['clave'],
-                    'rol' => $_POST['rol']
-                ];
+            if ($this->modelUsuarios->existeUsuario($_POST['nombre'], "nombre")) {
+                $params['datos'] = $_POST;
+                $params['mensaje'] = "El nombre de usuario {$_POST['nombre']} ya existe en la base de datos";
             } else {
-            $this->modelUsuarios->insertarUsuario($_POST);
-            } 
+                if ($this->modelUsuarios->insertarUsuario($_POST)) {
+                    $params['mensaje'] = "Usuario añadido correctamente";
+                } else {
+                    $params['datos'] = $_POST;
+                    $params['mensaje'] = "Ups...Algo ha fallado";
+                }
+            }
         }
 
         require RUTA_VIEWS . 'usuarios/formInsertar.php';
     }
-    
-    public function eliminarUsuario(){
+
+    public function eliminarUsuario() {
         $params = [
             "action" => $_GET['action'],
             "usuarios" => $this->modelUsuarios->listarUsuarios()
@@ -117,11 +117,11 @@ class ControllerUsuarios {
             }
         }
     }
-    
-    public function modificarUsuario(){
-         $params = [
+
+    public function modificarUsuario() {
+        $params = [
             "action" => $_GET['action'],
-             "usuarios" => $this->modelUsuarios->listarUsuarios()
+            "usuarios" => $this->modelUsuarios->listarUsuarios()
         ];
 
         if (empty($_GET['usuario'])) {
@@ -154,4 +154,5 @@ class ControllerUsuarios {
             }
         }
     }
+
 }

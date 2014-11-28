@@ -1,3 +1,6 @@
+<?php if (isset($params['mensaje'])): ?>
+<p><?=$params['mensaje'] ?></p>
+<?php endif; ?>
 <form action="index.php?action=<?= $params['action'] ?>" method="POST">
     <table>
         <tr>
@@ -15,7 +18,7 @@
         <tr>
             <th>Rol</th>
             <td>
-                <?= creaListaDesplegable("rol", $params['roles'], "Usuario") ?>
+                <?= creaListaDesplegable("rol", $params['roles'], $params["datos"]['rol']) ?>
             </td>
         </tr>
     </table>

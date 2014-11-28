@@ -135,8 +135,8 @@ class DataBase {
                 . "(" . implode(", ", array_keys($datos)) . ") "
                 . "VALUES ('" . implode("', '", $datos) . "') ";
 
-        $this->link->query($sql);
-        echo $sql;
+        $resultado = $this->link->query($sql);
+        return $resultado;
     }
 
     /**
@@ -150,7 +150,7 @@ class DataBase {
     public function Borrar($tabla, $campo, $valorCampo) {
         $consulta = "delete from $tabla where $campo = '$valorCampo'";
         $resultado = $this->link->query($consulta);
-        echo $consulta;
+        
         return $resultado;
     }
 
