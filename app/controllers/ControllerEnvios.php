@@ -6,6 +6,7 @@
  * @author Sara
  */
 class ControllerEnvios {
+
     public static $criterios = array(
         'destinatario' => array(
             'filter' => FILTER_CALLBACK,
@@ -30,12 +31,12 @@ class ControllerEnvios {
         'observaciones' => array(
             'filter' => FILTER_CALLBACK,
             'options' => "TratamientoFormularios::alfanumericoSimbolos"),
-        /*'fecha_entrega' => array(
-            'filter' => FILTER_CALLBACK,
-            'options' => "TratamientoFormularios::fecha"),
-        'fecha_creacion' => array(
-            'filter' => FILTER_CALLBACK,
-            'options' => "TratamientoFormularios::fecha")*/
+            /* 'fecha_entrega' => array(
+              'filter' => FILTER_CALLBACK,
+              'options' => "TratamientoFormularios::fecha"),
+              'fecha_creacion' => array(
+              'filter' => FILTER_CALLBACK,
+              'options' => "TratamientoFormularios::fecha") */
     );
     private $modelEnvios;
     private $modelProvincias;
@@ -53,47 +54,20 @@ class ControllerEnvios {
         require RUTA_VIEWS . 'inicio.php';
     }
 
-    private function paginar($accion, &$pagina, $condiciones = NULL) {
-        define("MaxPagina", 2);
-
-        if (empty($pagina)) {
-            $inicio = 0;
-            $pagina = 1;
-        } else {
-            $inicio = ($pagina - 1) * MaxPagina;
-        }
-
-        $params = [
-            'datos' => $this->modelEnvios->listarEnvios($condiciones, $inicio . "," . MaxPagina),
-            'action' => $accion,
-            'paginaActual' => $pagina,
-            'numeroDePaginas' => ceil(count($this->modelEnvios->listarEnvios($condiciones)) / MaxPagina),
-            'controlesActivos' => [
-                'primero' => '',
-                'anterior' => '',
-                'siguiente' => '',
-                'ultimo' => ''
-            ]
-        ];
-
-        if ($pagina == 1) {
-            $params['controlesActivos']['primero'] = "disabled='disabled'";
-            $params['controlesActivos']['anterior'] = "disabled='disabled'";
-        }
-        if ($pagina == $params['numeroDePaginas']) {
-            $params['controlesActivos']['siguiente'] = "disabled='disabled'";
-            $params['controlesActivos']['ultimo'] = "disabled='disabled'";
-        }
+    public function listar() {
+        paginar(
+                $_GET['action'], 
+                $_GET['pagina'], 
+                $this->modelEnvios, 
+                "listarEnvios", 
+                $params
+        );
 
         if ($params['datos'] == NULL) {
             require RUTA_VIEWS . 'envios/noDatos.php';
         } else {
             require RUTA_VIEWS . 'envios/listar.php';
         }
-    }
-
-    public function listar() {
-        $this->paginar($_GET['action'], $_GET['pagina']);
     }
 
     public function insertar() {
@@ -116,9 +90,9 @@ class ControllerEnvios {
 
         if ($_POST) {
             $datosError = TratamientoFormularios::validarArray($this::$criterios);
-            
-            if (empty($datosError)){
-            $this->modelEnvios->insertarEnvio($_POST);
+
+            if (empty($datosError)) {
+                $this->modelEnvios->insertarEnvio($_POST);
             } else {
                 echo "ok";
             }

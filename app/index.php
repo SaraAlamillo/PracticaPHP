@@ -26,6 +26,7 @@ require_once RUTA_LIBRARIES . 'validacion.php';
 require_once RUTA_LIBRARIES . 'DataBase.php';
 require_once RUTA_HELPER . 'formularios.php';
 require_once RUTA_HELPER . 'plantillas.php';
+require_once RUTA_HELPER . 'listar.php';
 
 
 // enrutamiento

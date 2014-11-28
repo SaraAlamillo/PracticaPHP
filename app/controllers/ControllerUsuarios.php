@@ -36,48 +36,21 @@ class ControllerUsuarios {
         session_destroy();
         header("Location: index.php");
     }
-    
-     private function paginar($accion, &$pagina, $condiciones = NULL) {
-        define("MaxPagina", 2);
 
-        if (empty($pagina)) {
-            $inicio = 0;
-            $pagina = 1;
-        } else {
-            $inicio = ($pagina - 1) * MaxPagina;
-        }
-
-        $params = [
-            'datos' => $this->modelUsuarios->listarUsuarios($inicio . "," . MaxPagina),
-            'action' => $accion,
-            'paginaActual' => $pagina,
-            'numeroDePaginas' => ceil(count($this->modelUsuarios->listarUsuarios()) / MaxPagina),
-            'controlesActivos' => [
-                'primero' => '',
-                'anterior' => '',
-                'siguiente' => '',
-                'ultimo' => ''
-            ]
-        ];
-
-        if ($pagina == 1) {
-            $params['controlesActivos']['primero'] = "disabled='disabled'";
-            $params['controlesActivos']['anterior'] = "disabled='disabled'";
-        }
-        if ($pagina == $params['numeroDePaginas']) {
-            $params['controlesActivos']['siguiente'] = "disabled='disabled'";
-            $params['controlesActivos']['ultimo'] = "disabled='disabled'";
-        }
+    public function listarUsuarios() {
+        paginar(
+                $_GET['action'], 
+                $_GET['pagina'], 
+                $this->modelUsuarios, 
+                "listarUsuarios", 
+                $params
+        );
 
         if ($params['datos'] == NULL) {
             require RUTA_VIEWS . 'usuarios/noDatos.php';
         } else {
             require RUTA_VIEWS . 'usuarios/listar.php';
         }
-    }
-
-    public function listarUsuarios() {
-        $this->paginar($_GET['action'], $_GET['pagina']);
     }
     
    public function insertarUsuario() {
