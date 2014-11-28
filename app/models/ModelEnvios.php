@@ -74,31 +74,12 @@ class ModelEnvios {
     }
 
     public function insertarEnvio($valores) {
-        // comprobar campos formulario
-        //if ($this->validarDatos($valores)) {
         $valores['estado'] = "P";
         $this->conexion->Insertar($this->tabla, $valores);
-        //header('Location: index.php?action=insertar');
-        /* } else {
-          $params = array(
-          'destinatario' => $_POST['destinatario'],
-          'telefono' => $_POST['telefono'],
-          'direccion' => $_POST['direccion'],
-          'poblacion' => $_POST['poblacion'],
-          'cod_postal' => $_POST['cod_postal'],
-          'provincia' => $_POST['provincia'],
-          'email' => $_POST['email'],
-          'estado' => $_POST['estado'],
-          'fecha_creacion' => $_POST['fecha_creacion'],
-          'fecha_entrega' => $_POST['fecha_entrega'],
-          'observaciones' => $_POST['observaciones']
-          );
-          $params['mensaje'] = 'No se ha podido insertar el alimento. Revisa el formulario';
-          } */
     }
 
     public function modificarEnvio($codigo, $datos) {
-        return $this->conexion->Actualizar($this->tabla, $codigo, $datos);
+        return $this->conexion->Actualizar($this->tabla, $codigo, "codigo", $datos);
     }
 
     public function eliminarEnvio($id) {

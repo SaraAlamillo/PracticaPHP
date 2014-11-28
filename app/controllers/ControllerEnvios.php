@@ -56,11 +56,7 @@ class ControllerEnvios {
 
     public function listar() {
         paginar(
-                $_GET['action'], 
-                $_GET['pagina'], 
-                $this->modelEnvios, 
-                "listarEnvios", 
-                $params
+                $_GET['action'], $_GET['pagina'], $this->modelEnvios, "listarEnvios", $params
         );
 
         if ($params['datos'] == NULL) {
@@ -92,9 +88,16 @@ class ControllerEnvios {
             $datosError = TratamientoFormularios::validarArray($this::$criterios);
 
             if (empty($datosError)) {
-                $this->modelEnvios->insertarEnvio($_POST);
+                if ($this->modelEnvios->insertarEnvio($_POST)) {
+                    $params['mensaje'] = "Se han insertado los datos correctamente";
+                } else {
+                    $params['mensaje'] = "Ups... Algo ha fallado...";
+                    $params['datos'] = $_POST;
+                }
             } else {
-                echo "ok";
+                $params['errores'] = $datosError;
+                $params['mensaje'] = "Se han introducido valores no válidos";
+                $params['datos'] = $_POST;
             }
         }
 
@@ -224,13 +227,23 @@ class ControllerEnvios {
                     if ($_GET['confirmacion'] == "Si") {
                         $params['provincias'] = $this->modelProvincias->obtenerTodasProvincias();
                         $params['estados'] = $this->modelEnvios->obtenerEstados();
-                        $params['antiguo'] = $this->modelEnvios->listarUnEnvio($_GET['id']);
+                        $params['datos'] = $this->modelEnvios->listarUnEnvio($_GET['id']);
                         if ($_POST) {
-                            if ($this->modelEnvios->modificarEnvio($_GET['id'], $_POST)) {
-                                require RUTA_VIEWS . 'envios/finalBien.php';
+                            $datosError = TratamientoFormularios::validarArray($this::$criterios);
+
+                            if (empty($datosError)) {
+                                if ($this->modelEnvios->modificarEnvio($_GET['id'], $_POST)) {
+                                    require RUTA_VIEWS . 'envios/finalBien.php';
+                                } else {
+                                    $params['mensaje'] = "Ups... Algo ha fallado...";
+                                    $params['datos'] = $_POST;
+                                }
                             } else {
-                                require RUTA_VIEWS . 'envios/finalMal.php';
+                                $params['errores'] = $datosError;
+                                $params['mensaje'] = "Se han introducido valores no válidos";
+                                $params['datos'] = $_POST;
                             }
+                            require RUTA_VIEWS . 'envios/formModificar.php';
                         } else {
                             require RUTA_VIEWS . 'envios/formModificar.php';
                         }
