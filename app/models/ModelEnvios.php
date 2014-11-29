@@ -23,9 +23,7 @@ class ModelEnvios {
 
         foreach ($resultado as &$registro) {
             foreach ($registro as $clave => &$valor) {
-                if ($clave == 'estado') {
-                    $valor = $this->obtenerEstadoCompleto($valor);
-                } else if ($clave == 'provincia') {
+                if ($clave == 'provincia') {
                     $valor = $this->modelEnvios->obtenerUnaProvincia($valor);
                 } else if ($clave == 'fecha_creacion') {
                     $valor = $this->mostrarFecha($valor);
@@ -55,9 +53,7 @@ class ModelEnvios {
 
         foreach ($resultado as &$registro) {
             foreach ($registro as $clave => &$valor) {
-                if ($clave == 'estado') {
-                    $valor = $this->obtenerEstadoCompleto($valor);
-                } else if ($clave == 'provincia') {
+                if ($clave == 'provincia') {
                     $valor = $this->modelEnvios->obtenerUnaProvincia($valor);
                 } else if ($clave == 'fecha_creacion') {
                     $valor = $this->mostrarFecha($valor);
@@ -90,39 +86,19 @@ class ModelEnvios {
         return $this->conexion->existeElemento($this->tabla, ["codigo" => $codigo]);
     }
 
-    public function obtenerEstadoCompleto($letra) {
-        $estados = $this->obtenerEstados();
-
-        foreach ($estados as $estado) {
-            if ($estado['codigo'] = $letra) {
-                return $estado['nombre'];
-            }
-        }
-    }
-
-    public function obtenerEstadoLetra($estado) {
-        $estados = $this->obtenerEstados();
-
-        foreach ($estados as $clave => $valor) {
-            if ($valor == $estado) {
-                return $clave;
-            }
-        }
-    }
-
     public function obtenerEstados() {
         return [
             [
-                "codigo" => "P",
-                "nombre" => "Pendiente"
+                "nombre" => "Pendiente",
+                "codigo" => "Pendiente"
             ],
             [
-                "codigo" => "D",
-                "nombre" => "Devuelto"
+                "nombre" => "Devuelto",
+                "codigo" => "Devuelto"
             ],
             [
-                "codigo" => "E",
-                "nombre" => "Entregado"
+                "nombre" => "Entregado",
+                "codigo" => "Entregado"
             ]
         ];
     }
