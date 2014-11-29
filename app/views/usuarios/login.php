@@ -6,5 +6,11 @@
     <br />
     Contraseña: <input type="password" name="clave" value="<?=$params['datos']['clave'] ?>" />
     <br />
+    Zona: <?=creaListaDesplegable(
+            "zona", 
+            $params['zonas'], 
+            isset($params['datos']['clave'])? $params['datos']['clave'] : "0", 
+            ['nombre' => "--Seleccionar--", "codigo" => "0"]
+            ) ?>
     <input type="submit" />
 </form>

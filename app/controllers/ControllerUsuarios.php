@@ -8,9 +8,11 @@
 class ControllerUsuarios {
 
     private $modelUsuarios;
+    private $modelZonas;
 
     public function __construct() {
         $this->modelUsuarios = new ModelUsuarios();
+        $this->modelZonas = new ModelZonas();
     }
 
     public function acceder() {
@@ -19,18 +21,33 @@ class ControllerUsuarios {
                 "datos" => [
                     "nombre" => "",
                     "clave" => ""
-                ]
+                ],
+                "zonas" => $this->modelZonas->obtenerZonas()
             ];
             if (!$_POST) {
                 require RUTA_VIEWS . 'usuarios/login.php';
             } else {
                 if ($this->modelUsuarios->existeUsuario($_POST['nombre'], "nombre", $_POST['clave'])) {
-                    $_SESSION['usuarioValidado'] = TRUE;
-                    $_SESSION['hora'] = date("H:m:s");
-                    if ($this->modelUsuarios->esAdministrador($_POST['nombre'], $_POST['clave'])) {
-                        $_SESSION['admin'] = TRUE;
+
+                    if ($_POST['zona'] != "0") {
+                        if ($this->modelZonas->existeZona($_POST['zona'])) {
+                            $_SESSION['usuarioValidado'] = TRUE;
+                            $_SESSION['hora'] = date("H:m:s");
+                            $_SESSION['zona'] = $_POST['zona'];
+                            if ($this->modelUsuarios->esAdministrador($_POST['nombre'], $_POST['clave'])) {
+                                $_SESSION['admin'] = TRUE;
+                            }
+                            header("Location: index.php?action=inicio");
+                        } else {
+                            $params['mensaje'] = "La zona seleccionada no existe";
+                            $params['datos'] = $_POST;
+                            require RUTA_VIEWS . 'usuarios/login.php';
+                        }
+                    } else {
+                        $params['mensaje'] = "Debe seleccionar una zona";
+                        $params['datos'] = $_POST;
+                        require RUTA_VIEWS . 'usuarios/login.php';
                     }
-                    header("Location: index.php?action=inicio");
                 } else {
                     $params['mensaje'] = "Usuario o contraseña incorrecta";
                     $params['datos'] = $_POST;

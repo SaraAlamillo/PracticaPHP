@@ -38,7 +38,6 @@
         </tr>
     <?php endforeach; ?>
 </table>
-<script src="<?= URL_JS ?>paginacion.js"></script>
 <p>
     <a href="index.php?action=<?= $params['action'] ?>&pagina=1">
         <button <?= $params['controlesActivos']['primero'] ?>><<</button>

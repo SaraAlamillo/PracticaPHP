@@ -1,5 +1,9 @@
 <?php
-
+// TODO: reexportar las tablas de la base de datos
+// TODO: hacer el instalador de la aplicación
+// TODO: intentar crear zonas guardando la actual en una variable de sesión
+// TODO: documentar la aplicación
+// TODO: intentar la configuración de parámetros
 session_name('envios');
 session_start();
 
@@ -20,8 +24,10 @@ require_once RUTA_APP . 'Config.php';
 require_once RUTA_MODELS . 'ModelEnvios.php';
 require_once RUTA_MODELS . 'ModelProvincias.php';
 require_once RUTA_MODELS . 'ModelUsuarios.php';
+require_once RUTA_MODELS . 'ModelZonas.php';
 require_once RUTA_CONTROLLERS . 'ControllerEnvios.php';
 require_once RUTA_CONTROLLERS . 'ControllerUsuarios.php';
+require_once RUTA_CONTROLLERS . 'ControllerZonas.php';
 require_once RUTA_LIBRARIES . 'validacion.php';
 require_once RUTA_LIBRARIES . 'DataBase.php';
 require_once RUTA_HELPER . 'formularios.php';
@@ -43,7 +49,8 @@ $map = [
     'listarUsuarios' => array('controller' => 'ControllerUsuarios', 'action' => 'listarUsuarios'),
     'insertarUsuario' => array('controller' => 'ControllerUsuarios', 'action' => 'insertarUsuario'),
     'eliminarUsuario' => array('controller' => 'ControllerUsuarios', 'action' => 'eliminarUsuario'),
-    'modificarUsuario' => array('controller' => 'ControllerUsuarios', 'action' => 'modificarUsuario')
+    'modificarUsuario' => array('controller' => 'ControllerUsuarios', 'action' => 'modificarUsuario'),
+    'cambiarZona' => array('controller' => 'ControllerZonas', 'action' => 'cambiarZona')
 ];
 
 // Parseo de la ruta
@@ -72,6 +79,9 @@ if (method_exists($controlador['controller'], $controlador['action'])) {
     call_user_func(array(new $controlador['controller'], $controlador['action']));
 
     $contenido = ob_get_clean();
+    
+    $listadoZonas = call_user_func(array(new ModelZonas(), "obtenerZonas"));
+    
     include RUTA_VIEWS . 'layout.php';
 } else {
     header('Status: 404 Not Found');
