@@ -163,7 +163,7 @@ class DataBase {
         return $resultado;
     }
 
-    public function existeElemento($tabla, $campos) {
+    public function existeElemento($tabla, $campos, $zonas) {
 
         foreach ($campos as $key => $value) {
             $condiciones[] = [
@@ -173,8 +173,7 @@ class DataBase {
                     ];
         }
 
-
-        $resultado = $this->Seleccionar($tabla, "*", $condiciones, NULL, NULL);
+        $resultado = $this->Seleccionar($tabla, "*", $condiciones, NULL, NULL, $zonas);
 
         if (count($resultado) == 0) {
             return FALSE;

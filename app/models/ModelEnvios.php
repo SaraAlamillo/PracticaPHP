@@ -85,7 +85,8 @@ class ModelEnvios {
     }
 
     public function existeEnvio($codigo) {
-        return $this->conexion->existeElemento($this->tabla, ["codigo" => $codigo]);
+        $zonas = "(zona_envio='{$_SESSION['zona']}' or zona_recepcion='{$_SESSION['zona']}')";
+        return $this->conexion->existeElemento($this->tabla, ["codigo" => $codigo], $zonas);
     }
 
     public function obtenerEstados() {
