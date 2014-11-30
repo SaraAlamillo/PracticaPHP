@@ -16,8 +16,7 @@ function paginar($accion, &$pagina, $modelo, $metodo, &$parametrosVista, $condic
     } else {
         $inicio = ($pagina - 1) * MaxPagina;
     }
-
-    
+  
     $parametrosVista = [
         'datos' => $modelo->$metodo($condiciones, $inicio . "," . MaxPagina),
         'action' => $accion,

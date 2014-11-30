@@ -13,8 +13,8 @@ class ModelZonas {
         return $this->conexion->existeElemento($this->tabla, [$campo => $valor]);
     }
 
-    public function listarZonas() {
-        return $this->conexion->Seleccionar($this->tabla, "*", NULL, NULL, NULL);
+    public function listarZonas($condiciones = NULL, $limite = NULL) {
+        return $this->conexion->Seleccionar($this->tabla, "*", NULL, $limite, NULL);
     }
 
     public function listarUnaZona($codigo) {

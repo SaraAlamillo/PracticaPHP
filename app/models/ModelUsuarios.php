@@ -14,7 +14,7 @@ class ModelUsuarios {
         $this->conexion = DataBase::getInstance();
     }
 
-    public function listarUsuarios($limite = NULL) {
+    public function listarUsuarios($condiciones = NULL, $limite = NULL) {
         return $this->conexion->Seleccionar($this->tabla, "*", NULL, $limite, NULL);
     }
 
