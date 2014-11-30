@@ -106,7 +106,7 @@ class ControllerEnvios {
                 $params['datos']['zona_envio'] = $this->modelZonas->obtenerNombre($_SESSION['zona']);
             }
         }
-        
+
         // TODO: cambiar lo que ve el usuario de las zonas
         require RUTA_VIEWS . 'envios/formInsertar.php';
     }
@@ -126,10 +126,10 @@ class ControllerEnvios {
         if (isset($_SESSION['criteriosBusqueda'])) {
             paginar($_GET['action'], $_GET['pagina'], $this->modelEnvios, "listarEnvios", $params, $_SESSION['criteriosBusqueda']);
             if ($params['datos'] == NULL) {
-            require RUTA_VIEWS . 'envios/noDatos.php';
-        } else {
-            require RUTA_VIEWS . 'envios/listar.php';
-        }
+                require RUTA_VIEWS . 'envios/noDatos.php';
+            } else {
+                require RUTA_VIEWS . 'envios/listar.php';
+            }
         } else if ($_POST) {
             $datos = [];
             $camposFormulario = $this->modelEnvios->obtenerCamposFormulario();
@@ -204,7 +204,8 @@ class ControllerEnvios {
                     if ($_GET['confirmacion'] == "Si") {
                         $datos = [
                             "fecha_entrega" => date("Y-m-d"),
-                            "estado" => "E"
+                            "estado" => "Entregado",
+                            "zona_recepcion" => $_SESSION['zona']
                         ];
                         if ($this->modelEnvios->modificarEnvio($_GET['id'], $datos)) {
                             require RUTA_VIEWS . 'envios/finalBien.php';
@@ -240,7 +241,15 @@ class ControllerEnvios {
                         $params['provincias'] = $this->modelProvincias->obtenerTodasProvincias();
                         $params['estados'] = $this->modelEnvios->obtenerEstados();
                         $params['datos'] = $this->modelEnvios->listarUnEnvio($_GET['id']);
+                        $params['datos']['zona_envio'] = $this->modelZonas->obtenerNombre($params['datos']['zona_envio']);
+                        if (isset($params['datos']['zona_recepcion'])) {
+                            $params['datos']['zona_recepcion'] = $this->modelZonas->obtenerNombre($params['datos']['zona_recepcion']);
+                        }
                         if ($_POST) {
+                            $_POST['zona_envio'] = $this->modelZonas->obtenerID($_POST['zona_envio']);
+                            if (isset($_POST['zona_recepcion'])) {
+                                $_POST['zona_recepcion'] = $this->modelZonas->obtenerID($_POST['zona_recepcion']);
+                            }
                             $datosError = TratamientoFormularios::validarArray($this::$criterios);
 
                             if (empty($datosError)) {

@@ -100,7 +100,7 @@
         <tr>
             <th>Fecha de entrega</th>
             <td>
-                <input type="date" name="fecha_entrega" value="<?= $params['datos']['fecha_entrega'] ?>" />
+                <input type="date" name="fecha_entrega" value="<?= $params['datos']['fecha_entrega'] ?>" readonly="readonly" />
             </td>
                 <?php if (isset($params['errores']['fecha_entrega'])): ?>
                 <td>Valor incorrecto</td>
@@ -112,6 +112,24 @@
                 <textarea name="observaciones"><?= $params['datos']['observaciones'] ?></textarea>
             </td>
                 <?php if (isset($params['errores']['observaciones'])): ?>
+                <td>Valor incorrecto</td>
+                <?php endif; ?>
+        </tr>
+        <tr>
+            <th>Zona de envío</th>
+            <td>
+                <input type="text" name="zona_envio" value="<?= $params['datos']['zona_envio'] ?>" readonly="readonly" />
+            </td>
+                <?php if (isset($params['errores']['zona_envio'])): ?>
+                <td>Valor incorrecto</td>
+                <?php endif; ?>
+        </tr>
+        <tr>
+            <th>Zona de recepción</th>
+            <td>
+                <input type="text" name="zona_recepcion" value="<?= $params['datos']['zona_recepcion'] ?>" readonly="readonly" />
+            </td>
+                <?php if (isset($params['errores']['zona_recepcion'])): ?>
                 <td>Valor incorrecto</td>
                 <?php endif; ?>
         </tr>
