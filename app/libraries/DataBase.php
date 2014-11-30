@@ -163,7 +163,7 @@ class DataBase {
         return $resultado;
     }
 
-    public function existeElemento($tabla, $campos, $zonas) {
+    public function existeElemento($tabla, $campos, $zonas = NULL) {
 
         foreach ($campos as $key => $value) {
             $condiciones[] = [

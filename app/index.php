@@ -50,7 +50,11 @@ $map = [
     'insertarUsuario' => array('controller' => 'ControllerUsuarios', 'action' => 'insertarUsuario'),
     'eliminarUsuario' => array('controller' => 'ControllerUsuarios', 'action' => 'eliminarUsuario'),
     'modificarUsuario' => array('controller' => 'ControllerUsuarios', 'action' => 'modificarUsuario'),
-    'cambiarZona' => array('controller' => 'ControllerZonas', 'action' => 'cambiarZona')
+    'cambiarZona' => array('controller' => 'ControllerZonas', 'action' => 'cambiarZona'),
+    'insertarZona' => array('controller' => 'ControllerZonas', 'action' => 'insertarZona'),
+    'listarZonas' => array('controller' => 'ControllerZonas', 'action' => 'listarZonas'),
+    'eliminarZona' => array('controller' => 'ControllerZonas', 'action' => 'eliminarZona'),
+    'modificarZona' => array('controller' => 'ControllerZonas', 'action' => 'modificarZona')
 ];
 
 // Parseo de la ruta
@@ -80,7 +84,7 @@ if (method_exists($controlador['controller'], $controlador['action'])) {
 
     $contenido = ob_get_clean();
     
-    $listadoZonas = call_user_func(array(new ModelZonas(), "obtenerZonas"));
+    $listadoZonas = call_user_func(array(new ModelZonas(), "listarZonas"));
     
     include RUTA_VIEWS . 'layout.php';
 } else {

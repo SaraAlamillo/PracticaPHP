@@ -9,16 +9,25 @@ class ModelZonas {
         $this->conexion = DataBase::getInstance();
     }
 
-    public function obtenerZonas() {
-        return $this->conexion->Seleccionar($this->tabla, "*", NULL, NULL, NULL);
-    }
-
-    public function existeZona($codigo) {
-        return $this->conexion->existeElemento($this->tabla, ['codigo' => $codigo]);
+    public function existeZona($valor, $campo = 'codigo') {
+        return $this->conexion->existeElemento($this->tabla, [$campo => $valor]);
     }
 
     public function listarZonas() {
         return $this->conexion->Seleccionar($this->tabla, "*", NULL, NULL, NULL);
+    }
+
+    public function listarUnaZona($codigo) {
+        $condiciones = [
+            [
+                "campo" => "codigo",
+                "conector" => "=",
+                "valor" => $codigo
+            ]
+        ];
+        
+        $resultado = $this->conexion->Seleccionar($this->tabla, "*", $condiciones, NULL, NULL);
+        return $resultado[0];
     }
 
     public function obtenerID($zonaBuscada) {
@@ -41,4 +50,15 @@ class ModelZonas {
         }
     }
 
+    public function insertarZona($valores) {
+        return $this->conexion->Insertar($this->tabla, $valores);
+    }
+    
+    public function modificarZona($codigo, $datos) {
+        return $this->conexion->Actualizar($this->tabla, $codigo, "codigo", $datos);
+    }
+
+    public function eliminarZona($codigo) {
+        return $this->conexion->Borrar($this->tabla, "codigo", $codigo);
+    }
 }

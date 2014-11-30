@@ -22,7 +22,7 @@ class ControllerUsuarios {
                     "nombre" => "",
                     "clave" => ""
                 ],
-                "zonas" => $this->modelZonas->obtenerZonas()
+                "zonas" => $this->modelZonas->listarZonas()
             ];
             if (!$_POST) {
                 require RUTA_VIEWS . 'usuarios/login.php';
