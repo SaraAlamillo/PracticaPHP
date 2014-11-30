@@ -88,6 +88,23 @@ class ModelEnvios {
         $zonas = "(zona_envio='{$_SESSION['zona']}' or zona_recepcion='{$_SESSION['zona']}')";
         return $this->conexion->existeElemento($this->tabla, ["codigo" => $codigo], $zonas);
     }
+    
+    public function elementoRecepcionado($codigo) {
+        $condiciones = [
+            [
+                "campo" => "codigo",
+                "conector" => "=",
+                "valor" => $codigo
+            ]
+        ];
+        $resultado = $this->conexion->Seleccionar($this->tabla, "fecha_entrega", $condiciones, NULL, NULL, NULL);
+        
+        if ($resultado[0]['fecha_entrega'] == "") {
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+    }
 
     public function obtenerEstados() {
         return [
