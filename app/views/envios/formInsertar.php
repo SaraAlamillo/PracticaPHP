@@ -53,7 +53,7 @@
             <tr>
                 <th>Provincia</th>
                 <td>
-                    <?=creaListaDesplegable("provincia", $params['provincias'], "0", ['nombre' => "--Seleccionar--", 'codigo' => "0"]) ?>
+                    <?=creaListaDesplegable("provincia", $params['provincias'], isset($params["datos"]['provincia'])? $params["datos"]['provincia'] : "0", ['nombre' => "--Seleccionar--", 'codigo' => "0"]) ?>
                 </td>
                 <?php if (isset($params['errores']['provincia'])): ?>
                 <td>Valor incorrecto</td>
@@ -94,6 +94,15 @@
                     </textarea>
                 </td>
                 <?php if (isset($params['errores']['observaciones'])): ?>
+                <td>Valor incorrecto</td>
+                <?php endif; ?>
+            </tr>
+            <tr>
+                <th>Zona de envío</th>
+                <td>
+                    <input type="text" value="<?= $params["datos"]['zona_envio'] ?>" name="zona_envio" readonly="readonly" />
+                </td>
+                <?php if (isset($params['errores']['zona_envio'])): ?>
                 <td>Valor incorrecto</td>
                 <?php endif; ?>
             </tr>

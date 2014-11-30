@@ -19,7 +19,8 @@ class ModelEnvios {
 
 
     public function listarEnvios($condiciones, $limite = NULL) {
-        $resultado = $this->conexion->Seleccionar($this->tabla, "*", $condiciones, $limite, "fecha_creacion desc");
+        $zonas = "(zona_envio='{$_SESSION['zona']}' or zona_recepcion='{$_SESSION['zona']}')";
+        $resultado = $this->conexion->Seleccionar($this->tabla, "*", $condiciones, $limite, "fecha_creacion desc", $zonas);
 
         foreach ($resultado as &$registro) {
             foreach ($registro as $clave => &$valor) {
@@ -48,8 +49,10 @@ class ModelEnvios {
                 "valor" => $codigo
             ]
         ];
+        
+        $zonas = "(zona_envio='{$_SESSION['zona']}' or zona_recepcion='{$_SESSION['zona']}')";
 
-        $resultado = $this->conexion->Seleccionar($this->tabla, "*", $condiciones, NULL, "fecha_creacion desc");
+        $resultado = $this->conexion->Seleccionar($this->tabla, "*", $condiciones, NULL, "fecha_creacion desc", $zonas);
 
         foreach ($resultado as &$registro) {
             foreach ($registro as $clave => &$valor) {
@@ -70,8 +73,7 @@ class ModelEnvios {
     }
 
     public function insertarEnvio($valores) {
-        $valores['estado'] = "P";
-        $this->conexion->Insertar($this->tabla, $valores);
+        return $this->conexion->Insertar($this->tabla, $valores);
     }
 
     public function modificarEnvio($codigo, $datos) {

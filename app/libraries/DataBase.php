@@ -53,7 +53,7 @@ class DataBase {
      *
      * @return mixed
      */
-    public function Seleccionar($tabla, $campos, $condiciones, $limite, $orden) {
+    public function Seleccionar($tabla, $campos, $condiciones, $limite, $orden, $zonas = NULL) {
         $camposCondicion = [];
 
         if ($condiciones != NULL) {
@@ -68,8 +68,16 @@ class DataBase {
             }
             $camposCondicion = implode(" and ", $camposCondicion);
             $camposCondicion = " where " . $camposCondicion;
+            
         } else {
             $camposCondicion = "";
+        }
+        if ($zonas != NULL) {
+            if ($condiciones == NULL) {
+                $camposCondicion = " where " . $zonas;
+            } else {
+                $camposCondicion .= " and " . $zonas;
+            }
         }
 
         if ($limite != NULL) {
@@ -90,7 +98,7 @@ class DataBase {
 
         $resultados = [];
 
-        while ($registro = $registros->fetch_assoc()) {
+       while ($registro = $registros->fetch_assoc()) {
             $resultados[] = $registro;
         }
 
@@ -149,6 +157,7 @@ class DataBase {
      */
     public function Borrar($tabla, $campo, $valorCampo) {
         $consulta = "delete from $tabla where $campo = '$valorCampo'";
+  
         $resultado = $this->link->query($consulta);
         
         return $resultado;

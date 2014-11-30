@@ -40,10 +40,12 @@ class ControllerEnvios {
     );
     private $modelEnvios;
     private $modelProvincias;
+    private $modelZonas;
 
     public function __construct() {
         $this->modelEnvios = new ModelEnvios();
         $this->modelProvincias = new ModelProvincias();
+        $this->modelZonas = new ModelZonas();
     }
 
     public function inicio() {
@@ -79,12 +81,14 @@ class ControllerEnvios {
                 'email' => '',
                 'estado' => 'Pendiente',
                 'fecha_creacion' => date("Y-m-d"),
-                'observaciones' => ''
+                'observaciones' => '',
+                'zona_envio' => $this->modelZonas->obtenerNombre($_SESSION['zona'])
             ],
             "provincias" => $this->modelProvincias->obtenerTodasProvincias()
         ];
 
         if ($_POST) {
+            $_POST['zona_envio'] = $this->modelZonas->obtenerID($_POST['zona_envio']);
             $datosError = TratamientoFormularios::validarArray($this::$criterios);
 
             if (empty($datosError)) {
@@ -93,14 +97,17 @@ class ControllerEnvios {
                 } else {
                     $params['mensaje'] = "Ups... Algo ha fallado...";
                     $params['datos'] = $_POST;
+                    $params['datos']['zona_envio'] = $this->modelZonas->obtenerNombre($_SESSION['zona']);
                 }
             } else {
                 $params['errores'] = $datosError;
                 $params['mensaje'] = "Se han introducido valores no válidos";
                 $params['datos'] = $_POST;
+                $params['datos']['zona_envio'] = $this->modelZonas->obtenerNombre($_SESSION['zona']);
             }
         }
-
+        
+        // TODO: cambiar lo que ve el usuario de las zonas
         require RUTA_VIEWS . 'envios/formInsertar.php';
     }
 
@@ -117,7 +124,12 @@ class ControllerEnvios {
         }
 
         if (isset($_SESSION['criteriosBusqueda'])) {
-            $this->paginar($_GET['action'], $_GET['pagina'], $_SESSION['criteriosBusqueda']);
+            paginar($_GET['action'], $_GET['pagina'], $this->modelEnvios, "listarEnvios", $params, $_SESSION['criteriosBusqueda']);
+            if ($params['datos'] == NULL) {
+            require RUTA_VIEWS . 'envios/noDatos.php';
+        } else {
+            require RUTA_VIEWS . 'envios/listar.php';
+        }
         } else if ($_POST) {
             $datos = [];
             $camposFormulario = $this->modelEnvios->obtenerCamposFormulario();
