@@ -9,7 +9,7 @@
     Zona: <?=creaListaDesplegable(
             "zona", 
             $params['zonas'], 
-            isset($params['datos']['clave'])? $params['datos']['clave'] : "0", 
+            isset($params['datos']['zona'])? $params['datos']['zona'] : "0", 
             ['nombre' => "--Seleccionar--", "codigo" => "0"]
             ) ?>
     <input type="submit" />

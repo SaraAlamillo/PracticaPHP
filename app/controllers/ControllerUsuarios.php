@@ -42,16 +42,20 @@ class ControllerUsuarios {
                         } else {
                             $params['mensaje'] = "La zona seleccionada no existe";
                             $params['datos'] = $_POST;
+                        $params['datos']['clave'] = "";
                             require RUTA_VIEWS . 'usuarios/login.php';
                         }
                     } else {
                         $params['mensaje'] = "Debe seleccionar una zona";
                         $params['datos'] = $_POST;
+                        $params['datos']['clave'] = "";
                         require RUTA_VIEWS . 'usuarios/login.php';
                     }
                 } else {
                     $params['mensaje'] = "Usuario o contraseña incorrecta";
                     $params['datos'] = $_POST;
+                        $params['datos']['clave'] = "";
+                    
                     require RUTA_VIEWS . 'usuarios/login.php';
                 }
             }
@@ -152,8 +156,13 @@ class ControllerUsuarios {
                     $params['confirmacion'] = $_GET['confirmacion'];
                     if ($_GET['confirmacion'] == "Si") {
                         $params['antiguo'] = $this->modelUsuarios->listarUnUsuario($_GET['usuario']);
+                        $params['antiguo']['clave'] = "";
                         if ($_POST) {
+                            if ($_POST['clave'] != "") {
                             $_POST['clave'] = sha1($_POST['clave']);
+                            } else {
+                                unset($_POST['clave']);
+                            }
                             if ($this->modelUsuarios->modificarUsuario($_GET['usuario'], $_POST)) {
                                 require RUTA_VIEWS . 'usuarios/finalBien.php';
                             } else {
