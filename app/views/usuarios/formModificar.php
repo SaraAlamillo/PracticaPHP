@@ -21,7 +21,7 @@
                     Contraseña
                 </th>
                 <td>
-                    <input type="text" name="clave" value="<?= $params['antiguo']['clave'] ?>" />
+                    <input type="password" name="clave" value="<?= $params['antiguo']['clave'] ?>" />
                 </td>
             </tr>
             <tr>

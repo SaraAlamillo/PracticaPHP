@@ -1,7 +1,5 @@
 <?php
-// TODO: reexportar las tablas de la base de datos
-// TODO: hacer el instalador de la aplicación
-// TODO: intentar crear zonas guardando la actual en una variable de sesión
+// TODO: hacer el instalador de la aplicación+
 // TODO: documentar la aplicación
 // TODO: intentar la configuración de parámetros
 session_name('envios');

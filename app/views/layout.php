@@ -3,7 +3,7 @@
     <head>
         <title>Sara Alamillo Arroyo</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href='<?= URL_CSS . Config::$css ?>' />
+        <link rel="stylesheet" type="text/css" href='<?= URL_CSS ?>estilo.css' />
         
     </head>
     <body>

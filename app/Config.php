@@ -27,9 +27,4 @@ class Config {
      */
     static public $clave = "";
 
-    /**
-     * Nombre del fichero con las hojas de estilo
-     */
-    static public $css = "estilo.css";
-
 }

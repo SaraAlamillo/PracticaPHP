@@ -27,6 +27,7 @@ class ControllerUsuarios {
             if (!$_POST) {
                 require RUTA_VIEWS . 'usuarios/login.php';
             } else {
+                $_POST['clave'] = sha1($_POST['clave']);
                 if ($this->modelUsuarios->existeUsuario($_POST['nombre'], "nombre", $_POST['clave'])) {
 
                     if ($_POST['zona'] != "0") {
@@ -92,6 +93,7 @@ class ControllerUsuarios {
                 $params['datos'] = $_POST;
                 $params['mensaje'] = "El nombre de usuario {$_POST['nombre']} ya existe en la base de datos";
             } else {
+                $_POST['clave'] = sha1($_POST['clave']);
                 if ($this->modelUsuarios->insertarUsuario($_POST)) {
                     $params['mensaje'] = "Usuario añadido correctamente";
                 } else {
@@ -151,6 +153,7 @@ class ControllerUsuarios {
                     if ($_GET['confirmacion'] == "Si") {
                         $params['antiguo'] = $this->modelUsuarios->listarUnUsuario($_GET['usuario']);
                         if ($_POST) {
+                            $_POST['clave'] = sha1($_POST['clave']);
                             if ($this->modelUsuarios->modificarUsuario($_GET['usuario'], $_POST)) {
                                 require RUTA_VIEWS . 'usuarios/finalBien.php';
                             } else {

@@ -30,6 +30,23 @@ class DataBase {
         }
         return self::$_instance;
     }
+    
+    public static function pruebaConexion($parametros, &$error) {
+        $conexion = @new mysqli($parametros['servidor'], $parametros['usuario'], $parametros['clave']);
+        
+        if ($conexion) {
+            if (@$conexion->select_db($parametros['bd'])) {
+                echo "ok";
+                return true;
+            } else {
+                $error = "No se puede conectar con la base de datos";
+                return false;
+            }
+        } else {
+            $error = "No se puede establecer la conexión con el servidor";
+            return false;
+        }
+    }
 
     /* Realiza la conexi�n a la base de datos. */
 
