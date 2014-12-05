@@ -20,17 +20,14 @@
         ?>
         <?php if (isset($_SESSION['usuarioValidado'])): ?>
             <?=CargaVista(RUTA_VIEWS . "menu.php"); ?>
-        <?php if (isset($_SESSION['admin'])): ?>
-            <?=CargaVista(RUTA_VIEWS . "menuAdministrador.php"); ?>
-        <?php endif; ?>
         <?php endif; ?>
          
 
-        <div id="contenido">
+       <!-- <div id="contenido">
             <hr />
             <?= $contenido ?>
     <hr/>
-        </div>
+        </div> -->
 
         <?= CargaVista(RUTA_VIEWS . "pie.php") ?>
         <script src="<?= URL_JS ?>paginacion.js"></script>

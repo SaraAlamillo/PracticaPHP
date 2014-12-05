@@ -2,6 +2,88 @@
     Created on : 08-nov-2014, 14:28:25
     Author     : Sara
 */
+// https://color.adobe.com/es/ice-cream-color-theme-4108036/edit/?copy=true&base=2&rule=Custom&selected=2&name=Copia%20de%20ice%20cream&mode=rgb&rgbvalues=0.517647,0.74902,0.682353,0.952941,0.941176,0.917647,0.94902,0.752941,0.388235,0.94902,0.415686,0.294118,0.376471,0.243137,0.164706&swatchOrder=0,1,2,3,4
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    background-color: beige;
+    background-color: #F3F0EA;
+    margin: 0;
+    color: #603E2A;
+    font-family: Helvetica, Arial;
+    font-size: 13px;
+}
+
+#datosUsuario {
+    float: right;
+    width: auto;
+}
+
+#usuario {
+    float: left;
+    margin: auto;
+    text-align: right;
+}
+
+#salir {
+    float: right;
+    margin: auto;
+}
+
+fieldset {
+    width: auto;
+}
+
+
+h1 a {
+    text-decoration: none;
+}
+
+#cabecera {
+    padding: 10px;
+    box-sizing: border-box;
+    height: 10%;
+    width: 100%;
+    float: right;
+    background: #F2C063;
+    position: relative;
+}
+
+#pie {
+    clear: both;
+    height: 10%;
+    width: 100%;
+    float: right;
+    background: #F2C063;
+    bottom: 0;
+    position: fixed;
+}
+#menu {
+    margin: 0 auto;
+    width: 100%;
+    height: 20%;
+    background-color: #F2C063;
+}
+#fEnvios, #fUsuarios, #fZonas {
+    margin: 10px;
+    float: left;
+    font-weight: bold;
+    border-radius: 10px;
+    border-color: #F26A4B;
+    color: #F26A4B;
+}
+
+a:link, a:visited {
+    color: #603E2A;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    padding: 5px;
+    box-shadow: 1px 1px 1px 1px #603E2A;
+    border-radius: 10px;
+    color: F3F0EA;
 }
