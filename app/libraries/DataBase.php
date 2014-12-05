@@ -10,11 +10,11 @@ class DataBase {
 
     /* La funci�n construct es privada para evitar que el objeto pueda ser creado mediante new */
 
-    private function __construct($parametros = NULL) {
-        if (is_null($parametros)) {
-        $this->Conectar(Config::$hostname, Config::$bd, Config::$usuario, Config::$clave);
+    private function __construct() {
+        if (isset($_SESSION['parametros'])) {
+            $this->Conectar($_SESSION['parametros']['servidor'], $_SESSION['parametros']['bd'], $_SESSION['parametros']['usuario'], $_SESSION['parametros']['clave']);
         } else {
-            $this->Conectar($parametros['servidor'], $parametros['bd'], $parametros['usuario'], $parametros['clave']);
+        $this->Conectar(Config::$hostname, Config::$bd, Config::$usuario, Config::$clave);
         }
     }
 
@@ -28,9 +28,9 @@ class DataBase {
      * Funci�n encargada de crear, si es necesario, el objeto. Esta es la funci�n que debemos llamar desde fuera de la clase para instanciar el objeto, y as�, poder utilizar sus m�todos
      */
 
-    public static function getInstance($parametros = NULL) {
+    public static function getInstance() {
         if (!(self::$_instance instanceof self)) {
-            self::$_instance = new self ($parametros);
+            self::$_instance = new self ();
         }
         return self::$_instance;
     }
@@ -204,6 +204,7 @@ class DataBase {
 
     public function mostrarTablas() {
         $resultados = $this->link->query("show tables from " . $_SESSION['parametros']['bd']);
+        
         $tablas = [];
         while ($row = $resultados->fetch_row()) {
             $tablas[] = $row[0];
@@ -217,7 +218,7 @@ class DataBase {
         $registros = $this->link->query($sql);
         while ($registro = $registros->fetch_row()) {
             echo $registro[0] . "<br />";
-            if (!$conexion->query($registro[0])) {
+            if (!$this->link->query($registro[0])) {
                 return false;
             }
         }

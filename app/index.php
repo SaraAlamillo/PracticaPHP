@@ -88,7 +88,7 @@ if (!file_exists("Config.php")) {
         $contenido = ob_get_clean();
 
         $listadoZonas = call_user_func(array(new ModelZonas(), "listarZonas"));
-
+        $instalador = FALSE;
         include RUTA_VIEWS . 'layout.php';
     } else {
         header('Status: 404 Not Found');

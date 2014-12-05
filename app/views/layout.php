@@ -13,7 +13,8 @@
                     'hora' => isset($_SESSION['hora'])? $_SESSION['hora'] : NULL, 
                     'validado' => isset($_SESSION['usuarioValidado'])? $_SESSION['usuarioValidado'] : NULL, 
                     'zona' => isset($_SESSION['zona'])? $_SESSION['zona'] : NULL,
-                    'listadoZonas' => $listadoZonas
+                    'listadoZonas' => isset($listadoZonas)? $listadoZonas : NULL,
+                    'instalador' => $instalador
                 ]) 
         ?>
         <?php if (isset($_SESSION['usuarioValidado'])): ?>

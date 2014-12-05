@@ -41,8 +41,9 @@ if (method_exists($controlador['controller'], $controlador['action'])) {
     call_user_func(array(new $controlador['controller'], $controlador['action']));
 
     $contenido = ob_get_clean();
+    $instalador = TRUE;
 
-    include RUTA_INSTALL . "vistas/layout.php";
+    include RUTA_VIEWS . "layout.php";
 } else {
     header('Status: 404 Not Found');
     ?>

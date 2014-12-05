@@ -1,5 +1,5 @@
 <div id="cabecera">
-    <?php if (isset($validado)): ?>
+    <?php if (! $instalador && isset($validado)): ?>
         <p>
             <?= $hora ?>
         </p>

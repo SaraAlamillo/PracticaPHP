@@ -14,8 +14,8 @@
 class ModelInstaller {
     private $conexion;
     
-    public function __construct($parametros) {
-        $conexion = DataBase::getInstance($parametros);
+    public function __construct() {
+        $this->conexion = DataBase::getInstance();
     }
     
     public static function probarConexion($parametros, &$error) {
@@ -24,5 +24,14 @@ class ModelInstaller {
     
     public function tablasExistentes(){
         return $this->conexion->mostrarTablas();
+    }
+    
+    public function eliminarTablas() {
+        return $this->conexion->eliminarTodasTablas();
+        
+    }
+    
+    public function hacerConsulta($sql, &$error) {
+    return $this->conexion->consulta($sql, $error);
     }
 }

@@ -9,9 +9,6 @@ class ControllerInstaller {
 
     private $modelo;
 
-    public function __construct() {
-    }
-
     public function paso1() {
         if (isset($_POST['siguiente'])) {
             header("Location: index.php?action=paso2");
@@ -32,7 +29,7 @@ class ControllerInstaller {
         if ($_POST) {
             if (DataBase::pruebaConexion($_POST, $params['mensaje'])) {
                 $_SESSION['parametros'] = $_POST;
-                $this->modelo = new ModelInstaller($_POST);
+                
                 header("Location: index.php?action=paso3");
             } else {
                 $params['datos'] = $_POST;
@@ -42,16 +39,18 @@ class ControllerInstaller {
     }
 
     public function paso3() {
+          $this->modelo = new ModelInstaller();      
+                
         $params['tablas'] = $this->modelo->tablasExistentes();
         if ($params['tablas'] == NULL) {
-            if ($_POST) {
+            if (isset($_GET['continuar'])) {
                 header("Location: index.php?action=paso4");
             }
             require RUTA_INSTALL . 'vistas/paso3SinTablas.php';
         } else {
             if ($_GET) {
                 if (isset($_GET['eliminar']) && $_GET['eliminar'] == 'Si') {
-                    if (DataBase::eliminarTablas($_SESSION['parametros'])) {
+                    if ($this->modelo->eliminarTablas()) {
                         header("Location: index.php?action=paso4");
                     } else {
                         $params['mensaje'] = "Ups... no se han podido borrar las tablas...";
@@ -66,7 +65,8 @@ class ControllerInstaller {
     }
 
     public function paso4() {
-        if (importSql("base_datos.sql")) {
+        $this->modelo = new ModelInstaller();
+        if (importSql( RUTA_INSTALL . "base_datos.sql", $this->modelo)) {
             $params['mensaje'] = "Se han creado las tablas correctamente.";
             $params['siguienteAction'] = "paso5";
         } else {
@@ -77,7 +77,7 @@ class ControllerInstaller {
     }
 
     public function paso5() {
-        $fichero = fopen("../app/Config.php", "w");
+        $fichero = fopen( RUTA_APP . "Config.php", "w");
         fwrite($fichero, "<?php\n");
         fwrite($fichero, "\n");
         fwrite($fichero, "/**\n");
@@ -109,6 +109,8 @@ class ControllerInstaller {
         fwrite($fichero, " \n");
         fwrite($fichero, "}");
         fclose($fichero);
+        
+        session_destroy();
         
         require RUTA_INSTALL . 'vistas/paso5.php';
     }

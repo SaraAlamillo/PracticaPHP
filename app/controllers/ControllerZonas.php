@@ -64,6 +64,7 @@ class ControllerZonas {
     }
 
     public function eliminarZona() {
+        // TODO: comprobar que la zona no está siendo utilizada
         $params = [
             "action" => $_GET['action'],
             "zonas" => $this->modelZonas->listarZonas()
