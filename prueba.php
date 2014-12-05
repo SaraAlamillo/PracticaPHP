@@ -1,8 +1,7 @@
 <?php
-include "app/Config.php";
-include "app/libraries/DataBase.php";
-include "app/models/ModelEnvios.php";
-
-$model = new ModelEnvios();
+echo "cristian: " . sha1("cristian") . "<br />";
+echo "sara: " . sha1("sara") . "<br />";
+echo "fer: " . sha1("fer") . "<br />";
+echo "ana: " . sha1("ana") . "<br />";
 
 

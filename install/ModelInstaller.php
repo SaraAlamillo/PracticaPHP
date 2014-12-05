@@ -12,5 +12,17 @@
  * @author 2daw
  */
 class ModelInstaller {
-    //put your code here
+    private $conexion;
+    
+    public function __construct($parametros) {
+        $conexion = DataBase::getInstance($parametros);
+    }
+    
+    public static function probarConexion($parametros, &$error) {
+        return DataBase::pruebaConexion($parametros, $error);
+    }
+    
+    public function tablasExistentes(){
+        return $this->conexion->mostrarTablas();
+    }
 }

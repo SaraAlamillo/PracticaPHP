@@ -1,7 +1,5 @@
 <?php
 
-require $_SERVER['DOCUMENT_ROOT'] . "/PracticaPHP/app/libraries/DataBase.php";
-
 /**
  * Description of ControllerInstaller
  *
@@ -9,11 +7,16 @@ require $_SERVER['DOCUMENT_ROOT'] . "/PracticaPHP/app/libraries/DataBase.php";
  */
 class ControllerInstaller {
 
+    private $modelo;
+
+    public function __construct() {
+    }
+
     public function paso1() {
         if (isset($_POST['siguiente'])) {
             header("Location: index.php?action=paso2");
         } else {
-            require "paso1.php";
+            require "vistas/paso1.php";
         }
     }
 
@@ -27,34 +30,39 @@ class ControllerInstaller {
             ]
         ];
         if ($_POST) {
-            if (bdTemp::pruebaConexion($_POST, $params['mensaje'])) {
+            if (DataBase::pruebaConexion($_POST, $params['mensaje'])) {
                 $_SESSION['parametros'] = $_POST;
+                $this->modelo = new ModelInstaller($_POST);
                 header("Location: index.php?action=paso3");
             } else {
                 $params['datos'] = $_POST;
             }
         }
-        require "paso2.php";
+        require "vistas/paso2.php";
     }
 
     public function paso3() {
-        $params['tablas'] = bdTemp::tablas($_SESSION['parametros']);
-
-        if ($_GET) {
-            if (isset($_GET['eliminar']) && $_GET['eliminar'] == 'Si') {
-                if (bdTemp::eliminarTablas($_SESSION['parametros'])) {
-                    header("Location: index.php?action=paso4");
-                    echo "ok";
-                    exit();
-                } else {
-                    $params['mensaje'] = "Ups... no se han podido borrar las tablas...";
-                }
-            } else if (isset($_GET['eliminar']) && $_GET['eliminar'] == 'No') {
-                header("Location: index.php?action=paso2");
+        $params['tablas'] = $this->modelo->tablasExistentes();
+        if ($params['tablas'] == NULL) {
+            if ($_POST) {
+                header("Location: index.php?action=paso4");
             }
-        }
+            require 'vistas/paso3SinTablas.php';
+        } else {
+            if ($_GET) {
+                if (isset($_GET['eliminar']) && $_GET['eliminar'] == 'Si') {
+                    if (DataBase::eliminarTablas($_SESSION['parametros'])) {
+                        header("Location: index.php?action=paso4");
+                    } else {
+                        $params['mensaje'] = "Ups... no se han podido borrar las tablas...";
+                    }
+                } else if (isset($_GET['eliminar']) && $_GET['eliminar'] == 'No') {
+                    header("Location: index.php?action=paso2");
+                }
+            }
 
-        require 'paso3.php';
+            require 'vistas/paso3ConTablas.php';
+        }
     }
 
     public function paso4() {
@@ -65,7 +73,7 @@ class ControllerInstaller {
             $params['mensaje'] = "Ha fallado algo en la creación de las tablas. Pulse para volver a intentarlo.";
             $params['siguienteAction'] = "paso3&eliminar=Si";
         }
-        require 'paso4.php';
+        require 'vistas/paso4.php';
     }
 
     public function paso5() {
@@ -101,6 +109,8 @@ class ControllerInstaller {
         fwrite($fichero, " \n");
         fwrite($fichero, "}");
         fclose($fichero);
+        
+        require 'vistas/paso5.php';
     }
 
 }

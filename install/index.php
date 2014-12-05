@@ -1,9 +1,9 @@
 <?php
-session_start();
-require_once 'ControllerInstaller.php';
-require_once 'ModelInstaller.php';
-require_once 'helper.php';
-require_once 'bdTemp.php';
+require_once RUTA_INSTALL . 'ControllerInstaller.php';
+require_once RUTA_INSTALL . 'ModelInstaller.php';
+require_once RUTA_INSTALL . 'helper.php';
+require_once RUTA_HELPER . 'plantillas.php';
+require_once RUTA_LIBRARIES . 'DataBase.php';
 
 $map = [
     'paso1' => array('controller' => 'ControllerInstaller', 'action' => 'paso1'),
@@ -22,7 +22,7 @@ if (isset($_GET['action'])) {
         ?> 
         <html>
             <body>
-                <h1>Error 404: No existe <i><?= $_GET['action'] ?></i></h1>
+                 <h1>Error 404: No existe la ruta <i><?=RUTA_ROOT ?>/<?=$_GET['action'] ?></i></h1>
             </body>
         </html>
         <?php
@@ -42,7 +42,7 @@ if (method_exists($controlador['controller'], $controlador['action'])) {
 
     $contenido = ob_get_clean();
 
-    include "layout.php";
+    include "vistas/layout.php";
 } else {
     header('Status: 404 Not Found');
     ?>
