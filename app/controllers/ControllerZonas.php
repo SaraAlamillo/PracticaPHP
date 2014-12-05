@@ -12,21 +12,21 @@
  * @author Sara
  */
 class ControllerZonas {
-    
+
     private $modelZonas;
 
     public function __construct() {
         $this->modelZonas = new ModelZonas();
     }
-    
+
     public function cambiarZona() {
-        if (isset($_POST['nuevaZona'])){
+        if (isset($_POST['nuevaZona'])) {
             $_SESSION['zona'] = $_POST['nuevaZona'];
         }
         require RUTA_VIEWS . 'zonas/cambioZona.php';
     }
-    
-     public function listarZonas() {
+
+    public function listarZonas() {
         paginar(
                 $_GET['action'], $_GET['pagina'], $this->modelZonas, "listarZonas", $params
         );
@@ -75,18 +75,23 @@ class ControllerZonas {
         } else {
             $params['codigo'] = $_GET['codigo'];
             if ($this->modelZonas->existeZona($_GET['codigo'])) {
-                if (isset($_GET['confirmacion'])) {
-                    if ($_GET['confirmacion'] == "Si") {
-                        if ($this->modelZonas->eliminarZona($_GET['codigo'])) {
-                            require RUTA_VIEWS . 'zonas/finalBien.php';
+                if ($this->modelZonas->zonaUtilizada($_GET['codigo'])) {
+                    $params['error'] = "La zona introducida está siendo utilizada";
+                    require RUTA_VIEWS . 'zonas/formNomUsuarios.php';
+                } else {
+                    if (isset($_GET['confirmacion'])) {
+                        if ($_GET['confirmacion'] == "Si") {
+                            if ($this->modelZonas->eliminarZona($_GET['codigo'])) {
+                                require RUTA_VIEWS . 'zonas/finalBien.php';
+                            } else {
+                                require RUTA_VIEWS . 'zonas/finalMal.php';
+                            }
                         } else {
-                            require RUTA_VIEWS . 'zonas/finalMal.php';
+                            require RUTA_VIEWS . 'zonas/formNomUsuarios.php';
                         }
                     } else {
-                        require RUTA_VIEWS . 'zonas/formNomUsuarios.php';
+                        require RUTA_VIEWS . 'zonas/confirmacion.php';
                     }
-                } else {
-                    require RUTA_VIEWS . 'zonas/confirmacion.php';
                 }
             } else {
                 $params['error'] = "El nombre de zona introducido no existe";

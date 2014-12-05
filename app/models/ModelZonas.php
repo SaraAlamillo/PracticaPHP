@@ -61,4 +61,14 @@ class ModelZonas {
     public function eliminarZona($codigo) {
         return $this->conexion->Borrar($this->tabla, "codigo", $codigo);
     }
+    
+    public function zonaUtilizada($codigo) {
+        $resultado = $this->conexion->Seleccionar("envios", "*", NULL, NULL, NULL, "zona_envio=$codigo or zona_recepcion=$codigo");
+        
+        if (count($resultado) != 0) {
+            return TRUE;
+        } else {
+            return  FALSE;
+        }
+    }
 }

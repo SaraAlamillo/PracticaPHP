@@ -1,11 +1,10 @@
 <div id="cabecera">
     <?php if (! $instalador && isset($validado)): ?>
-        <p>
-            <?= $hora ?>
-        </p>
-        <p><a href="index.php?action=salir">Salir</a></p>
-        <p>
-        <form action="index.php?action=cambiarZona" method="POST">
+    <div id="datosUsuario">  
+        <div id="usuario">
+    Hola, <?=$usuario ?>. Has accedido a esta hora: <?= $hora ?>
+    <br />
+    <form action="index.php?action=cambiarZona" method="POST">
         <?=creaListaDesplegable(
                 "nuevaZona", 
                 $listadoZonas, 
@@ -16,8 +15,12 @@
             ?>
             <input type="submit" value="Cambiar" />
             </form>
-        </p>
+        </div>
+        <div id="salir">
+            <a href="index.php?action=salir"><img src="<?=URL_IMAGES . "iconos/salir.png" ?>" /></a>
+        </div>
+            </div>  
     <?php endif; ?>
-    <h1>Administración de los Envíos</h1>
+    <h1><a href="index.php?action=inicio">Administración de los Envíos</a></h1>
 </div>
 

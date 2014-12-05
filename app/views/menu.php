@@ -1,7 +1,6 @@
 <div id="menu">
     <fieldset>
         <legend>Envíos</legend>
-        <a href="index.php?action=inicio">home</a> |
         <a href="index.php?action=listar">listar</a> |
         <a href="index.php?action=insertar">insertar</a> |
         <a href="index.php?action=buscar">buscar</a> |
