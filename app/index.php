@@ -89,6 +89,7 @@ if (!file_exists("Config.php")) {
 
         $listadoZonas = call_user_func(array(new ModelZonas(), "listarZonas"));
         $instalador = FALSE;
+        isset($_SESSION['hora'])? $hora = date("H:m:s", $_SESSION['hora']) : NULL;
         include RUTA_VIEWS . 'layout.php';
     } else {
         header('Status: 404 Not Found');

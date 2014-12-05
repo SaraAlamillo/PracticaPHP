@@ -107,7 +107,6 @@ class ControllerEnvios {
             }
         }
 
-        // TODO: cambiar lo que ve el usuario de las zonas
         require RUTA_VIEWS . 'envios/formInsertar.php';
     }
 

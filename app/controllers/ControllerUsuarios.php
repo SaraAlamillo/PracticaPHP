@@ -34,8 +34,7 @@ class ControllerUsuarios {
                         if ($this->modelZonas->existeZona($_POST['zona'])) {
                             $_SESSION['usuarioValidado'] = TRUE;
                             $_SESSION['nombreUsuario'] = $_POST['nombre'];
-                            // TODO: comprobar la hora de acceso
-                            $_SESSION['hora'] = date("H:m:s");
+                            $_SESSION['hora'] = time();
                             $_SESSION['zona'] = $_POST['zona'];
                             if ($this->modelUsuarios->esAdministrador($_POST['nombre'], $_POST['clave'])) {
                                 $_SESSION['admin'] = TRUE;

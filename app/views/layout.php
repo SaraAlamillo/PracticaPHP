@@ -10,7 +10,7 @@
         <?= CargaVista(
                 RUTA_VIEWS . "encabezado.php", 
                 [
-                    'hora' => isset($_SESSION['hora'])? $_SESSION['hora'] : NULL, 
+                    'hora' => isset($hora)? $hora : NULL, 
                     'usuario' => isset($_SESSION['nombreUsuario'])? $_SESSION['nombreUsuario'] : NULL, 
                     'validado' => isset($_SESSION['usuarioValidado'])? $_SESSION['usuarioValidado'] : NULL, 
                     'zona' => isset($_SESSION['zona'])? $_SESSION['zona'] : NULL,
