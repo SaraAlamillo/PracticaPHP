@@ -42,7 +42,7 @@ if (method_exists($controlador['controller'], $controlador['action'])) {
 
     $contenido = ob_get_clean();
 
-    include "vistas/layout.php";
+    include RUTA_INSTALL . "vistas/layout.php";
 } else {
     header('Status: 404 Not Found');
     ?>

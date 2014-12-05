@@ -2,6 +2,7 @@
 <p>
 <form action="index.php" method="GET">
     <input type="submit" value="Continuar" name="eliminar" />
+    <input type="hidden" value="paso3" name="action" />
 </form>
 </p>
 

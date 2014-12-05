@@ -16,7 +16,7 @@ class ControllerInstaller {
         if (isset($_POST['siguiente'])) {
             header("Location: index.php?action=paso2");
         } else {
-            require "vistas/paso1.php";
+            require RUTA_INSTALL . "vistas/paso1.php";
         }
     }
 
@@ -38,7 +38,7 @@ class ControllerInstaller {
                 $params['datos'] = $_POST;
             }
         }
-        require "vistas/paso2.php";
+        require RUTA_INSTALL . "vistas/paso2.php";
     }
 
     public function paso3() {
@@ -47,7 +47,7 @@ class ControllerInstaller {
             if ($_POST) {
                 header("Location: index.php?action=paso4");
             }
-            require 'vistas/paso3SinTablas.php';
+            require RUTA_INSTALL . 'vistas/paso3SinTablas.php';
         } else {
             if ($_GET) {
                 if (isset($_GET['eliminar']) && $_GET['eliminar'] == 'Si') {
@@ -61,7 +61,7 @@ class ControllerInstaller {
                 }
             }
 
-            require 'vistas/paso3ConTablas.php';
+            require RUTA_INSTALL . 'vistas/paso3ConTablas.php';
         }
     }
 
@@ -73,7 +73,7 @@ class ControllerInstaller {
             $params['mensaje'] = "Ha fallado algo en la creación de las tablas. Pulse para volver a intentarlo.";
             $params['siguienteAction'] = "paso3&eliminar=Si";
         }
-        require 'vistas/paso4.php';
+        require RUTA_INSTALL . 'vistas/paso4.php';
     }
 
     public function paso5() {
@@ -110,7 +110,7 @@ class ControllerInstaller {
         fwrite($fichero, "}");
         fclose($fichero);
         
-        require 'vistas/paso5.php';
+        require RUTA_INSTALL . 'vistas/paso5.php';
     }
 
 }
