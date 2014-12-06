@@ -32,6 +32,7 @@ class ModelInstaller {
     }
     
     public function hacerConsulta($sql, &$error) {
+        echo $sql . "<br />";
     return $this->conexion->consulta($sql, $error);
     }
 }

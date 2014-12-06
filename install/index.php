@@ -9,7 +9,8 @@ $map = [
     'paso2' => array('controller' => 'ControllerInstaller', 'action' => 'paso2'),
     'paso3' => array('controller' => 'ControllerInstaller', 'action' => 'paso3'),
     'paso4' => array('controller' => 'ControllerInstaller', 'action' => 'paso4'),
-    'paso5' => array('controller' => 'ControllerInstaller', 'action' => 'paso5')
+    'paso5' => array('controller' => 'ControllerInstaller', 'action' => 'paso5'),
+    'paso6' => array('controller' => 'ControllerInstaller', 'action' => 'paso6')
 ];
 
 // Parseo de la ruta

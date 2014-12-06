@@ -29,7 +29,7 @@ class ControllerInstaller {
         if ($_POST) {
             if (DataBase::pruebaConexion($_POST, $params['mensaje'])) {
                 $_SESSION['parametros'] = $_POST;
-                
+
                 header("Location: index.php?action=paso3");
             } else {
                 $params['datos'] = $_POST;
@@ -39,8 +39,8 @@ class ControllerInstaller {
     }
 
     public function paso3() {
-          $this->modelo = new ModelInstaller();      
-                
+        $this->modelo = new ModelInstaller();
+
         $params['tablas'] = $this->modelo->tablasExistentes($_SESSION['parametros']['bd']);
         if ($params['tablas'] == NULL) {
             if (isset($_GET['continuar'])) {
@@ -50,7 +50,7 @@ class ControllerInstaller {
         } else {
             if ($_GET) {
                 if (isset($_GET['eliminar']) && $_GET['eliminar'] == 'Si') {
-                    if ($this->modelo->eliminarTablas($_SESSION['parametros'][''])) {
+                    if ($this->modelo->eliminarTablas($_SESSION['parametros']['bd'])) {
                         header("Location: index.php?action=paso4");
                     } else {
                         $params['mensaje'] = "Ups... no se han podido borrar las tablas...";
@@ -66,7 +66,7 @@ class ControllerInstaller {
 
     public function paso4() {
         $this->modelo = new ModelInstaller();
-        if (Helper::importSql( RUTA_INSTALL . "base_datos.sql", $this->modelo)) {
+        if (Helper::importSql(RUTA_INSTALL . "base_datos.sql", $this->modelo)) {
             $params['mensaje'] = "Se han creado las tablas correctamente.";
             $params['siguienteAction'] = "paso5";
         } else {
@@ -77,7 +77,31 @@ class ControllerInstaller {
     }
 
     public function paso5() {
-        $fichero = fopen( RUTA_APP . "Config.php", "w");
+        $this->modelo = new ModelInstaller();
+        if ($_POST) {
+            echo "entra";
+            if ($_POST['datosPrueba'] == "Si") {
+                if (Helper::importSql(RUTA_INSTALL . "datos_prueba.sql", $this->modelo)) {
+                    $params['error'] = FALSE;
+                } else {
+                    $params['error'] = TRUE;
+                }
+
+                require RUTA_INSTALL . 'vistas/paso5Respuesta.php';
+            } else if ($_POST['datosPrueba'] == "No") {
+                header("Location: index.php?action=paso6");
+            }
+        }
+
+        require RUTA_INSTALL . 'vistas/paso5Pregunta.php';
+    }
+
+    public function paso6() {
+
+        if (isset($_GET['finalizar'])) {
+            header("Location: " . RUTA_APP . "index.php");
+        }
+        $fichero = fopen(RUTA_APP . "Config.php", "w");
         fwrite($fichero, "<?php\n");
         fwrite($fichero, "\n");
         fwrite($fichero, "/**\n");
@@ -109,18 +133,8 @@ class ControllerInstaller {
         fwrite($fichero, " \n");
         fwrite($fichero, "}");
         fclose($fichero);
-        
-        require RUTA_INSTALL . 'vistas/paso5.php';
-    }
 
-    public function paso6(){
-        $this->modelo = new ModelInstaller();
-        // TODO: hacer datos de prueba
-        if (Helper::importSql( RUTA_INSTALL . "datos_prueba.sql", $this->modelo)) {
-            $params['error'] = FALSE;
-        } else {
-            $params['error'] = TRUE;
-        }
         require RUTA_INSTALL . 'vistas/paso6.php';
     }
+
 }

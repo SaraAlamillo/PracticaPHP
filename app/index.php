@@ -16,8 +16,8 @@ define("URL_CSS", URL_ROOT . "Assets/css/");
 define("URL_IMAGES", URL_ROOT . "Assets/images/");
 define("URL_JS", URL_ROOT . "Assets/js/");
 
-if (!file_exists("Config.php")) {
-    require_once RUTA_ROOT . "install/index.php";
+if (!file_exists("Config.php") ) {
+    require_once RUTA_INSTALL . "index.php";
 } else {
 // carga del modelo y los controladores
     require_once RUTA_APP . 'Config.php';
