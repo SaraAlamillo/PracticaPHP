@@ -22,12 +22,12 @@ class ModelInstaller {
         return DataBase::pruebaConexion($parametros, $error);
     }
     
-    public function tablasExistentes(){
-        return $this->conexion->mostrarTablas();
+    public function tablasExistentes($bd){
+        return $this->conexion->mostrarTablas($bd);
     }
     
-    public function eliminarTablas() {
-        return $this->conexion->eliminarTodasTablas();
+    public function eliminarTablas($bd) {
+        return $this->conexion->eliminarTodasTablas($bd);
         
     }
     

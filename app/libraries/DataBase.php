@@ -202,8 +202,8 @@ class DataBase {
         }
     }
 
-    public function mostrarTablas() {
-        $resultados = $this->link->query("show tables from " . $_SESSION['parametros']['bd']);
+    public function mostrarTablas($bd) {
+        $resultados = $this->link->query("show tables from $bd");
         
         $tablas = [];
         while ($row = $resultados->fetch_row()) {
@@ -212,8 +212,8 @@ class DataBase {
         return $tablas;
     }
 
-    public function eliminarTodasTablas() {
-        $sql = "SELECT CONCAT('drop table ',table_name,'; ') FROM information_schema.tables WHERE table_schema = '{$_SESSION['parametros']['bd']}'";
+    public function eliminarTodasTablas($bd) {
+        $sql = "SELECT CONCAT('drop table ',table_name,'; ') FROM information_schema.tables WHERE table_schema = '$bd'";
 
         $registros = $this->link->query($sql);
         while ($registro = $registros->fetch_row()) {

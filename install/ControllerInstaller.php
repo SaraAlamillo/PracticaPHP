@@ -41,7 +41,7 @@ class ControllerInstaller {
     public function paso3() {
           $this->modelo = new ModelInstaller();      
                 
-        $params['tablas'] = $this->modelo->tablasExistentes();
+        $params['tablas'] = $this->modelo->tablasExistentes($_SESSION['parametros']['bd']);
         if ($params['tablas'] == NULL) {
             if (isset($_GET['continuar'])) {
                 header("Location: index.php?action=paso4");
@@ -50,7 +50,7 @@ class ControllerInstaller {
         } else {
             if ($_GET) {
                 if (isset($_GET['eliminar']) && $_GET['eliminar'] == 'Si') {
-                    if ($this->modelo->eliminarTablas()) {
+                    if ($this->modelo->eliminarTablas($_SESSION['parametros'][''])) {
                         header("Location: index.php?action=paso4");
                     } else {
                         $params['mensaje'] = "Ups... no se han podido borrar las tablas...";
