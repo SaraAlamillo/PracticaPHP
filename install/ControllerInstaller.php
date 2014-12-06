@@ -115,6 +115,7 @@ class ControllerInstaller {
 
     public function paso6(){
         $this->modelo = new ModelInstaller();
+        // TODO: hacer datos de prueba
         if (Helper::importSql( RUTA_INSTALL . "datos_prueba.sql", $this->modelo)) {
             $params['error'] = FALSE;
         } else {

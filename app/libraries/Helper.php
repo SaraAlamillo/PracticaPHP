@@ -108,6 +108,7 @@ public static function importSql($fichero, $modelo) {
     foreach ($lines as $line) {
         $modelo->hacerConsulta($line, $error);
         if (! is_null($error)) {
+            echo $line . "<br />";
             echo $error . "<br />";
             return false;
         }
