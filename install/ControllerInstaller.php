@@ -66,7 +66,7 @@ class ControllerInstaller {
 
     public function paso4() {
         $this->modelo = new ModelInstaller();
-        if (importSql( RUTA_INSTALL . "base_datos.sql", $this->modelo)) {
+        if (Helper::importSql( RUTA_INSTALL . "base_datos.sql", $this->modelo)) {
             $params['mensaje'] = "Se han creado las tablas correctamente.";
             $params['siguienteAction'] = "paso5";
         } else {
@@ -110,9 +110,16 @@ class ControllerInstaller {
         fwrite($fichero, "}");
         fclose($fichero);
         
-        session_destroy();
-        
         require RUTA_INSTALL . 'vistas/paso5.php';
     }
 
+    public function paso6(){
+        $this->modelo = new ModelInstaller();
+        if (Helper::importSql( RUTA_INSTALL . "datos_prueba.sql", $this->modelo)) {
+            $params['error'] = FALSE;
+        } else {
+            $params['error'] = TRUE;
+        }
+        require RUTA_INSTALL . 'vistas/paso6.php';
+    }
 }

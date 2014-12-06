@@ -1,9 +1,8 @@
 <?php
 require_once RUTA_INSTALL . 'ControllerInstaller.php';
 require_once RUTA_INSTALL . 'ModelInstaller.php';
-require_once RUTA_INSTALL . 'helper.php';
-require_once RUTA_HELPER . 'plantillas.php';
 require_once RUTA_LIBRARIES . 'DataBase.php';
+require_once RUTA_LIBRARIES . 'Helper.php';
 
 $map = [
     'paso1' => array('controller' => 'ControllerInstaller', 'action' => 'paso1'),
