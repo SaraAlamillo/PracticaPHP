@@ -18,7 +18,7 @@
         <tr>
             <th>Rol</th>
             <td>
-                <?= creaListaDesplegable("rol", $params['roles'], $params["datos"]['rol']) ?>
+                <?= Helper::creaListaDesplegable("rol", $params['roles'], $params["datos"]['rol']) ?>
             </td>
         </tr>
     </table>

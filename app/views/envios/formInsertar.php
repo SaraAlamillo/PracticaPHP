@@ -53,7 +53,7 @@
             <tr>
                 <th>Provincia</th>
                 <td>
-                    <?=creaListaDesplegable("provincia", $params['provincias'], isset($params["datos"]['provincia'])? $params["datos"]['provincia'] : "0", ['nombre' => "--Seleccionar--", 'codigo' => "0"]) ?>
+                    <?=Helper::creaListaDesplegable("provincia", $params['provincias'], isset($params["datos"]['provincia'])? $params["datos"]['provincia'] : "0", ['nombre' => "--Seleccionar--", 'codigo' => "0"]) ?>
                 </td>
                 <?php if (isset($params['errores']['provincia'])): ?>
                 <td>Valor incorrecto</td>

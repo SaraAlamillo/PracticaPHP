@@ -6,7 +6,7 @@
     <br />
     Contraseña: <input type="password" name="clave" value="<?=$params['datos']['clave'] ?>" />
     <br />
-    Zona: <?=creaListaDesplegable(
+    Zona: <?=Helper::creaListaDesplegable(
             "zona", 
             $params['zonas'], 
             isset($params['datos']['zona'])? $params['datos']['zona'] : "0", 

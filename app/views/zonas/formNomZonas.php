@@ -1,7 +1,7 @@
 <p><?=  isset($params['error'])? $params['error'] : '' ?></p>
 <form action="index.php" method="GET">
     Nombre de la zona: 
-    <?=creaListaDesplegable(
+    <?=Helper::creaListaDesplegable(
             "codigo", 
             $params['zonas'], 
             isset($params['zona'])? $params['zona'] : '0', 

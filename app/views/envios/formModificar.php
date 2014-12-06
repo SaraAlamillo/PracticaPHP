@@ -64,7 +64,7 @@
         <tr>
             <th>Provincia</th>
             <td>
-                <?= creaListaDesplegable("provincia", $params['provincias'], $params['datos']['provincia']) ?>
+                <?= Helper::creaListaDesplegable("provincia", $params['provincias'], $params['datos']['provincia']) ?>
             </td>
                 <?php if (isset($params['errores']['provincia'])): ?>
                 <td>Valor incorrecto</td>
@@ -82,7 +82,7 @@
         <tr>
             <th>Estado</th>
             <td>
-                <?= creaListaDesplegable("estado", $params['estados'], $params['datos']['estado']) ?>
+                <?= Helper::creaListaDesplegable("estado", $params['estados'], $params['datos']['estado']) ?>
             </td>
                 <?php if (isset($params['errores']['estado'])): ?>
                 <td>Valor incorrecto</td>

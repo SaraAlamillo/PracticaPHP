@@ -27,7 +27,7 @@ class ControllerZonas {
     }
 
     public function listarZonas() {
-        paginar(
+        Helper::paginar(
                 $_GET['action'], $_GET['pagina'], $this->modelZonas, "listarZonas", $params
         );
 

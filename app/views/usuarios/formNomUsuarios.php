@@ -1,7 +1,7 @@
 <p><?=  isset($params['error'])? $params['error'] : '' ?></p>
 <form action="index.php" method="GET">
     Nombre del usuario: 
-    <?=creaListaDesplegable(
+    <?=Helper::creaListaDesplegable(
             "usuario", 
             $params['usuarios'], 
             isset($params['usuario'])? $params['usuario'] : '0', 

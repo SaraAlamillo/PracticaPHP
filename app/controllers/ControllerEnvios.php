@@ -53,7 +53,7 @@ class ControllerEnvios {
     }
 
     public function listar() {
-        paginar(
+        Helper::paginar(
                 $_GET['action'], $_GET['pagina'], $this->modelEnvios, "listarEnvios", $params
         );
 
@@ -119,7 +119,7 @@ class ControllerEnvios {
         }
 
         if (isset($_SESSION['criteriosBusqueda'])) {
-            paginar($_GET['action'], $_GET['pagina'], $this->modelEnvios, "listarEnvios", $params, $_SESSION['criteriosBusqueda']);
+            Helper::paginar($_GET['action'], $_GET['pagina'], $this->modelEnvios, "listarEnvios", $params, $_SESSION['criteriosBusqueda']);
             if ($params['datos'] == NULL) {
                 require RUTA_VIEWS . 'noDatos.php';
             } else {
@@ -147,7 +147,7 @@ class ControllerEnvios {
                 require RUTA_VIEWS . 'envios/formBuscar.php';
             } else {
                 $_SESSION['criteriosBusqueda'] = $datos;
-                $this->paginar($_GET['action'], $_GET['pagina'], $_SESSION['criteriosBusqueda']);
+                Helper::$this->paginar($_GET['action'], $_GET['pagina'], $_SESSION['criteriosBusqueda']);
             }
         } else {
             require RUTA_VIEWS . 'envios/formBuscar.php';

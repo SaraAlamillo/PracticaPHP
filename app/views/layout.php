@@ -8,7 +8,7 @@
     </head>
     <body>
         <?=
-        CargaVista(
+        Helper::CargaVista(
                 RUTA_VIEWS . "encabezado.php", [
             'hora' => isset($hora) ? $hora : NULL,
             'usuario' => isset($_SESSION['nombreUsuario']) ? $_SESSION['nombreUsuario'] : NULL,
@@ -19,7 +19,7 @@
         ])
         ?>
         <?php if (isset($_SESSION['usuarioValidado'])): ?>
-            <?= CargaVista(RUTA_VIEWS . "menu.php"); ?>
+            <?= Helper::CargaVista(RUTA_VIEWS . "menu.php"); ?>
         <?php endif; ?>
 
 

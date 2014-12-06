@@ -71,7 +71,7 @@ class ControllerUsuarios {
     }
 
     public function listarUsuarios() {
-        paginar(
+        Helper::paginar(
                 $_GET['action'], $_GET['pagina'], $this->modelUsuarios, "listarUsuarios", $params
         );
 

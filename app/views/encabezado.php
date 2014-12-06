@@ -5,7 +5,7 @@
     Hola, <?=$usuario ?>. Has accedido a esta hora: <?= $hora ?>
     <br />
     <form action="index.php?action=cambiarZona" method="POST">
-        <?=creaListaDesplegable(
+        <?=Helper::creaListaDesplegable(
                 "nuevaZona", 
                 $listadoZonas, 
                 $zona, 

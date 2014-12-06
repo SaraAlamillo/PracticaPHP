@@ -10,7 +10,6 @@ define("RUTA_CONTROLLERS", RUTA_APP . "controllers/");
 define("RUTA_LIBRARIES", RUTA_APP . "libraries/");
 define("RUTA_MODELS", RUTA_APP . "models/");
 define("RUTA_VIEWS", RUTA_APP . "views/");
-define("RUTA_HELPER", RUTA_APP . "helper/");
 define("RUTA_INSTALL", RUTA_ROOT . "install/");
 define("URL_ROOT", "http://" . $_SERVER['SERVER_NAME'] . "/PracticaPHP/");
 define("URL_CSS", URL_ROOT . "Assets/css/");
@@ -31,10 +30,7 @@ if (!file_exists("Config.php")) {
     require_once RUTA_CONTROLLERS . 'ControllerZonas.php';
     require_once RUTA_LIBRARIES . 'validacion.php';
     require_once RUTA_LIBRARIES . 'DataBase.php';
-    require_once RUTA_HELPER . 'formularios.php';
-    require_once RUTA_HELPER . 'plantillas.php';
-    require_once RUTA_HELPER . 'listar.php';
-
+    require_once RUTA_LIBRARIES . 'Helper.php';
 
 // enrutamiento
     $map = [
