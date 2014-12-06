@@ -16,7 +16,7 @@
             <input type="submit" value="Cambiar" />
             </form>
         </div>
-        <div id="salir">
+        <div class="salir noLink">
             <a href="index.php?action=salir"><img src="<?=URL_IMAGES . "iconos/salir.png" ?>" /></a>
         </div>
             </div>  

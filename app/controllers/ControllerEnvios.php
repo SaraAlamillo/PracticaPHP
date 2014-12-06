@@ -49,10 +49,6 @@ class ControllerEnvios {
     }
 
     public function inicio() {
-        $params = [
-            'mensaje' => 'Práctica 1ª Evaluación - Desarrollo Web en Entorno Servidor',
-        ];
-
         require RUTA_VIEWS . 'inicio.php';
     }
 
@@ -198,29 +194,29 @@ class ControllerEnvios {
         } else {
             $params['id'] = $_GET['id'];
             if ($this->modelEnvios->existeEnvio($_GET['id'])) {
-                if($this->modelEnvios->elementoRecepcionado($_GET['id'])) {
+                if ($this->modelEnvios->elementoRecepcionado($_GET['id'])) {
                     $params['error'] = "El envío introducido ya ha sido recepcionado";
-                require RUTA_VIEWS . 'envios/formCodEnvio.php';
+                    require RUTA_VIEWS . 'envios/formCodEnvio.php';
                 } else {
-                if (isset($_GET['confirmacion'])) {
-                    $params['confirmacion'] = $_GET['confirmacion'];
-                    if ($_GET['confirmacion'] == "Si") {
-                        $datos = [
-                            "fecha_entrega" => date("Y-m-d"),
-                            "estado" => "Entregado",
-                            "zona_recepcion" => $_SESSION['zona']
-                        ];
-                        if ($this->modelEnvios->modificarEnvio($_GET['id'], $datos)) {
-                            require RUTA_VIEWS . 'envios/finalBien.php';
+                    if (isset($_GET['confirmacion'])) {
+                        $params['confirmacion'] = $_GET['confirmacion'];
+                        if ($_GET['confirmacion'] == "Si") {
+                            $datos = [
+                                "fecha_entrega" => date("Y-m-d"),
+                                "estado" => "Entregado",
+                                "zona_recepcion" => $_SESSION['zona']
+                            ];
+                            if ($this->modelEnvios->modificarEnvio($_GET['id'], $datos)) {
+                                require RUTA_VIEWS . 'envios/finalBien.php';
+                            } else {
+                                require RUTA_VIEWS . 'envios/finalMal.php';
+                            }
                         } else {
-                            require RUTA_VIEWS . 'envios/finalMal.php';
+                            require RUTA_VIEWS . 'envios/formCodEnvio.php';
                         }
                     } else {
-                        require RUTA_VIEWS . 'envios/formCodEnvio.php';
+                        require RUTA_VIEWS . 'envios/confirmacion.php';
                     }
-                } else {
-                    require RUTA_VIEWS . 'envios/confirmacion.php';
-                }
                 }
             } else {
                 $params['error'] = "El código de envío introducido no existe";

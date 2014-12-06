@@ -28,7 +28,7 @@ body {
     text-align: right;
 }
 
-#salir {
+.salir {
     float: right;
     margin: auto;
 }
@@ -38,8 +38,14 @@ fieldset {
 }
 
 
-h1 a {
+h1 a:visited, h1 a:hover, h1 a:active, h1 a:link {
     text-decoration: none;
+    box-shadow: none;
+    color: #603E2A;
+}
+.noLink a:visited, .noLink a:hover, .noLink a:active, .noLink a:link {
+    text-decoration: none;
+    box-shadow: none;
 }
 
 #cabecera {
@@ -85,5 +91,38 @@ a:hover, a:active {
     padding: 5px;
     box-shadow: 1px 1px 1px 1px #603E2A;
     border-radius: 10px;
-    color: F3F0EA;
+    color: #F3F0EA;
+}
+
+#contenido {
+    padding: 10px;
+}
+#pie {
+    text-align: center;
+    line-height: 5px;
+}
+table {
+    border: none;
+    font-size: 13px;
+}
+th {
+    background-color: #603E2A;
+    color: #F3F0EA;
+    border: none;
+}
+td {
+    border-color: #603E2A;
+    text-align: center;
+}
+.noMostrar {
+    visibility: hidden;
+}
+.linkPaginador a {
+    color: #F26A4B;
+    float: left;
+}
+#paginador {
+    width: 100%;
+    border: solid black;
+    height: 20px;
 }

@@ -1,3 +1,4 @@
 <div id="pie">
-    <div align="center">(: Sara Alamillo Arroyo :)</div>
+    <p>Sara Alamillo Arroyo</p>
+    <p>Desarrollo Web en Entorno Servidor | 2º de Desarrollo de Aplicaciones Web</p>
 </div>

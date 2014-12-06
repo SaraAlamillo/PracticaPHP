@@ -31,11 +31,11 @@ function paginar($accion, &$pagina, $modelo, $metodo, &$parametrosVista, $condic
     ];
 
     if ($pagina == 1) {
-        $parametrosVista['controlesActivos']['primero'] = "disabled='disabled'";
-        $parametrosVista['controlesActivos']['anterior'] = "disabled='disabled'";
+        $parametrosVista['controlesActivos']['primero'] = "  noMostrar";
+        $parametrosVista['controlesActivos']['anterior'] = " noMostrar";
     }
     if ($pagina == $parametrosVista['numeroDePaginas']) {
-        $parametrosVista['controlesActivos']['siguiente'] = "disabled='disabled'";
-        $parametrosVista['controlesActivos']['ultimo'] = "disabled='disabled'";
+        $parametrosVista['controlesActivos']['siguiente'] = " noMostrar";
+        $parametrosVista['controlesActivos']['ultimo'] = " noMostrar";
     }
 }

@@ -11,10 +11,12 @@ class ModelEnvios {
     private $conexion;
     private $modelEnvios;
     private $tabla = "envios";
+    private $modelZonas;
 
     public function __construct() {
         $this->conexion = DataBase::getInstance();
         $this->modelEnvios = new ModelProvincias();
+        $this->modelZonas = new ModelZonas();
     }
 
 
@@ -30,6 +32,8 @@ class ModelEnvios {
                     $valor = $this->mostrarFecha($valor);
                 } else if ($clave == 'fecha_entrega') {
                     $valor = $this->mostrarFecha($valor);
+                } else if ($clave == 'zona_envio' || $clave == 'zona_recepcion') {
+                    $valor = $this->modelZonas->obtenerNombre($valor);
                 }
             }
         }
