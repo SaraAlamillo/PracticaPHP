@@ -76,7 +76,7 @@ class ControllerUsuarios {
         );
 
         if ($params['datos'] == NULL) {
-            require RUTA_VIEWS . 'usuarios/noDatos.php';
+            require RUTA_VIEWS . 'noDatos.php';
         } else {
             require RUTA_VIEWS . 'usuarios/listar.php';
         }
@@ -114,6 +114,7 @@ class ControllerUsuarios {
     public function eliminarUsuario() {
         $params = [
             "action" => $_GET['action'],
+            "nomCampoID" => "usuario",
             "usuarios" => $this->modelUsuarios->listarUsuarios()
         ];
 
@@ -125,15 +126,15 @@ class ControllerUsuarios {
                 if (isset($_GET['confirmacion'])) {
                     if ($_GET['confirmacion'] == "Si") {
                         if ($this->modelUsuarios->eliminarUsuario($_GET['usuario'])) {
-                            require RUTA_VIEWS . 'usuarios/finalBien.php';
+                            require RUTA_VIEWS . 'finalBien.php';
                         } else {
-                            require RUTA_VIEWS . 'usuarios/finalMal.php';
+                            require RUTA_VIEWS . 'finalMal.php';
                         }
                     } else {
                         require RUTA_VIEWS . 'usuarios/formNomUsuarios.php';
                     }
                 } else {
-                    require RUTA_VIEWS . 'usuarios/confirmacion.php';
+                    require RUTA_VIEWS . 'confirmacion.php';
                 }
             } else {
                 $params['error'] = "El nombre de usuario introducido no existe";
@@ -145,6 +146,7 @@ class ControllerUsuarios {
     public function modificarUsuario() {
         $params = [
             "action" => $_GET['action'],
+            "nomCampoID" => "usuario",
             "usuarios" => $this->modelUsuarios->listarUsuarios()
         ];
 
@@ -165,9 +167,9 @@ class ControllerUsuarios {
                                 unset($_POST['clave']);
                             }
                             if ($this->modelUsuarios->modificarUsuario($_GET['usuario'], $_POST)) {
-                                require RUTA_VIEWS . 'usuarios/finalBien.php';
+                                require RUTA_VIEWS . 'finalBien.php';
                             } else {
-                                require RUTA_VIEWS . 'usuarios/finalMal.php';
+                                require RUTA_VIEWS . 'finalMal.php';
                             }
                         } else {
                             require RUTA_VIEWS . 'usuarios/formModificar.php';
@@ -176,7 +178,7 @@ class ControllerUsuarios {
                         require RUTA_VIEWS . 'usuarios/formNomUsuarios.php';
                     }
                 } else {
-                    require RUTA_VIEWS . 'usuarios/confirmacion.php';
+                    require RUTA_VIEWS . 'confirmacion.php';
                 }
             } else {
                 $params['error'] = "El código de envío introducido no existe";

@@ -106,6 +106,10 @@
                 <td>Valor incorrecto</td>
                 <?php endif; ?>
             </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Insertar" />
+                </td>
+            </tr>
     </table>
-    <input type="submit" value="Insertar" />
 </form>

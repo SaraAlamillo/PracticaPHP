@@ -32,7 +32,7 @@ class ControllerZonas {
         );
 
         if ($params['datos'] == NULL) {
-            require RUTA_VIEWS . 'zonas/noDatos.php';
+            require RUTA_VIEWS . 'noDatos.php';
         } else {
             require RUTA_VIEWS . 'zonas/listar.php';
         }
@@ -66,6 +66,7 @@ class ControllerZonas {
     public function eliminarZona() {
         $params = [
             "action" => $_GET['action'],
+            "nomCampoID" => "codigo",
             "zonas" => $this->modelZonas->listarZonas()
         ];
 
@@ -81,20 +82,20 @@ class ControllerZonas {
                     if (isset($_GET['confirmacion'])) {
                         if ($_GET['confirmacion'] == "Si") {
                             if ($this->modelZonas->eliminarZona($_GET['codigo'])) {
-                                require RUTA_VIEWS . 'zonas/finalBien.php';
+                                require RUTA_VIEWS . 'finalBien.php';
                             } else {
-                                require RUTA_VIEWS . 'zonas/finalMal.php';
+                                require RUTA_VIEWS . 'finalMal.php';
                             }
                         } else {
-                            require RUTA_VIEWS . 'zonas/formNomUsuarios.php';
+                            require RUTA_VIEWS . 'zonas/formNomZonas.php';
                         }
                     } else {
-                        require RUTA_VIEWS . 'zonas/confirmacion.php';
+                        require RUTA_VIEWS . 'confirmacion.php';
                     }
                 }
             } else {
                 $params['error'] = "El nombre de zona introducido no existe";
-                require RUTA_VIEWS . 'zonas/formNomUsuarios.php';
+                require RUTA_VIEWS . 'zonas/formNomZonas.php';
             }
         }
     }
@@ -102,11 +103,12 @@ class ControllerZonas {
     public function modificarZona() {
         $params = [
             "action" => $_GET['action'],
+            "nomCampoID" => "codigo",
             "zonas" => $this->modelZonas->listarZonas()
         ];
 
         if (empty($_GET['codigo'])) {
-            require RUTA_VIEWS . 'zonas/formNomUsuarios.php';
+            require RUTA_VIEWS . 'zonas/formNomZonas.php';
         } else {
             $params['codigo'] = $_GET['codigo'];
             if ($this->modelZonas->existeZona($_GET['codigo'])) {
@@ -116,22 +118,22 @@ class ControllerZonas {
                         $params['antiguo'] = $this->modelZonas->listarUnaZona($_GET['codigo']);
                         if ($_POST) {
                             if ($this->modelZonas->modificarZona($_GET['codigo'], $_POST)) {
-                                require RUTA_VIEWS . 'zonas/finalBien.php';
+                                require RUTA_VIEWS . 'finalBien.php';
                             } else {
-                                require RUTA_VIEWS . 'zonas/finalMal.php';
+                                require RUTA_VIEWS . 'finalMal.php';
                             }
                         } else {
                             require RUTA_VIEWS . 'zonas/formModificar.php';
                         }
                     } else {
-                        require RUTA_VIEWS . 'zonas/formNomUsuarios.php';
+                        require RUTA_VIEWS . 'zonas/formNomZonas.php';
                     }
                 } else {
-                    require RUTA_VIEWS . 'zonas/confirmacion.php';
+                    require RUTA_VIEWS . 'confirmacion.php';
                 }
             } else {
                 $params['error'] = "El código de zona introducido no existe";
-                require RUTA_VIEWS . 'zonas/formNomUsuarios.php';
+                require RUTA_VIEWS . 'zonas/formNomZonas.php';
             }
         }
     }

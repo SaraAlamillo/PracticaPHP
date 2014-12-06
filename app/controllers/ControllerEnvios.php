@@ -58,7 +58,7 @@ class ControllerEnvios {
         );
 
         if ($params['datos'] == NULL) {
-            require RUTA_VIEWS . 'envios/noDatos.php';
+            require RUTA_VIEWS . 'noDatos.php';
         } else {
             require RUTA_VIEWS . 'envios/listar.php';
         }
@@ -121,7 +121,7 @@ class ControllerEnvios {
         if (isset($_SESSION['criteriosBusqueda'])) {
             paginar($_GET['action'], $_GET['pagina'], $this->modelEnvios, "listarEnvios", $params, $_SESSION['criteriosBusqueda']);
             if ($params['datos'] == NULL) {
-                require RUTA_VIEWS . 'envios/noDatos.php';
+                require RUTA_VIEWS . 'noDatos.php';
             } else {
                 require RUTA_VIEWS . 'envios/listar.php';
             }
@@ -156,7 +156,8 @@ class ControllerEnvios {
 
     public function eliminar() {
         $params = [
-            "action" => $_GET['action']
+            "action" => $_GET['action'],
+            "nomCampoID" => "id"
         ];
 
         if (empty($_GET['id'])) {
@@ -167,15 +168,15 @@ class ControllerEnvios {
                 if (isset($_GET['confirmacion'])) {
                     if ($_GET['confirmacion'] == "Si") {
                         if ($this->modelEnvios->eliminarEnvio($_GET['id'])) {
-                            require RUTA_VIEWS . 'envios/finalBien.php';
+                            require RUTA_VIEWS . 'finalBien.php';
                         } else {
-                            require RUTA_VIEWS . 'envios/finalMal.php';
+                            require RUTA_VIEWS . 'finalMal.php';
                         }
                     } else {
                         require RUTA_VIEWS . 'envios/formCodEnvio.php';
                     }
                 } else {
-                    require RUTA_VIEWS . 'envios/confirmacion.php';
+                    require RUTA_VIEWS . 'confirmacion.php';
                 }
             } else {
                 $params['error'] = "El código de envío introducido no existe";
@@ -186,7 +187,8 @@ class ControllerEnvios {
 
     public function recepcionar() {
         $params = [
-            "action" => $_GET['action']
+            "action" => $_GET['action'],
+            "nomCampoID" => "id"
         ];
 
         if (empty($_GET['id'])) {
@@ -207,15 +209,15 @@ class ControllerEnvios {
                                 "zona_recepcion" => $_SESSION['zona']
                             ];
                             if ($this->modelEnvios->modificarEnvio($_GET['id'], $datos)) {
-                                require RUTA_VIEWS . 'envios/finalBien.php';
+                                require RUTA_VIEWS . 'finalBien.php';
                             } else {
-                                require RUTA_VIEWS . 'envios/finalMal.php';
+                                require RUTA_VIEWS . 'finalMal.php';
                             }
                         } else {
                             require RUTA_VIEWS . 'envios/formCodEnvio.php';
                         }
                     } else {
-                        require RUTA_VIEWS . 'envios/confirmacion.php';
+                        require RUTA_VIEWS . 'confirmacion.php';
                     }
                 }
             } else {
@@ -227,7 +229,8 @@ class ControllerEnvios {
 
     public function modificar() {
         $params = [
-            "action" => $_GET['action']
+            "action" => $_GET['action'],
+            "nomCampoID" => "id"
         ];
 
         if (empty($_GET['id'])) {
@@ -254,7 +257,7 @@ class ControllerEnvios {
 
                             if (empty($datosError)) {
                                 if ($this->modelEnvios->modificarEnvio($_GET['id'], $_POST)) {
-                                    require RUTA_VIEWS . 'envios/finalBien.php';
+                                    require RUTA_VIEWS . 'finalBien.php';
                                 } else {
                                     $params['mensaje'] = "Ups... Algo ha fallado...";
                                     $params['datos'] = $_POST;
@@ -272,7 +275,7 @@ class ControllerEnvios {
                         require RUTA_VIEWS . 'envios/formCodEnvio.php';
                     }
                 } else {
-                    require RUTA_VIEWS . 'envios/confirmacion.php';
+                    require RUTA_VIEWS . 'confirmacion.php';
                 }
             } else {
                 $params['error'] = "El código de envío introducido no existe";

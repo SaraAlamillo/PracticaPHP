@@ -27,7 +27,6 @@
             <?= $contenido ?>
         </div> 
 
-        <?= CargaVista(RUTA_VIEWS . "pie.php") ?>
         <script src="<?= URL_JS ?>paginacion.js"></script>
     </body>
 </html>
