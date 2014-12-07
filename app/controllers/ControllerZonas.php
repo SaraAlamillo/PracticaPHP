@@ -85,13 +85,13 @@ class ControllerZonas {
         ];
 
         if (empty($_GET['codigo'])) {
-            require RUTA_VIEWS . 'zonas/formNomUsuarios.php';
+            require RUTA_VIEWS . 'zonas/formNomZonas.php';
         } else {
             $params['codigo'] = $_GET['codigo'];
             if ($this->modelZonas->existeZona($_GET['codigo'])) {
                 if ($this->modelZonas->zonaUtilizada($_GET['codigo'])) {
                     $params['error'] = "La zona introducida está siendo utilizada";
-                    require RUTA_VIEWS . 'zonas/formNomUsuarios.php';
+                    require RUTA_VIEWS . 'zonas/formNomZonas.php';
                 } else {
                     if (isset($_GET['confirmacion'])) {
                         if ($_GET['confirmacion'] == "Si") {

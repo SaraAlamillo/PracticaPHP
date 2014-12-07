@@ -16,11 +16,15 @@
                 <?php
             endforeach;
             ?>
-            <td>
-                <a href="index.php?action=modificarUsuario&usuario=<?= $usuario['codigo'] ?>" title="Modificar usuario">Modificar</a>
+            <td class="noLink">
+                <a href="index.php?action=modificarUsuario&usuario=<?= $usuario['codigo'] ?>" title="Modificar usuario">
+                    <img src="<?=URL_IMAGES ?>iconos/modificar.png" />
+                </a>
             </td>
-            <td>
-                <a href="index.php?action=eliminarUsuario&usuario=<?= $usuario['codigo'] ?>" title="Eliminar usuario">Eliminar</a>
+            <td class="noLink">
+                <a href="index.php?action=eliminarUsuario&usuario=<?= $usuario['codigo'] ?>" title="Eliminar usuario">
+                    <img src="<?=URL_IMAGES ?>iconos/borrar.png" />
+                </a>
             </td>
         </tr>
     <?php endforeach; ?>

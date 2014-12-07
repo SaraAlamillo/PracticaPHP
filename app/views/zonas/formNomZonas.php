@@ -4,7 +4,7 @@
     <?=Helper::creaListaDesplegable(
             "codigo", 
             $params['zonas'], 
-            isset($params['zona'])? $params['zona'] : '0', 
+            isset($params['codigo'])? $params['codigo'] : '0', 
             ['nombre' => '--Selecionar--', 'codigo' => '0']) 
     ?>
     <input type='hidden' name="action" value="<?=$params['action'] ?>" />

@@ -8,7 +8,7 @@
                     Destinatario
                 </th>
                 <td>
-                    <input type="text" name="destinatario" value="<?= $params["datos"]['destinatario'] ?>" />
+                    <input type="text" name="destinatario" value="<?= $params["datos"]['destinatario'] ?>" required="required" />
                 </td>
                 <?php if (isset($params['errores']['destinatario'])): ?>
                 <td>Valor incorrecto</td>
@@ -62,7 +62,7 @@
             <tr>
                 <th>Correo Electrónico</th>
                 <td>
-                    <input type="email" name="email" value="<?= $params["datos"]['email'] ?>" />
+                    <input type="email" name="email" value="<?= $params["datos"]['email'] ?>" required="required" />
                 </td>
                 <?php if (isset($params['errores']['email'])): ?>
                 <td>Valor incorrecto</td>
@@ -89,9 +89,7 @@
             <tr>
                 <th>Observaciones</th>
                 <td>
-                    <textarea name="observaciones">
-                        <?= $params["datos"]['observaciones'] ?>
-                    </textarea>
+                    <textarea name="observaciones"><?= $params["datos"]['observaciones'] ?></textarea>
                 </td>
             </tr>
             <tr>

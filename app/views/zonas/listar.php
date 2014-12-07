@@ -14,11 +14,15 @@
                 <?php
             endforeach;
             ?>
-            <td>
-                <a href="index.php?action=modificarZona&codigo=<?= $zona['codigo'] ?>" title="Modificar zona">Modificar</a>
+            <td class="noLink">
+                <a href="index.php?action=modificarZona&codigo=<?= $zona['codigo'] ?>" title="Modificar zona">
+                    <img src="<?=URL_IMAGES ?>iconos/modificar.png" />
+                </a>
             </td>
-            <td>
-                <a href="index.php?action=eliminarZona&codigo=<?= $zona['codigo'] ?>" title="Eliminar zona">Eliminar</a>
+            <td class="noLink">
+                <a href="index.php?action=eliminarZona&codigo=<?= $zona['codigo'] ?>" title="Eliminar zona">
+                    <img src="<?=URL_IMAGES ?>iconos/borrar.png" />
+                </a>
             </td>
         </tr>
     <?php endforeach; ?>
