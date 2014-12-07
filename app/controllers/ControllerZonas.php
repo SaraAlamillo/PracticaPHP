@@ -1,24 +1,28 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of ControllerZonas
+ * Contiene diferentes funciones que emulan los diferentes controladores de la sección de zonas
  *
  * @author Sara
  */
 class ControllerZonas {
 
+    /**
+     * Contiene el acceso al modelo para zonas
+     * @var Object 
+     */
     private $modelZonas;
 
+    /**
+     * Constructor de la clase ControllerZonas
+     */
     public function __construct() {
         $this->modelZonas = new ModelZonas();
     }
 
+    /**
+     * Modifica la zona actual seleccionada por otra determinada por el usuario
+     */
     public function cambiarZona() {
         if (isset($_POST['nuevaZona'])) {
             $_SESSION['zona'] = $_POST['nuevaZona'];
@@ -26,6 +30,9 @@ class ControllerZonas {
         require RUTA_VIEWS . 'zonas/cambioZona.php';
     }
 
+    /**
+     * Lista todas las zonas recogidas en la aplicación
+     */
     public function listarZonas() {
         Helper::paginar(
                 $_GET['action'], $_GET['pagina'], $this->modelZonas, "listarZonas", $params
@@ -38,6 +45,9 @@ class ControllerZonas {
         }
     }
 
+    /**
+     * Inserta una nueva zona en la aplicación
+     */
     public function insertarZona() {
         $params = [
             "action" => $_GET['action'],
@@ -63,6 +73,9 @@ class ControllerZonas {
         require RUTA_VIEWS . 'zonas/formInsertar.php';
     }
 
+    /**
+     * Eliminar una zona determinada de la aplicación
+     */
     public function eliminarZona() {
         $params = [
             "action" => $_GET['action'],
@@ -101,6 +114,9 @@ class ControllerZonas {
         }
     }
 
+    /**
+     * Modifica el nombre de una zona determinada
+     */
     public function modificarZona() {
         $params = [
             "action" => $_GET['action'],

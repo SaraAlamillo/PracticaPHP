@@ -1,20 +1,34 @@
 <?php
-
 /**
- * Contiene diferentes funciones que emulan los diferentes controladores
+ * Contiene diferentes funciones que emulan los diferentes controladores de la sección de usuarios
  *
  * @author Sara
  */
 class ControllerUsuarios {
 
+    /**
+     * Contiene el acceso al modelo para los usuarios
+     * @var Object
+     */
     private $modelUsuarios;
+    
+    /**
+     * Contiene el acceso al modelo para las zonas
+     * @var Object
+     */
     private $modelZonas;
 
+    /**
+     * Constructor para la clase ControllerUsuarios
+     */
     public function __construct() {
         $this->modelUsuarios = new ModelUsuarios();
         $this->modelZonas = new ModelZonas();
     }
 
+    /**
+     * Formulario para acceder a la aplicación, con previa validación.
+     */
     public function acceder() {
         if (!isset($_SESSION['usuarioValidado'])) {
             $params = [
@@ -66,11 +80,17 @@ class ControllerUsuarios {
         }
     }
 
+    /**
+     * Destruye la sesión y redirecciona a la página principal
+     */
     public function salir() {
         session_destroy();
         header("Location: index.php");
     }
 
+    /**
+     * Muestra un listado de todos los usuarios existentes en la aplicación
+     */
     public function listarUsuarios() {
         Helper::paginar(
                 $_GET['action'], $_GET['pagina'], $this->modelUsuarios, "listarUsuarios", $params
@@ -83,6 +103,9 @@ class ControllerUsuarios {
         }
     }
 
+    /**
+     * Valida e inserta un nuevo usuario
+     */
     public function insertarUsuario() {
         $params = [
             "action" => $_GET['action'],
@@ -112,6 +135,9 @@ class ControllerUsuarios {
         require RUTA_VIEWS . 'usuarios/formInsertar.php';
     }
 
+    /**
+     * Elimina un usuario de la aplicación, previa confirmación
+     */
     public function eliminarUsuario() {
         $params = [
             "action" => $_GET['action'],
@@ -145,6 +171,9 @@ class ControllerUsuarios {
         }
     }
 
+    /**
+     * Actualizar los datos de un usuario determinado
+     */
     public function modificarUsuario() {
         $params = [
             "action" => $_GET['action'],

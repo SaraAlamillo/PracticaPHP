@@ -1,9 +1,15 @@
 <?php
+// Eliminación de posibles rastros de sesiones anteriores
+session_destroy();
+session_start();
+
+// Carga del modelo, controlador y librerías
 require_once RUTA_INSTALL . 'ControllerInstaller.php';
 require_once RUTA_INSTALL . 'ModelInstaller.php';
 require_once RUTA_LIBRARIES . 'DataBase.php';
 require_once RUTA_LIBRARIES . 'Helper.php';
 
+// Enrutamiento
 $map = [
     'paso1' => array('controller' => 'ControllerInstaller', 'action' => 'paso1'),
     'paso2' => array('controller' => 'ControllerInstaller', 'action' => 'paso2'),
@@ -33,8 +39,8 @@ if (isset($_GET['action'])) {
 }
 
 $controlador = $map[$ruta];
-// Ejecución del controlador asociado a la ruta
 
+// Ejecución del controlador asociado a la ruta
 if (method_exists($controlador['controller'], $controlador['action'])) {
     ob_start();
 

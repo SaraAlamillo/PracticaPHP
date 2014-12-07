@@ -1,14 +1,20 @@
 <?php
 
 /**
- * Description of ControllerInstaller
+ * Contiene las funciones del controlador del instalador
  *
  * @author Sara
  */
 class ControllerInstaller {
-
+/**
+ * Contiene el enlace con el modelo del instalador
+ * @var Object
+ */
     private $modelo;
 
+    /**
+     * Muestra un mensaje para abrir el instalador
+     */
     public function paso1() {
         if (isset($_POST['siguiente'])) {
             header("Location: index.php?action=paso2");
@@ -17,6 +23,9 @@ class ControllerInstaller {
         }
     }
 
+    /**
+     * Muestra un formulario para ingresar los datos de la conexión y comprueba su correcto funcionamiento
+     */
     public function paso2() {
         $params = [
             "datos" => [
@@ -38,6 +47,9 @@ class ControllerInstaller {
         require RUTA_INSTALL . "vistas/paso2.php";
     }
 
+    /**
+     * Muestra las tablas de la base de datos y pide confirmación para eliminarlas
+     */
     public function paso3() {
         $this->modelo = new ModelInstaller();
 
@@ -64,6 +76,9 @@ class ControllerInstaller {
         }
     }
 
+    /**
+     * Crea las tablas de la aplicación en la base de datos
+     */
     public function paso4() {
         $this->modelo = new ModelInstaller();
         if (Helper::importSql(RUTA_INSTALL . "base_datos.sql", $this->modelo)) {
@@ -76,6 +91,9 @@ class ControllerInstaller {
         require RUTA_INSTALL . 'vistas/paso4.php';
     }
 
+    /**
+     * A elección del usuario, añade varios datos de prueba en todas las tablas
+     */
     public function paso5() {
         $this->modelo = new ModelInstaller();
         if ($_POST) {
@@ -94,6 +112,9 @@ class ControllerInstaller {
         }
     }
 
+    /**
+     * Genera el fichero de configuración de la aplicación y finaliza la instalación
+     */
     public function paso6() {
 
         if (isset($_GET['finalizar'])) {

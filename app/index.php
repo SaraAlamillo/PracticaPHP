@@ -1,9 +1,9 @@
 <?php
-// TODO: documentar la aplicación
-// TODO: intentar la configuración de parámetros
+// Comienza la sesión
 session_name('envios');
 session_start();
 
+// Definición de rutas
 define("RUTA_ROOT", $_SERVER['DOCUMENT_ROOT'] . "/PracticaPHP/");
 define("RUTA_APP", RUTA_ROOT . "App/");
 define("RUTA_CONTROLLERS", RUTA_APP . "controllers/");
@@ -16,14 +16,17 @@ define("URL_CSS", URL_ROOT . "Assets/css/");
 define("URL_IMAGES", URL_ROOT . "Assets/images/");
 define("URL_JS", URL_ROOT . "Assets/js/");
 
+// Si no hay configuración, salta automáticamente el instalador
 if (!file_exists("Config.php") ) {
     require_once RUTA_INSTALL . "index.php";
 } else {
+    //Si se acaba de terminar la instalación, se eliminan los rastros en las variables GET
     if ($_GET['action'] == "paso6" && $_GET['finalizar'] == "Finalizar") {
         unset($_GET['action']);
         unset($_GET['finalizar']);
     }
-// carga del modelo y los controladores
+
+    //Carga de los controladores, modelos, librerías y configuración
     require_once RUTA_APP . 'Config.php';
     require_once RUTA_MODELS . 'ModelEnvios.php';
     require_once RUTA_MODELS . 'ModelProvincias.php';
@@ -36,7 +39,7 @@ if (!file_exists("Config.php") ) {
     require_once RUTA_LIBRARIES . 'DataBase.php';
     require_once RUTA_LIBRARIES . 'Helper.php';
 
-// enrutamiento
+    //Enrutamiento
     $map = [
         'inicio' => array('controller' => 'ControllerEnvios', 'action' => 'inicio'),
         'listar' => array('controller' => 'ControllerEnvios', 'action' => 'listar'),
@@ -58,7 +61,7 @@ if (!file_exists("Config.php") ) {
         'modificarZona' => array('controller' => 'ControllerZonas', 'action' => 'modificarZona')
     ];
 
-// Parseo de la ruta
+    // Parseo de la ruta
     if (isset($_GET['action']) && isset($_SESSION['usuarioValidado'])) {
         if (isset($map[$_GET['action']])) {
             $ruta = $_GET['action'];
@@ -78,8 +81,8 @@ if (!file_exists("Config.php") ) {
     }
 
     $controlador = $map[$ruta];
-// Ejecución del controlador asociado a la ruta
 
+    // Ejecución del controlador asociado a la ruta
     if (method_exists($controlador['controller'], $controlador['action'])) {
         ob_start();
 

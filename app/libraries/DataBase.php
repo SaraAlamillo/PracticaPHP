@@ -2,32 +2,42 @@
 
 /*
  * Clase encargada de gestionar las conexiones a la base de datos
+ * 
+ * @author Sara
  */
 
 class DataBase {
 
+    /**
+     * Contiene la instancia de la base de datos
+     * @var Object 
+     */
     static $_instance;
 
-    /* La funci�n construct es privada para evitar que el objeto pueda ser creado mediante new */
-
+    /**
+     * Constructor de la clase DataBase
+     * Es privado para evitar que se puedan crear objetos a través de new
+     */
     private function __construct() {
         if (isset($_SESSION['parametros'])) {
             $this->Conectar($_SESSION['parametros']['servidor'], $_SESSION['parametros']['bd'], $_SESSION['parametros']['usuario'], $_SESSION['parametros']['clave']);
         } else {
-        $this->Conectar(Config::$hostname, Config::$bd, Config::$usuario, Config::$clave);
+            $this->Conectar(Config::$hostname, Config::$bd, Config::$usuario, Config::$clave);
         }
     }
 
-    /* Evitamos el clonaje del objeto. Patr�n Singleton */
-
+/**
+ * Eliminación de la función clonar para seguir el patrón Singleton
+ */
     private function __clone() {
         
     }
 
-    /*
-     * Funci�n encargada de crear, si es necesario, el objeto. Esta es la funci�n que debemos llamar desde fuera de la clase para instanciar el objeto, y as�, poder utilizar sus m�todos
-     */
-
+ 
+/**
+ * Comprueba si ya existe una instancia para la clase DataBase. Si no existe, la crea.
+ * @return Object instancia de la clase DataBase
+ */
     public static function getInstance() {
         if (!(self::$_instance instanceof self)) {
             self::$_instance = new self ();
@@ -35,8 +45,13 @@ class DataBase {
         return self::$_instance;
     }
 
-    /* Realiza la conexi�n a la base de datos. */
-
+/**
+ * Realiza la conexión con la base de datos
+ * @param String $hostname Nombre del servidor
+ * @param String $bd Nombre de la base de datos
+ * @param String $usuario Nombre del usuario
+ * @param String $clave Contraseña para el usuario
+ */
     private function Conectar($hostname, $bd, $usuario, $clave) {
         $this->link = new mysqli($hostname, $usuario, $clave);
 
@@ -51,11 +66,15 @@ class DataBase {
     }
 
     /**
-     * Ejecuta una consulta SQL y devuelve el resultado de esta
-     *
-     * @param string $sql        	
-     *
-     * @return mixed
+     * Consulta datos a una tabla determinada de la base de datos
+     * 
+     * @param String $tabla Nombre de la tabla
+     * @param String $campos Campos para la consulta
+     * @param Array $condiciones Condiciones para los datos
+     * @param String $limite Intervalo de registros que se mostrarán
+     * @param String $orden Orden en el que se mostrarán
+     * @param String $zonas Zonas en las que se va realizar la búsqueda
+     * @return Array Devuelve todos los datos obtenidos en la consulta
      */
     public function Seleccionar($tabla, $campos, $condiciones, $limite, $orden, $zonas = NULL) {
         $camposCondicion = [];
@@ -72,7 +91,6 @@ class DataBase {
             }
             $camposCondicion = implode(" and ", $camposCondicion);
             $camposCondicion = " where " . $camposCondicion;
-            
         } else {
             $camposCondicion = "";
         }
@@ -102,7 +120,7 @@ class DataBase {
 
         $resultados = [];
 
-       while ($registro = $registros->fetch_assoc()) {
+        while ($registro = $registros->fetch_assoc()) {
             $resultados[] = $registro;
         }
 
@@ -110,13 +128,12 @@ class DataBase {
     }
 
     /**
-     * Actualiza los datos de un registro
-     *
-     * @param string $tabla        	
-     * @param integer $id        	
-     * @param array $datos        	
-     *
-     * @return boolean
+     * Actualiza los campos de una tabla determinada
+     * @param String $tabla Nombre de la tabla
+     * @param String $id Valor del identificador
+     * @param String $campoID Nombre del campo identificador
+     * @param Array $datos Campos que se actualizarán
+     * @return Boolean Según el resultado de la consulta
      */
     public function Actualizar($tabla, $id, $campoID, $datos) {
         $campos = [];
@@ -129,19 +146,18 @@ class DataBase {
 
         $campos = implode(",", $campos);
         $consulta = "update $tabla set $campos where $campoID = '$id'";
-        
+
         $resultado = $this->link->query($consulta);
 
         return $resultado;
     }
 
     /**
-     * Inserta un nuevo registro en una tabla
-     *
-     * @param string $tabla        	
-     * @param array $datos   
+     * Inserta una nueva fila en una tabla determinada de la base de datos
      * 
-     * @return boolean	
+     * @param String $tabla Nombre de la tabla
+     * @param Array $datos Campos que se insertarán
+     * @return Boolean Según el resultado de la consulta
      */
     public function Insertar($tabla, $datos) {
         $sql = "INSERT INTO $tabla "
@@ -153,29 +169,35 @@ class DataBase {
     }
 
     /**
-     * Borra un registro de una tabla
-     *
-     * @param string $tabla        	
-     * @param integer $id    
-     * 
-     * @return boolean	    	
+     * Borra una fila de una tabla determinada en la base de datos
+     * @param String $tabla Nombre de la tabla
+     * @param String $campo Valor del identificador
+     * @param String $valorCampo Nombre del campo identificador
+     * @return Boolean Según el resultado de la consulta
      */
     public function Borrar($tabla, $campo, $valorCampo) {
         $consulta = "delete from $tabla where $campo = '$valorCampo'";
-  
+
         $resultado = $this->link->query($consulta);
-        
+
         return $resultado;
     }
 
+    /**
+     * Determinada si un elemento determinado está en una tabla determinada
+     * @param String $tabla Nombre de la tabla
+     * @param String $campos Datos del elemento buscado
+     * @param String $zonas Zonas en las que se buscará el elemento
+     * @return boolean Según si se ha encontrado o no el objeto
+     */
     public function existeElemento($tabla, $campos, $zonas = NULL) {
 
         foreach ($campos as $key => $value) {
             $condiciones[] = [
-                        "campo" => $key,
-                        "conector" => "=",
-                        "valor" => $value
-                    ];
+                "campo" => $key,
+                "conector" => "=",
+                "valor" => $value
+            ];
         }
 
         $resultado = $this->Seleccionar($tabla, "*", $condiciones, NULL, NULL, $zonas);
@@ -186,6 +208,13 @@ class DataBase {
             return TRUE;
         }
     }
+
+    /**
+     * Comprueba si se puede establecer la conexión con el servidor y la base de datos
+     * @param Array $parametros Datos para establecer la conexión
+     * @param String $error En caso de que no se pueda establecer la conexión, recoge el fallo de dicha conexión
+     * @return Boolean Según el resultado de la conexión
+     */
     public static function pruebaConexion($parametros, &$error) {
         $conexion = @new mysqli($parametros['servidor'], $parametros['usuario'], $parametros['clave']);
 
@@ -203,9 +232,14 @@ class DataBase {
         }
     }
 
+    /**
+     * Muestra todas las tablas de una base de datos
+     * @param String $bd Nombre de la base de datos
+     * @return Array Conjunto de los nombres de las tablas
+     */
     public function mostrarTablas($bd) {
         $resultados = $this->link->query("show tables from $bd");
-        
+
         $tablas = [];
         while ($row = $resultados->fetch_row()) {
             $tablas[] = $row[0];
@@ -213,6 +247,11 @@ class DataBase {
         return $tablas;
     }
 
+    /**
+     * Elimina todas las tablas de una base de datos
+     * @param String $bd Nombre de la base de datos
+     * @return Boolean Según el resultado de la consulta
+     */
     public function eliminarTodasTablas($bd) {
         $sql = "SELECT CONCAT('drop table ',table_name,'; ') FROM information_schema.tables WHERE table_schema = '$bd'";
 
@@ -226,6 +265,12 @@ class DataBase {
         return true;
     }
 
+    /**
+     * Realiza una consulta determinada a la base de datos
+     * @param String $sql Consulta que se ejecutará
+     * @param String $error En caso de que exista un fallo, recogerá dicho fallo
+     * @return boolean Según el resultado de la consulta
+     */
     public function consulta($sql, &$error) {
         if ((!empty($sql)) || $sql != "") {
             $consulta = $this->link->query($sql);
