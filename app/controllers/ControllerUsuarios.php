@@ -150,7 +150,8 @@ class ControllerUsuarios {
             "action" => $_GET['action'],
             "nomCampoID" => "usuario",
             "accion" => "modificar los datos del usuario",
-            "usuarios" => $this->modelUsuarios->listarUsuarios()
+            "usuarios" => $this->modelUsuarios->listarUsuarios(),
+            "roles" => $this->modelUsuarios->obtenerRoles()
         ];
 
         if (empty($_GET['usuario'])) {

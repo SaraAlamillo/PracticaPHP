@@ -27,7 +27,7 @@
         <tr>
             <th>Rol</th>
             <td>
-                <input type="text" name="rol" value="<?= $params['antiguo']['rol'] ?>" />
+                <?=  Helper::creaListaDesplegable("rol", $params['roles'], $params['antiguo']['rol'], NULL) ?>
             </td>
         </tr>
         <tr>
