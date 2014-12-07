@@ -44,32 +44,21 @@
         </tr>
     <?php endforeach; ?>
 </table>
-<?php // TODO: CSS --> mostrar los controles del paginador y el cuadro de texto en la misma línea
-?>
-<div id="paginador">
-    <div class="linkPaginador<?= $params['controlesActivos']['primero'] ?>" title="Ir al primero">
+
+<p>
     <a href="index.php?action=<?= $params['action'] ?>&pagina=1">
-        <img src="<?=URL_IMAGES ?>iconos/primero.png" />
+        <button><<</button>
     </a>
-    </div>
-    <div class="linkPaginador<?= $params['controlesActivos']['anterior'] ?>" title="Ir al anterior">
     <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['paginaActual'] - 1 ?>">
-        <img src="<?=URL_IMAGES ?>iconos/anterior.png" />
+        <button><</button>
     </a>
-    </div>
 
-    <div class="linkPaginador" title="Inserta el número de página para acceder rápidamente">
     <input type="number" id="paginaBuscada" value="<?= $params['paginaActual'] ?>" onchange="cambiarPagina('<?= $params['action'] ?>')" min="1" max="<?= $params['numeroDePaginas'] ?>" /> de <?= $params['numeroDePaginas'] ?>
-    </div>
-    <div class="linkPaginador<?= $params['controlesActivos']['siguiente'] ?>" title="Ir al siguiente">
-    <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['paginaActual'] + 1 ?>">
-        <img src="<?=URL_IMAGES ?>iconos/siguiente.png" />
-    </a>
-    </div>
-    <div class="linkPaginador<?= $params['controlesActivos']['ultimo'] ?>">
-        <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['numeroDePaginas'] ?>" title="Ir al último">
-        <img src="<?=URL_IMAGES ?>iconos/ultimo.png" />
-    </a>
-    </div>
 
-</div>
+    <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['paginaActual'] + 1 ?>">
+        <button>></button>
+    </a>
+    <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['numeroDePaginas'] ?>">
+        <button>>></button>
+    </a>
+</p>

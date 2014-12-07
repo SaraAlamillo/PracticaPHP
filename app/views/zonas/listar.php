@@ -26,19 +26,18 @@
 
 <p>
     <a href="index.php?action=<?= $params['action'] ?>&pagina=1">
-        <button <?= $params['controlesActivos']['primero'] ?>><<</button>
+        <button><<</button>
     </a>
     <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['paginaActual'] - 1 ?>">
-        <button <?= $params['controlesActivos']['anterior'] ?>><</button>
+        <button><</button>
     </a>
 
     <input type="number" id="paginaBuscada" value="<?= $params['paginaActual'] ?>" onchange="cambiarPagina('<?= $params['action'] ?>')" min="1" max="<?= $params['numeroDePaginas'] ?>" /> de <?= $params['numeroDePaginas'] ?>
 
     <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['paginaActual'] + 1 ?>">
-        <button <?= $params['controlesActivos']['siguiente'] ?>>></button>
+        <button>></button>
     </a>
     <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['numeroDePaginas'] ?>">
-        <button <?= $params['controlesActivos']['ultimo'] ?>>>></button>
+        <button>>></button>
     </a>
-
 </p>

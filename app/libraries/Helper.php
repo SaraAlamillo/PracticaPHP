@@ -61,23 +61,8 @@ class Helper {
             'datos' => $modelo->$metodo($condiciones, $inicio . "," . MaxPagina),
             'action' => $accion,
             'paginaActual' => $pagina,
-            'numeroDePaginas' => $numTotalPaginas,
-            'controlesActivos' => [
-                'primero' => '',
-                'anterior' => '',
-                'siguiente' => '',
-                'ultimo' => ''
-            ]
+            'numeroDePaginas' => $numTotalPaginas
         ];
-
-        if ($pagina == 1) {
-            $parametrosVista['controlesActivos']['primero'] = "  noMostrar";
-            $parametrosVista['controlesActivos']['anterior'] = " noMostrar";
-        }
-        if ($pagina == $parametrosVista['numeroDePaginas']) {
-            $parametrosVista['controlesActivos']['siguiente'] = " noMostrar";
-            $parametrosVista['controlesActivos']['ultimo'] = " noMostrar";
-        }
     }
 
     /**
