@@ -23,9 +23,9 @@
         <?php endif; ?>
 
 
-        <div id="contenido">
+        <section id="contenido">
             <?= $contenido ?>
-        </div> 
+        </section> 
 
         <script src="<?= URL_JS ?>paginacion.js"></script>
     </body>

@@ -1,4 +1,4 @@
-<div id="cabecera">
+<section id="cabecera">
     <?php if (! $instalador && isset($validado)): ?>
     <div id="datosUsuario">  
         <div id="usuario">
@@ -22,5 +22,5 @@
             </div>  
     <?php endif; ?>
     <h1><a href="index.php?action=inicio">Administración de los Envíos</a></h1>
-</div>
+</section>
 

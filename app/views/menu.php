@@ -1,4 +1,4 @@
-<div id="menu">
+<section id="menu">
     <fieldset id="fEnvios">
         <legend>Envíos</legend>
         <a href="index.php?action=listar">listar</a> |
@@ -25,4 +25,4 @@
         </fieldset>
     <?php endif; ?>
     
-</div>
+</section>
