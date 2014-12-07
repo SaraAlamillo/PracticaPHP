@@ -120,6 +120,7 @@ class ControllerEnvios {
 
         if (isset($_SESSION['criteriosBusqueda'])) {
             Helper::paginar($_GET['action'], $_GET['pagina'], $this->modelEnvios, "listarEnvios", $params, $_SESSION['criteriosBusqueda']);
+            
             if ($params['datos'] == NULL) {
                 require RUTA_VIEWS . 'noDatos.php';
             } else {
@@ -147,7 +148,7 @@ class ControllerEnvios {
                 require RUTA_VIEWS . 'envios/formBuscar.php';
             } else {
                 $_SESSION['criteriosBusqueda'] = $datos;
-                Helper::$this->paginar($_GET['action'], $_GET['pagina'], $_SESSION['criteriosBusqueda']);
+                Helper::paginar($_GET['action'], $_GET['pagina'], $this->modelEnvios, "listarEnvios", $params, $_SESSION['criteriosBusqueda']);
             }
         } else {
             require RUTA_VIEWS . 'envios/formBuscar.php';
@@ -195,7 +196,7 @@ class ControllerEnvios {
             require RUTA_VIEWS . 'envios/formCodEnvio.php';
         } else {
             $params['id'] = $_GET['id'];
-            if ($this->modelEnvios->existeEnvio($_GET['id'])) {
+            if ($this->modelEnvios->existeEnvio($_GET['id'], TRUE)) {
                 if ($this->modelEnvios->elementoRecepcionado($_GET['id'])) {
                     $params['error'] = "El envío introducido ya ha sido recepcionado";
                     require RUTA_VIEWS . 'envios/formCodEnvio.php';
@@ -244,18 +245,15 @@ class ControllerEnvios {
                         $params['provincias'] = $this->modelProvincias->obtenerTodasProvincias();
                         $params['estados'] = $this->modelEnvios->obtenerEstados();
                         $params['datos'] = $this->modelEnvios->listarUnEnvio($_GET['id']);
-                        $params['datos']['zona_envio'] = $this->modelZonas->obtenerNombre($params['datos']['zona_envio']);
-                        if (isset($params['datos']['zona_recepcion'])) {
-                            $params['datos']['zona_recepcion'] = $this->modelZonas->obtenerNombre($params['datos']['zona_recepcion']);
-                        }
+                        
                         if ($_POST) {
-                            $_POST['zona_envio'] = $this->modelZonas->obtenerID($_POST['zona_envio']);
-                            if (isset($_POST['zona_recepcion'])) {
-                                $_POST['zona_recepcion'] = $this->modelZonas->obtenerID($_POST['zona_recepcion']);
-                            }
                             $datosError = TratamientoFormularios::validarArray($this::$criterios);
 
                             if (empty($datosError)) {
+                                $_POST['zona_envio'] = $this->modelZonas->obtenerID($_POST['zona_envio']);
+                            if (isset($_POST['zona_recepcion'])) {
+                                $_POST['zona_recepcion'] = $this->modelZonas->obtenerID($_POST['zona_recepcion']);
+                            }
                                 if ($this->modelEnvios->modificarEnvio($_GET['id'], $_POST)) {
                                     require RUTA_VIEWS . 'finalBien.php';
                                 } else {
@@ -266,8 +264,8 @@ class ControllerEnvios {
                                 $params['errores'] = $datosError;
                                 $params['mensaje'] = "Se han introducido valores no válidos";
                                 $params['datos'] = $_POST;
-                            }
                             require RUTA_VIEWS . 'envios/formModificar.php';
+                            }
                         } else {
                             require RUTA_VIEWS . 'envios/formModificar.php';
                         }

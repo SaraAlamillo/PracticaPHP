@@ -133,6 +133,11 @@
                 <td>Valor incorrecto</td>
                 <?php endif; ?>
         </tr>
-    </table>
+        <tr>
+            <td colspan="2">
+                
     <input type="submit" value="<?= $params['action'] ?>" />
+            </td>
+        </tr>
+    </table>
 </form>

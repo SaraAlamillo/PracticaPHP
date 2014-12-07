@@ -52,7 +52,7 @@
             <th>Provincia</th>
             <td><?= Helper::creaListaDesplegable("tipoprovincia", $params['tipo_busqueda']['lista']) ?></td>
             <td>
-                <?= creaListaDesplegable("valorprovincia", $params['provincias'], "0", [ 'nombre' => '--Seleccionar--', 'codigo' => "0"]) ?>
+                <?= Helper::creaListaDesplegable("valorprovincia", $params['provincias'], "0", [ 'nombre' => '--Seleccionar--', 'codigo' => "0"]) ?>
                 <input type="hidden" name="provincia" />
             </td>
         </tr>

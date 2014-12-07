@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Contiene las diferentes funciones que emulan los modelos
  *
@@ -18,7 +17,6 @@ class ModelEnvios {
         $this->modelEnvios = new ModelProvincias();
         $this->modelZonas = new ModelZonas();
     }
-
 
     public function listarEnvios($condiciones, $limite = NULL) {
         $zonas = "(zona_envio='{$_SESSION['zona']}' or zona_recepcion='{$_SESSION['zona']}')";
@@ -53,7 +51,7 @@ class ModelEnvios {
                 "valor" => $codigo
             ]
         ];
-        
+
         $zonas = "(zona_envio='{$_SESSION['zona']}' or zona_recepcion='{$_SESSION['zona']}')";
 
         $resultado = $this->conexion->Seleccionar($this->tabla, "*", $condiciones, NULL, "fecha_creacion desc", $zonas);
@@ -62,10 +60,10 @@ class ModelEnvios {
             foreach ($registro as $clave => &$valor) {
                 if ($clave == 'provincia') {
                     $valor = $this->modelEnvios->obtenerUnaProvincia($valor);
-                } else if ($clave == 'fecha_creacion') {
-                    $valor = $this->mostrarFecha($valor);
-                } else if ($clave == 'fecha_entrega') {
-                    $valor = $this->mostrarFecha($valor);
+                } elseif ($clave == 'zona_envio') {
+                    $valor = $this->modelZonas->obtenerNombre($valor);
+                } elseif ($clave == 'zona_recepcion' && !is_null($valor)) {
+                    $valor = $this->modelZonas->obtenerNombre($valor);
                 }
             }
         }
@@ -88,11 +86,15 @@ class ModelEnvios {
         return $this->conexion->Borrar($this->tabla, "codigo", $id);
     }
 
-    public function existeEnvio($codigo) {
-        $zonas = "(zona_envio='{$_SESSION['zona']}' or zona_recepcion='{$_SESSION['zona']}')";
+    public function existeEnvio($codigo, $recepcionar = FALSE) {
+        if ($recepcionar) {
+            $zonas = NULL;
+        } else {
+            $zonas = "(zona_envio='{$_SESSION['zona']}' or zona_recepcion='{$_SESSION['zona']}')";
+        }
         return $this->conexion->existeElemento($this->tabla, ["codigo" => $codigo], $zonas);
     }
-    
+
     public function elementoRecepcionado($codigo) {
         $condiciones = [
             [
@@ -102,7 +104,7 @@ class ModelEnvios {
             ]
         ];
         $resultado = $this->conexion->Seleccionar($this->tabla, "fecha_entrega", $condiciones, NULL, NULL, NULL);
-        
+
         if ($resultado[0]['fecha_entrega'] == "") {
             return FALSE;
         } else {
