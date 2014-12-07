@@ -66,7 +66,7 @@ INSERT INTO `provincias` (`nombre`) VALUES
 ('Alava'),
 ('Albacete'),
 ('Alicante'),
-('Almera'),
+('Almeria'),
 ('Avila'),
 ('Badajoz'),
 ('Illes Balears'),

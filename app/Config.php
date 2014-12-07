@@ -15,7 +15,7 @@ static public $hostname = "localhost";
 /**
  * Nombre de la base de datos
  */
-static public $bd = "keno";
+static public $bd = "ke";
 
 /**
  * Nombre del usuario para la conexión
