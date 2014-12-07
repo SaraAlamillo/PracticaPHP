@@ -19,6 +19,10 @@ define("URL_JS", URL_ROOT . "Assets/js/");
 if (!file_exists("Config.php") ) {
     require_once RUTA_INSTALL . "index.php";
 } else {
+    if ($_GET['action'] == "paso6" && $_GET['finalizar'] == "Finalizar") {
+        unset($_GET['action']);
+        unset($_GET['finalizar']);
+    }
 // carga del modelo y los controladores
     require_once RUTA_APP . 'Config.php';
     require_once RUTA_MODELS . 'ModelEnvios.php';

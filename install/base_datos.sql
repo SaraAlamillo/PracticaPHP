@@ -158,6 +158,9 @@ CREATE TABLE IF NOT EXISTS `zonas` (
 INSERT INTO `zonas` (`nombre`) VALUES
 ('Por defecto');
 
+INSERT INTO `zonas` (`codigo`,`nombre`) VALUES
+(0, '');
+
 --
 -- Restricciones para tablas volcadas
 --

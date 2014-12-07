@@ -79,21 +79,19 @@ class ControllerInstaller {
     public function paso5() {
         $this->modelo = new ModelInstaller();
         if ($_POST) {
-            echo "entra";
             if ($_POST['datosPrueba'] == "Si") {
                 if (Helper::importSql(RUTA_INSTALL . "datos_prueba.sql", $this->modelo)) {
                     $params['error'] = FALSE;
                 } else {
                     $params['error'] = TRUE;
                 }
-
                 require RUTA_INSTALL . 'vistas/paso5Respuesta.php';
             } else if ($_POST['datosPrueba'] == "No") {
                 header("Location: index.php?action=paso6");
             }
+        } else {
+            require RUTA_INSTALL . 'vistas/paso5Pregunta.php';
         }
-
-        require RUTA_INSTALL . 'vistas/paso5Pregunta.php';
     }
 
     public function paso6() {
