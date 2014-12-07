@@ -1,15 +1,18 @@
 <?php
+
 /**
  * Contiene las diferentes funciones que emulan los modelos para los controladores
  *
  * @author Sara
  */
 class ModelZonas {
-/**
+
+    /**
      * Enlace con la capa de abstacción de base de datos
      * @var Object 
      */
     private $conexion;
+
     /**
      * Nombre de la tabla sobre la que trabajará el modelo
      * @var String 
@@ -40,7 +43,15 @@ class ModelZonas {
      * @return Array Conjunto de zonas encontradas
      */
     public function listarZonas($condiciones = NULL, $limite = NULL) {
-        return $this->conexion->Seleccionar($this->tabla, "*", NULL, $limite, NULL);
+        $resultado = $this->conexion->Seleccionar($this->tabla, "*", NULL, $limite, NULL);
+        
+        foreach ($resultado as $clave => $valor) {
+            if ($valor['codigo'] == '0') {
+                unset($resultado[$clave]);
+            }
+        }
+        $resultado = array_values($resultado);
+        return $resultado;
     }
 
     /**
@@ -56,7 +67,7 @@ class ModelZonas {
                 "valor" => $codigo
             ]
         ];
-        
+
         $resultado = $this->conexion->Seleccionar($this->tabla, "*", $condiciones, NULL, NULL);
         return $resultado[0];
     }
@@ -99,7 +110,7 @@ class ModelZonas {
     public function insertarZona($valores) {
         return $this->conexion->Insertar($this->tabla, $valores);
     }
-    
+
     /**
      * Actualiza una zona determinada con unos valores pasados
      * @param String $codigo Identificador de la zona
@@ -118,7 +129,7 @@ class ModelZonas {
     public function eliminarZona($codigo) {
         return $this->conexion->Borrar($this->tabla, "codigo", $codigo);
     }
-    
+
     /**
      * Determina si una zona contiene envíos
      * @param String $codigo Identificador de la zona
@@ -126,11 +137,12 @@ class ModelZonas {
      */
     public function zonaUtilizada($codigo) {
         $resultado = $this->conexion->Seleccionar("envios", "*", NULL, NULL, NULL, "zona_envio=$codigo or zona_recepcion=$codigo");
-        
+
         if (count($resultado) != 0) {
             return TRUE;
         } else {
-            return  FALSE;
+            return FALSE;
         }
     }
+
 }

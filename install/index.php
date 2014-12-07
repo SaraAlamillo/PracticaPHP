@@ -1,7 +1,4 @@
 <?php
-// Eliminación de posibles rastros de sesiones anteriores
-session_destroy();
-session_start();
 
 // Carga del modelo, controlador y librerías
 require_once RUTA_INSTALL . 'ControllerInstaller.php';

@@ -21,7 +21,7 @@ if (!file_exists("Config.php") ) {
     require_once RUTA_INSTALL . "index.php";
 } else {
     //Si se acaba de terminar la instalación, se eliminan los rastros en las variables GET
-    if ($_GET['action'] == "paso6" && $_GET['finalizar'] == "Finalizar") {
+    if (isset($_GET['finalizar']) && $_GET['action'] == "paso6" && $_GET['finalizar'] == "Finalizar") {
         unset($_GET['action']);
         unset($_GET['finalizar']);
     }
