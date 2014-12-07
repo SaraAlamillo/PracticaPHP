@@ -93,9 +93,6 @@
                         <?= $params["datos"]['observaciones'] ?>
                     </textarea>
                 </td>
-                <?php if (isset($params['errores']['observaciones'])): ?>
-                <td>Valor incorrecto</td>
-                <?php endif; ?>
             </tr>
             <tr>
                 <th>Zona de envío</th>
