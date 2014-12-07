@@ -136,7 +136,7 @@
         <tr>
             <td colspan="2">
                 
-    <input type="submit" value="<?= $params['action'] ?>" />
+    <input type="submit" value="Modificar" />
             </td>
         </tr>
     </table>

@@ -12,5 +12,5 @@
             isset($params['datos']['zona'])? $params['datos']['zona'] : "0", 
             ['nombre' => "--Seleccionar--", "codigo" => "0"]
             ) ?>
-    <input type="submit" />
+    <input type="submit" value="Acceder" />
 </form>

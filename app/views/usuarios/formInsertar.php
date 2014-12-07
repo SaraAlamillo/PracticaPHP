@@ -21,6 +21,11 @@
                 <?= Helper::creaListaDesplegable("rol", $params['roles'], $params["datos"]['rol']) ?>
             </td>
         </tr>
-    </table>
+        <tr>
+            <td colspan="2">
+                
     <input type="submit" value="Insertar" />
+            </td>
+        </tr>
+    </table>
 </form>

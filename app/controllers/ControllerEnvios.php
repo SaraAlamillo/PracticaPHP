@@ -158,6 +158,7 @@ class ControllerEnvios {
     public function eliminar() {
         $params = [
             "action" => $_GET['action'],
+            "accion" => "eliminar el envío",
             "nomCampoID" => "id"
         ];
 
@@ -189,6 +190,7 @@ class ControllerEnvios {
     public function recepcionar() {
         $params = [
             "action" => $_GET['action'],
+            "accion" => "anotar la recepción del envío",
             "nomCampoID" => "id"
         ];
 
@@ -231,6 +233,7 @@ class ControllerEnvios {
     public function modificar() {
         $params = [
             "action" => $_GET['action'],
+            "modificar los datos del envío",
             "nomCampoID" => "id"
         ];
 

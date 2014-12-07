@@ -115,6 +115,7 @@ class ControllerUsuarios {
     public function eliminarUsuario() {
         $params = [
             "action" => $_GET['action'],
+            "accion" => "eliminar el usuario",
             "nomCampoID" => "usuario",
             "usuarios" => $this->modelUsuarios->listarUsuarios()
         ];
@@ -148,6 +149,7 @@ class ControllerUsuarios {
         $params = [
             "action" => $_GET['action'],
             "nomCampoID" => "usuario",
+            "accion" => "modificar los datos del usuario",
             "usuarios" => $this->modelUsuarios->listarUsuarios()
         ];
 

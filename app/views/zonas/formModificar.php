@@ -16,6 +16,10 @@
                     <input type="text" name="nombre" value="<?= $params['antiguo']['nombre'] ?>" />
                 </td>
             </tr>
+            <tr>
+                <td colspan="2">
+    <input type="submit" value="Modificar" />
+                </td>
+            </tr>
     </table>
-    <input type="submit" value="<?=$params['action'] ?>" />
 </form>

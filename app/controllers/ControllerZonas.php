@@ -67,6 +67,7 @@ class ControllerZonas {
         $params = [
             "action" => $_GET['action'],
             "nomCampoID" => "codigo",
+            "accion" => "eliminar la zona",
             "zonas" => $this->modelZonas->listarZonas()
         ];
 
@@ -104,6 +105,7 @@ class ControllerZonas {
         $params = [
             "action" => $_GET['action'],
             "nomCampoID" => "codigo",
+            "accion" => "modificar los datos de la zona",
             "zonas" => $this->modelZonas->listarZonas()
         ];
 

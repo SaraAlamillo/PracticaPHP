@@ -9,6 +9,10 @@
                 <input type="text" name="nombre" value="<?= $params["datos"]['nombre'] ?>" />
             </td>
         </tr>
-    </table>
+        <tr>
+            <td colspan="2">
     <input type="submit" value="Insertar" />
+            </td>
+        </tr>
+    </table>
 </form>
