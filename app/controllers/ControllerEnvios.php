@@ -277,7 +277,7 @@ class ControllerEnvios {
     public function modificar() {
         $params = [
             "action" => $_GET['action'],
-            "modificar los datos del envío",
+            "accion" => "modificar los datos del envío",
             "nomCampoID" => "id"
         ];
 

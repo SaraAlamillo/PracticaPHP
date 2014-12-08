@@ -9,7 +9,7 @@ class configPlus {
 /**
 * Tiempo de duración de cada sesión
 */
-static public $tiempoSesion = "4
+static public $tiempoSesion = "3600
 ";
 
 /**
