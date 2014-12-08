@@ -35,12 +35,9 @@ class ControllerEnvios {
         'observaciones' => array(
             'filter' => FILTER_CALLBACK,
             'options' => "TratamientoFormularios::alfanumericoSimbolos"),
-            /* 'fecha_entrega' => array(
-              'filter' => FILTER_CALLBACK,
-              'options' => "TratamientoFormularios::fecha"),
-              'fecha_creacion' => array(
-              'filter' => FILTER_CALLBACK,
-              'options' => "TratamientoFormularios::fecha") */
+        'fecha_creacion' => array(
+            'filter' => FILTER_CALLBACK,
+            'options' => "TratamientoFormularios::fecha")
     );
 
     /**
