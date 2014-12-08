@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class ModelEnvios | Documentación de Sara</title>
+
+	<link rel="stylesheet" href="resources/style.css?331665766">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+		</div>
+
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Config.html">Config</a></li>
+				<li><a href="class-configPlus.html">configPlus</a></li>
+				<li><a href="class-ControllerEnvios.html">ControllerEnvios</a></li>
+				<li><a href="class-ControllerInstaller.html">ControllerInstaller</a></li>
+				<li><a href="class-ControllerUsuarios.html">ControllerUsuarios</a></li>
+				<li><a href="class-ControllerZonas.html">ControllerZonas</a></li>
+				<li><a href="class-DataBase.html">DataBase</a></li>
+				<li><a href="class-Helper.html">Helper</a></li>
+				<li class="active"><a href="class-ModelEnvios.html">ModelEnvios</a></li>
+				<li><a href="class-ModelInstaller.html">ModelInstaller</a></li>
+				<li><a href="class-ModelProvincias.html">ModelProvincias</a></li>
+				<li><a href="class-ModelUsuarios.html">ModelUsuarios</a></li>
+				<li><a href="class-ModelZonas.html">ModelZonas</a></li>
+				<li><a href="class-TratamientoFormularios.html">TratamientoFormularios</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class ModelEnvios</h1>
+
+
+	<div class="description">
+	<p>Contiene las diferentes funciones que emulan los modelos para los controladores</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		
+
+				<b>Author:</b>
+				Sara
+<br>
+		<b>Located at</b> <a href="source-class-ModelEnvios.html#3-289" title="Go to source code">app/models/ModelEnvios.php</a><br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-ModelEnvios.html#34-41" title="Go to source code">__construct</a>( )</code>
+
+		<div class="description short">
+			<p>Contructor de la clase ModelEnvios</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Contructor de la clase ModelEnvios</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="listarEnvios" id="_listarEnvios">
+
+		<td class="attributes"><code>
+			 public 
+
+			Array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_listarEnvios">#</a>
+		<code><a href="source-class-ModelEnvios.html#43-72" title="Go to source code">listarEnvios</a>( <span>Array <var>$condiciones</var></span>, <span>String <var>$limite</var> = <span class="php-keyword1">NULL</span></span> )</code>
+
+		<div class="description short">
+			<p>Devulve todos los envíos de la zona actual</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Devulve todos los envíos de la zona actual</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$condiciones</var></dt>
+					<dd>Criterios para el listado
+</dd>
+					<dt><var>$limite</var></dt>
+					<dd>Intervalo de registros que mostrará
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Array</code><br>Datos para el listado
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="listarUnEnvio" id="_listarUnEnvio">
+
+		<td class="attributes"><code>
+			 public 
+
+			Array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_listarUnEnvio">#</a>
+		<code><a href="source-class-ModelEnvios.html#74-108" title="Go to source code">listarUnEnvio</a>( <span>String <var>$codigo</var></span> )</code>
+
+		<div class="description short">
+			<p>Devuelve la consulta de un envío concreto</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Devuelve la consulta de un envío concreto</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$codigo</var></dt>
+					<dd>Identificador del envío
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Array</code><br>Datos del envío
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="insertarEnvio" id="_insertarEnvio">
+
+		<td class="attributes"><code>
+			 public 
+
+			Boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_insertarEnvio">#</a>
+		<code><a href="source-class-ModelEnvios.html#110-117" title="Go to source code">insertarEnvio</a>( <span>Array <var>$valores</var></span> )</code>
+
+		<div class="description short">
+			<p>Añade un nuevo envío</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Añade un nuevo envío</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$valores</var></dt>
+					<dd>Datos del nuevo envío
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Boolean</code><br>Según el resultado de la consulta
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="modificarEnvio" id="_modificarEnvio">
+
+		<td class="attributes"><code>
+			 public 
+
+			Boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_modificarEnvio">#</a>
+		<code><a href="source-class-ModelEnvios.html#119-127" title="Go to source code">modificarEnvio</a>( <span>String <var>$codigo</var></span>, <span>Array <var>$datos</var></span> )</code>
+
+		<div class="description short">
+			<p>Actualiza los datos de un envío determinado</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Actualiza los datos de un envío determinado</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$codigo</var></dt>
+					<dd>Identificador del envío
+</dd>
+					<dt><var>$datos</var></dt>
+					<dd>Datos nuevos para el envío
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Boolean</code><br>Según el resultado de la consulta
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="eliminarEnvio" id="_eliminarEnvio">
+
+		<td class="attributes"><code>
+			 public 
+
+			Boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_eliminarEnvio">#</a>
+		<code><a href="source-class-ModelEnvios.html#129-136" title="Go to source code">eliminarEnvio</a>( <span>String <var>$id</var></span> )</code>
+
+		<div class="description short">
+			<p>Elimina un envío determinado de la tabla</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Elimina un envío determinado de la tabla</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd>Identificador del envío
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Boolean</code><br>Según el resultado de la consulta
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="existeEnvio" id="_existeEnvio">
+
+		<td class="attributes"><code>
+			 public 
+
+			Boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_existeEnvio">#</a>
+		<code><a href="source-class-ModelEnvios.html#138-151" title="Go to source code">existeEnvio</a>( <span>String <var>$codigo</var></span>, <span>Boolean <var>$recepcionar</var> = <span class="php-keyword1">FALSE</span></span> )</code>
+
+		<div class="description short">
+			<p>Comprueba si existe un envío en la base de datos</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Comprueba si existe un envío en la base de datos</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$codigo</var></dt>
+					<dd>Identificador del envío
+</dd>
+					<dt><var>$recepcionar</var></dt>
+					<dd>Si la consulta es para recepcionar un envío, no se comprueba por zonas
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Boolean</code><br>Según la existencia del envío
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="elementoRecepcionado" id="_elementoRecepcionado">
+
+		<td class="attributes"><code>
+			 public 
+
+			Boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_elementoRecepcionado">#</a>
+		<code><a href="source-class-ModelEnvios.html#153-173" title="Go to source code">elementoRecepcionado</a>( <span>String <var>$codigo</var></span> )</code>
+
+		<div class="description short">
+			<p>Comprueba si un envío ya ha sido recepcionado</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Comprueba si un envío ya ha sido recepcionado</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$codigo</var></dt>
+					<dd>Identificador del envío
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Boolean</code><br>Según la recepción del envío
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="obtenerEstados" id="_obtenerEstados">
+
+		<td class="attributes"><code>
+			 public 
+
+			Array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_obtenerEstados">#</a>
+		<code><a href="source-class-ModelEnvios.html#175-194" title="Go to source code">obtenerEstados</a>( )</code>
+
+		<div class="description short">
+			<p>Devuelve un array con los diversos estados en los que puede estar un envío</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Devuelve un array con los diversos estados en los que puede estar un envío</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Array</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="mostrarFecha" id="_mostrarFecha">
+
+		<td class="attributes"><code>
+			 public 
+
+			String
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_mostrarFecha">#</a>
+		<code><a href="source-class-ModelEnvios.html#196-207" title="Go to source code">mostrarFecha</a>( <span>Date <var>$fecha</var></span> )</code>
+
+		<div class="description short">
+			<p>Devuelve una fecha formateada en Día-Mes-Año</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Devuelve una fecha formateada en Día-Mes-Año</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$fecha</var></dt>
+					<dd>Fecha para mostrar
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>String</code><br>Fecha formateada
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="obtenerTiposBusqueda" id="_obtenerTiposBusqueda">
+
+		<td class="attributes"><code>
+			 public 
+
+			Array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_obtenerTiposBusqueda">#</a>
+		<code><a href="source-class-ModelEnvios.html#209-266" title="Go to source code">obtenerTiposBusqueda</a>( )</code>
+
+		<div class="description short">
+			<p>Devuelve los diversos tipos de búsqueda que existen</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Devuelve los diversos tipos de búsqueda que existen</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Array</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="obtenerCamposFormulario" id="_obtenerCamposFormulario">
+
+		<td class="attributes"><code>
+			 public 
+
+			Array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_obtenerCamposFormulario">#</a>
+		<code><a href="source-class-ModelEnvios.html#268-287" title="Go to source code">obtenerCamposFormulario</a>( )</code>
+
+		<div class="description short">
+			<p>Devuelve los diversos campos que pueden existir en un formulario</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Devuelve los diversos campos que pueden existir en un formulario</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Array</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		Documentación de Sara API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js?721046668"></script>
+<script src="elementlist.js?3068130580"></script>
+</body>
+</html>

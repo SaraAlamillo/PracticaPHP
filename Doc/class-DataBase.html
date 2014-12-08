@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class DataBase | Documentación de Sara</title>
+
+	<link rel="stylesheet" href="resources/style.css?331665766">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+		</div>
+
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Config.html">Config</a></li>
+				<li><a href="class-configPlus.html">configPlus</a></li>
+				<li><a href="class-ControllerEnvios.html">ControllerEnvios</a></li>
+				<li><a href="class-ControllerInstaller.html">ControllerInstaller</a></li>
+				<li><a href="class-ControllerUsuarios.html">ControllerUsuarios</a></li>
+				<li><a href="class-ControllerZonas.html">ControllerZonas</a></li>
+				<li class="active"><a href="class-DataBase.html">DataBase</a></li>
+				<li><a href="class-Helper.html">Helper</a></li>
+				<li><a href="class-ModelEnvios.html">ModelEnvios</a></li>
+				<li><a href="class-ModelInstaller.html">ModelInstaller</a></li>
+				<li><a href="class-ModelProvincias.html">ModelProvincias</a></li>
+				<li><a href="class-ModelUsuarios.html">ModelUsuarios</a></li>
+				<li><a href="class-ModelZonas.html">ModelZonas</a></li>
+				<li><a href="class-TratamientoFormularios.html">TratamientoFormularios</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class DataBase</h1>
+
+
+	<div class="description">
+	<p>Clase encargada de gestionar las conexiones a la base de datos</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		
+
+				<b>Author:</b>
+				Sara
+<br>
+		<b>Located at</b> <a href="source-class-DataBase.html#3-285" title="Go to source code">app/libraries/DataBase.php</a><br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="getInstance" id="_getInstance">
+
+		<td class="attributes"><code>
+			 public static
+
+			Object
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getInstance">#</a>
+		<code><a href="source-class-DataBase.html#35-44" title="Go to source code">getInstance</a>( )</code>
+
+		<div class="description short">
+			<p>Comprueba si ya existe una instancia para la clase DataBase. Si no existe, la crea.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Comprueba si ya existe una instancia para la clase DataBase. Si no existe, la crea.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Object</code><br>instancia de la clase DataBase
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="Seleccionar" id="_Seleccionar">
+
+		<td class="attributes"><code>
+			 public 
+
+			Array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_Seleccionar">#</a>
+		<code><a href="source-class-DataBase.html#66-126" title="Go to source code">Seleccionar</a>( <span>String <var>$tabla</var></span>, <span>String <var>$campos</var></span>, <span>Array <var>$condiciones</var></span>, <span>String <var>$limite</var></span>, <span>String <var>$orden</var></span>, <span>String <var>$zonas</var> = <span class="php-keyword1">NULL</span></span> )</code>
+
+		<div class="description short">
+			<p>Consulta datos a una tabla determinada de la base de datos</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Consulta datos a una tabla determinada de la base de datos</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tabla</var></dt>
+					<dd>Nombre de la tabla
+</dd>
+					<dt><var>$campos</var></dt>
+					<dd>Campos para la consulta
+</dd>
+					<dt><var>$condiciones</var></dt>
+					<dd>Condiciones para los datos
+</dd>
+					<dt><var>$limite</var></dt>
+					<dd>Intervalo de registros que se mostrarán
+</dd>
+					<dt><var>$orden</var></dt>
+					<dd>Orden en el que se mostrarán
+</dd>
+					<dt><var>$zonas</var></dt>
+					<dd>Zonas en las que se va realizar la búsqueda
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Array</code><br>Devuelve todos los datos obtenidos en la consulta
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="Actualizar" id="_Actualizar">
+
+		<td class="attributes"><code>
+			 public 
+
+			Boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_Actualizar">#</a>
+		<code><a href="source-class-DataBase.html#128-151" title="Go to source code">Actualizar</a>( <span>String <var>$tabla</var></span>, <span>String <var>$id</var></span>, <span>String <var>$campoID</var></span>, <span>Array <var>$datos</var></span> )</code>
+
+		<div class="description short">
+			<p>Actualiza los campos de una tabla determinada</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Actualiza los campos de una tabla determinada</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tabla</var></dt>
+					<dd>Nombre de la tabla
+</dd>
+					<dt><var>$id</var></dt>
+					<dd>Valor del identificador
+</dd>
+					<dt><var>$campoID</var></dt>
+					<dd>Nombre del campo identificador
+</dd>
+					<dt><var>$datos</var></dt>
+					<dd>Campos que se actualizarán
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Boolean</code><br>Según el resultado de la consulta
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="Insertar" id="_Insertar">
+
+		<td class="attributes"><code>
+			 public 
+
+			Boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_Insertar">#</a>
+		<code><a href="source-class-DataBase.html#153-167" title="Go to source code">Insertar</a>( <span>String <var>$tabla</var></span>, <span>Array <var>$datos</var></span> )</code>
+
+		<div class="description short">
+			<p>Inserta una nueva fila en una tabla determinada de la base de datos</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Inserta una nueva fila en una tabla determinada de la base de datos</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tabla</var></dt>
+					<dd>Nombre de la tabla
+</dd>
+					<dt><var>$datos</var></dt>
+					<dd>Campos que se insertarán
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Boolean</code><br>Según el resultado de la consulta
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="Borrar" id="_Borrar">
+
+		<td class="attributes"><code>
+			 public 
+
+			Boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_Borrar">#</a>
+		<code><a href="source-class-DataBase.html#169-182" title="Go to source code">Borrar</a>( <span>String <var>$tabla</var></span>, <span>String <var>$campo</var></span>, <span>String <var>$valorCampo</var></span> )</code>
+
+		<div class="description short">
+			<p>Borra una fila de una tabla determinada en la base de datos</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Borra una fila de una tabla determinada en la base de datos</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tabla</var></dt>
+					<dd>Nombre de la tabla
+</dd>
+					<dt><var>$campo</var></dt>
+					<dd>Valor del identificador
+</dd>
+					<dt><var>$valorCampo</var></dt>
+					<dd>Nombre del campo identificador
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Boolean</code><br>Según el resultado de la consulta
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="existeElemento" id="_existeElemento">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_existeElemento">#</a>
+		<code><a href="source-class-DataBase.html#184-208" title="Go to source code">existeElemento</a>( <span>String <var>$tabla</var></span>, <span>String <var>$campos</var></span>, <span>String <var>$zonas</var> = <span class="php-keyword1">NULL</span></span> )</code>
+
+		<div class="description short">
+			<p>Determinada si un elemento determinado está en una tabla determinada</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Determinada si un elemento determinado está en una tabla determinada</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tabla</var></dt>
+					<dd>Nombre de la tabla
+</dd>
+					<dt><var>$campos</var></dt>
+					<dd>Datos del elemento buscado
+</dd>
+					<dt><var>$zonas</var></dt>
+					<dd>Zonas en las que se buscará el elemento
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>Según si se ha encontrado o no el objeto
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="pruebaConexion" id="_pruebaConexion">
+
+		<td class="attributes"><code>
+			 public static
+
+			Boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_pruebaConexion">#</a>
+		<code><a href="source-class-DataBase.html#210-231" title="Go to source code">pruebaConexion</a>( <span>Array <var>$parametros</var></span>, <span>String <var>&amp; $error</var></span> )</code>
+
+		<div class="description short">
+			<p>Comprueba si se puede establecer la conexión con el servidor y la base de datos</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Comprueba si se puede establecer la conexión con el servidor y la base de datos</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$parametros</var></dt>
+					<dd>Datos para establecer la conexión
+</dd>
+					<dt><var>$error</var></dt>
+					<dd>En caso de que no se pueda establecer la conexión, recoge el fallo de dicha conexión
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Boolean</code><br>Según el resultado de la conexión
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="mostrarTablas" id="_mostrarTablas">
+
+		<td class="attributes"><code>
+			 public 
+
+			Array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_mostrarTablas">#</a>
+		<code><a href="source-class-DataBase.html#233-246" title="Go to source code">mostrarTablas</a>( <span>String <var>$bd</var></span> )</code>
+
+		<div class="description short">
+			<p>Muestra todas las tablas de una base de datos</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Muestra todas las tablas de una base de datos</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$bd</var></dt>
+					<dd>Nombre de la base de datos
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Array</code><br>Conjunto de los nombres de las tablas
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="eliminarTodasTablas" id="_eliminarTodasTablas">
+
+		<td class="attributes"><code>
+			 public 
+
+			Boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_eliminarTodasTablas">#</a>
+		<code><a href="source-class-DataBase.html#248-264" title="Go to source code">eliminarTodasTablas</a>( <span>String <var>$bd</var></span> )</code>
+
+		<div class="description short">
+			<p>Elimina todas las tablas de una base de datos</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Elimina todas las tablas de una base de datos</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$bd</var></dt>
+					<dd>Nombre de la base de datos
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Boolean</code><br>Según el resultado de la consulta
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="consulta" id="_consulta">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_consulta">#</a>
+		<code><a href="source-class-DataBase.html#266-283" title="Go to source code">consulta</a>( <span>String <var>$sql</var></span>, <span>String <var>&amp; $error</var></span> )</code>
+
+		<div class="description short">
+			<p>Realiza una consulta determinada a la base de datos</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Realiza una consulta determinada a la base de datos</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$sql</var></dt>
+					<dd>Consulta que se ejecutará
+</dd>
+					<dt><var>$error</var></dt>
+					<dd>En caso de que exista un fallo, recogerá dicho fallo
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>Según el resultado de la consulta
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="_instance" id="$_instance">
+		<td class="attributes"><code>
+			public static 
+			Object
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-DataBase.html#10-14" title="Go to source code"><var>$_instance</var></a>
+
+			<div class="description short">
+				<p>Contiene la instancia de la base de datos</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Contiene la instancia de la base de datos</p>
+
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$_instance" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		Documentación de Sara API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js?721046668"></script>
+<script src="elementlist.js?3068130580"></script>
+</body>
+</html>

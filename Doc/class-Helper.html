@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Helper | Documentación de Sara</title>
+
+	<link rel="stylesheet" href="resources/style.css?331665766">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+		</div>
+
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Config.html">Config</a></li>
+				<li><a href="class-configPlus.html">configPlus</a></li>
+				<li><a href="class-ControllerEnvios.html">ControllerEnvios</a></li>
+				<li><a href="class-ControllerInstaller.html">ControllerInstaller</a></li>
+				<li><a href="class-ControllerUsuarios.html">ControllerUsuarios</a></li>
+				<li><a href="class-ControllerZonas.html">ControllerZonas</a></li>
+				<li><a href="class-DataBase.html">DataBase</a></li>
+				<li class="active"><a href="class-Helper.html">Helper</a></li>
+				<li><a href="class-ModelEnvios.html">ModelEnvios</a></li>
+				<li><a href="class-ModelInstaller.html">ModelInstaller</a></li>
+				<li><a href="class-ModelProvincias.html">ModelProvincias</a></li>
+				<li><a href="class-ModelUsuarios.html">ModelUsuarios</a></li>
+				<li><a href="class-ModelZonas.html">ModelZonas</a></li>
+				<li><a href="class-TratamientoFormularios.html">TratamientoFormularios</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Helper</h1>
+
+
+	<div class="description">
+	<p>Contiene diversas funciones auxiliares</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		
+
+				<b>Author:</b>
+				Sara
+<br>
+		<b>Located at</b> <a href="source-class-Helper.html#3-158" title="Go to source code">app/libraries/Helper.php</a><br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="CargaVista" id="_CargaVista">
+
+		<td class="attributes"><code>
+			 public static
+
+			String
+			&amp;
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_CargaVista">#</a>
+		<code><a href="source-class-Helper.html#10-32" title="Go to source code">CargaVista</a>( <span>String <var>$rutaFichero</var></span>, <span>array <var>$variablesDeVista</var> = <span class="php-keyword1">NULL</span></span> )</code>
+
+		<div class="description short">
+			<p>Ejecuta una vista</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Ejecuta una vista</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$rutaFichero</var></dt>
+					<dd>Fichero que contiene la vista
+</dd>
+					<dt><var>$variablesDeVista</var></dt>
+					<dd>Conjunto de variables que utiliza la vista
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>String</code><br>Etiquetas HTML que se le mostrarán al usuario por pantalla
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="paginar" id="_paginar">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_paginar">#</a>
+		<code><a href="source-class-Helper.html#34-66" title="Go to source code">paginar</a>( <span>String <var>$accion</var></span>, <span>String <var>&amp; $pagina</var></span>, <span>Object <var>$modelo</var></span>, <span>String <var>$metodo</var></span>, <span>Array <var>&amp; $parametrosVista</var></span>, <span>Array <var>$condiciones</var> = <span class="php-keyword1">NULL</span></span> )</code>
+
+		<div class="description short">
+			<p>Modifica un conjunto de parámetros que posteriormente se le pasará a una vista para mostrar unos resultados paginados</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Modifica un conjunto de parámetros que posteriormente se le pasará a una vista para mostrar unos resultados paginados</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$accion</var></dt>
+					<dd>
+</dd>
+					<dt><var>$pagina</var></dt>
+					<dd>
+</dd>
+					<dt><var>$modelo</var></dt>
+					<dd>
+</dd>
+					<dt><var>$metodo</var></dt>
+					<dd>
+</dd>
+					<dt><var>$parametrosVista</var></dt>
+					<dd>
+</dd>
+					<dt><var>$condiciones</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="creaListaDesplegable" id="_creaListaDesplegable">
+
+		<td class="attributes"><code>
+			 public static
+
+			String
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_creaListaDesplegable">#</a>
+		<code><a href="source-class-Helper.html#68-100" title="Go to source code">creaListaDesplegable</a>( <span>String <var>$nombre</var></span>, <span>Array <var>$datos</var></span>, <span>String <var>$valorPorDefecto</var> = <span class="php-keyword1">NULL</span></span>, <span>Array <var>$nullValue</var> = <span class="php-keyword1">NULL</span></span>, <span>Array <var>$camposDatos</var> = [<span class="php-quote">'desc'</span> =&gt; <span class="php-quote">'nombre'</span>, <span class="php-quote">'valor'</span> =&gt; <span class="php-quote">'codigo'</span>]</span> )</code>
+
+		<div class="description short">
+			<p>Devuelve las etiquetas HTML que genera una lista desplegable</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Devuelve las etiquetas HTML que genera una lista desplegable</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$nombre</var></dt>
+					<dd>Nombre de la lista
+</dd>
+					<dt><var>$datos</var></dt>
+					<dd>Opciones que habrá en la lista
+</dd>
+					<dt><var>$valorPorDefecto</var></dt>
+					<dd>Valor seleccionado de la lista
+</dd>
+					<dt><var>$nullValue</var></dt>
+					<dd>Opción seleccionada por defecto para no seleccionar ninguna otra
+</dd>
+					<dt><var>$camposDatos</var></dt>
+					<dd>Nombre de los campos del conjunto de opciones
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>String</code><br>Etiquetas HTML de la lista desplegable
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="importSql" id="_importSql">
+
+		<td class="attributes"><code>
+			 public static
+
+			Boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_importSql">#</a>
+		<code><a href="source-class-Helper.html#102-129" title="Go to source code">importSql</a>( <span>String <var>$fichero</var></span>, <span>Object <var>$modelo</var></span> )</code>
+
+		<div class="description short">
+			<p>Importa una base de datos</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Importa una base de datos</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$fichero</var></dt>
+					<dd>Fichero que contiene las setencias
+</dd>
+					<dt><var>$modelo</var></dt>
+					<dd>Conexión con la base de datos
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Boolean</code><br>Según el resultado de las consultas
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="obtenerParametros" id="_obtenerParametros">
+
+		<td class="attributes"><code>
+			 public static
+
+			Array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_obtenerParametros">#</a>
+		<code><a href="source-class-Helper.html#131-156" title="Go to source code">obtenerParametros</a>( )</code>
+
+		<div class="description short">
+			<p>Obtiene los parámetros de configuración almacenados en configPlus.php</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Obtiene los parámetros de configuración almacenados en configPlus.php</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Array</code><br>Parámetros de la aplicación
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		Documentación de Sara API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js?721046668"></script>
+<script src="elementlist.js?3068130580"></script>
+</body>
+</html>

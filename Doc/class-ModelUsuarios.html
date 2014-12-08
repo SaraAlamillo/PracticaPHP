@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class ModelUsuarios | Documentación de Sara</title>
+
+	<link rel="stylesheet" href="resources/style.css?331665766">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+		</div>
+
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Config.html">Config</a></li>
+				<li><a href="class-configPlus.html">configPlus</a></li>
+				<li><a href="class-ControllerEnvios.html">ControllerEnvios</a></li>
+				<li><a href="class-ControllerInstaller.html">ControllerInstaller</a></li>
+				<li><a href="class-ControllerUsuarios.html">ControllerUsuarios</a></li>
+				<li><a href="class-ControllerZonas.html">ControllerZonas</a></li>
+				<li><a href="class-DataBase.html">DataBase</a></li>
+				<li><a href="class-Helper.html">Helper</a></li>
+				<li><a href="class-ModelEnvios.html">ModelEnvios</a></li>
+				<li><a href="class-ModelInstaller.html">ModelInstaller</a></li>
+				<li><a href="class-ModelProvincias.html">ModelProvincias</a></li>
+				<li class="active"><a href="class-ModelUsuarios.html">ModelUsuarios</a></li>
+				<li><a href="class-ModelZonas.html">ModelZonas</a></li>
+				<li><a href="class-TratamientoFormularios.html">TratamientoFormularios</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class ModelUsuarios</h1>
+
+
+	<div class="description">
+	<p>Contiene las diferentes funciones que emulan los modelos para los controladores</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		
+
+				<b>Author:</b>
+				Sara
+<br>
+		<b>Located at</b> <a href="source-class-ModelUsuarios.html#3-128" title="Go to source code">app/models/ModelUsuarios.php</a><br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-ModelUsuarios.html#22-27" title="Go to source code">__construct</a>( )</code>
+
+		<div class="description short">
+			<p>Contructor de la clase ModelUsuarios</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Contructor de la clase ModelUsuarios</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="listarUsuarios" id="_listarUsuarios">
+
+		<td class="attributes"><code>
+			 public 
+
+			Array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_listarUsuarios">#</a>
+		<code><a href="source-class-ModelUsuarios.html#29-37" title="Go to source code">listarUsuarios</a>( <span>Array <var>$condiciones</var> = <span class="php-keyword1">NULL</span></span>, <span>String <var>$limite</var> = <span class="php-keyword1">NULL</span></span> )</code>
+
+		<div class="description short">
+			<p>Devuelve todos los usuarios de la base de datos</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Devuelve todos los usuarios de la base de datos</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$condiciones</var></dt>
+					<dd>Criterios para obtener los usuarios
+</dd>
+					<dt><var>$limite</var></dt>
+					<dd>Intervalo de registros que se obtendrán
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Array</code><br>Conjunto de datos de los diversos usuarios
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="listarUnUsuario" id="_listarUnUsuario">
+
+		<td class="attributes"><code>
+			 public 
+
+			Array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_listarUnUsuario">#</a>
+		<code><a href="source-class-ModelUsuarios.html#39-55" title="Go to source code">listarUnUsuario</a>( <span>String <var>$codigo</var></span> )</code>
+
+		<div class="description short">
+			<p>Devuelve los datos de un usuario determinado</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Devuelve los datos de un usuario determinado</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$codigo</var></dt>
+					<dd>Identificador del usuario
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Array</code><br>Conjunto de datos del usuario
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="insertarUsuario" id="_insertarUsuario">
+
+		<td class="attributes"><code>
+			 public 
+
+			Boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_insertarUsuario">#</a>
+		<code><a href="source-class-ModelUsuarios.html#57-64" title="Go to source code">insertarUsuario</a>( <span>Array <var>$valores</var></span> )</code>
+
+		<div class="description short">
+			<p>Añade un nuevo usuario a la base de datos</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Añade un nuevo usuario a la base de datos</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$valores</var></dt>
+					<dd>Valores para el nuevo usuario
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Boolean</code><br>Depende del resultado de la consulta
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="modificarUsuario" id="_modificarUsuario">
+
+		<td class="attributes"><code>
+			 public 
+
+			Boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_modificarUsuario">#</a>
+		<code><a href="source-class-ModelUsuarios.html#66-74" title="Go to source code">modificarUsuario</a>( <span>String <var>$codigo</var></span>, <span>Array <var>$datos</var></span> )</code>
+
+		<div class="description short">
+			<p>Actualiza los datos de usuario determinado</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Actualiza los datos de usuario determinado</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$codigo</var></dt>
+					<dd>Identificador del usuario
+</dd>
+					<dt><var>$datos</var></dt>
+					<dd>Nuevos valores para el usuario
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Boolean</code><br>Depende del resultado de la consulta
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="eliminarUsuario" id="_eliminarUsuario">
+
+		<td class="attributes"><code>
+			 public 
+
+			Boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_eliminarUsuario">#</a>
+		<code><a href="source-class-ModelUsuarios.html#76-83" title="Go to source code">eliminarUsuario</a>( <span>String <var>$codigo</var></span> )</code>
+
+		<div class="description short">
+			<p>Borra un usuario determinado</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Borra un usuario determinado</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$codigo</var></dt>
+					<dd>Identificador del usuario
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Boolean</code><br>Depende del resultado de la consulta
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="existeUsuario" id="_existeUsuario">
+
+		<td class="attributes"><code>
+			 public 
+
+			Boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_existeUsuario">#</a>
+		<code><a href="source-class-ModelUsuarios.html#85-99" title="Go to source code">existeUsuario</a>( <span>String <var>$usuario</var></span>, <span>String <var>$campoUsuario</var></span>, <span>String <var>$clave</var> = <span class="php-keyword1">NULL</span></span> )</code>
+
+		<div class="description short">
+			<p>Determina si un usuario existe</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Determina si un usuario existe</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$usuario</var></dt>
+					<dd>Valor del identificador
+</dd>
+					<dt><var>$campoUsuario</var></dt>
+					<dd>Nombre del campo identificador
+</dd>
+					<dt><var>$clave</var></dt>
+					<dd>Contraseña de usuario
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Boolean</code><br>Depende de la existencia del usuario
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="esAdministrador" id="_esAdministrador">
+
+		<td class="attributes"><code>
+			 public 
+
+			Boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_esAdministrador">#</a>
+		<code><a href="source-class-ModelUsuarios.html#101-109" title="Go to source code">esAdministrador</a>( <span>String <var>$usuario</var></span>, <span>String <var>$clave</var></span> )</code>
+
+		<div class="description short">
+			<p>Determina si un usuario tiene privilegio de administtrador</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Determina si un usuario tiene privilegio de administtrador</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$usuario</var></dt>
+					<dd>Nombre del usuario
+</dd>
+					<dt><var>$clave</var></dt>
+					<dd>Contraseña del usuario
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Boolean</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="obtenerRoles" id="_obtenerRoles">
+
+		<td class="attributes"><code>
+			 public 
+
+			Array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_obtenerRoles">#</a>
+		<code><a href="source-class-ModelUsuarios.html#111-126" title="Go to source code">obtenerRoles</a>( )</code>
+
+		<div class="description short">
+			<p>Devuelve todos los roles que pueden tener los usuarios</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Devuelve todos los roles que pueden tener los usuarios</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Array</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		Documentación de Sara API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js?721046668"></script>
+<script src="elementlist.js?3068130580"></script>
+</body>
+</html>

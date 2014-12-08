@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class ModelInstaller | Documentación de Sara</title>
+
+	<link rel="stylesheet" href="resources/style.css?331665766">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+		</div>
+
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Config.html">Config</a></li>
+				<li><a href="class-configPlus.html">configPlus</a></li>
+				<li><a href="class-ControllerEnvios.html">ControllerEnvios</a></li>
+				<li><a href="class-ControllerInstaller.html">ControllerInstaller</a></li>
+				<li><a href="class-ControllerUsuarios.html">ControllerUsuarios</a></li>
+				<li><a href="class-ControllerZonas.html">ControllerZonas</a></li>
+				<li><a href="class-DataBase.html">DataBase</a></li>
+				<li><a href="class-Helper.html">Helper</a></li>
+				<li><a href="class-ModelEnvios.html">ModelEnvios</a></li>
+				<li class="active"><a href="class-ModelInstaller.html">ModelInstaller</a></li>
+				<li><a href="class-ModelProvincias.html">ModelProvincias</a></li>
+				<li><a href="class-ModelUsuarios.html">ModelUsuarios</a></li>
+				<li><a href="class-ModelZonas.html">ModelZonas</a></li>
+				<li><a href="class-TratamientoFormularios.html">TratamientoFormularios</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class ModelInstaller</h1>
+
+
+	<div class="description">
+	<p>Contiene las funciones del modelo del instalador</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		
+
+				<b>Author:</b>
+				2daw
+<br>
+		<b>Located at</b> <a href="source-class-ModelInstaller.html#3-61" title="Go to source code">install/ModelInstaller.php</a><br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-ModelInstaller.html#16-21" title="Go to source code">__construct</a>( )</code>
+
+		<div class="description short">
+			<p>Contructor de la clase ModelInstaller</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Contructor de la clase ModelInstaller</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="probarConexion" id="_probarConexion">
+
+		<td class="attributes"><code>
+			 public static
+
+			Boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_probarConexion">#</a>
+		<code><a href="source-class-ModelInstaller.html#23-31" title="Go to source code">probarConexion</a>( <span>Array <var>$parametros</var></span>, <span>String <var>&amp; $error</var></span> )</code>
+
+		<div class="description short">
+			<p>Comprueba si se puede realizar una conexión con los parámetros pasados</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Comprueba si se puede realizar una conexión con los parámetros pasados</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$parametros</var></dt>
+					<dd>Contiene la configuración para realizar la prueba
+</dd>
+					<dt><var>$error</var></dt>
+					<dd>Si hay algún error, contiene dicho error
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Boolean</code><br>Depende de si se puede establecer la conexión
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="tablasExistentes" id="_tablasExistentes">
+
+		<td class="attributes"><code>
+			 public 
+
+			Array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_tablasExistentes">#</a>
+		<code><a href="source-class-ModelInstaller.html#33-40" title="Go to source code">tablasExistentes</a>( <span>String <var>$bd</var></span> )</code>
+
+		<div class="description short">
+			<p>Devuelve todas las tablas existentes en una base de datos determinada</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Devuelve todas las tablas existentes en una base de datos determinada</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$bd</var></dt>
+					<dd>Nombre de la base de datos
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Array</code><br>Conjunto de tablas
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="eliminarTablas" id="_eliminarTablas">
+
+		<td class="attributes"><code>
+			 public 
+
+			Boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_eliminarTablas">#</a>
+		<code><a href="source-class-ModelInstaller.html#42-49" title="Go to source code">eliminarTablas</a>( <span>String <var>$bd</var></span> )</code>
+
+		<div class="description short">
+			<p>Borra todas las tablas de una base de datos determinada</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Borra todas las tablas de una base de datos determinada</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$bd</var></dt>
+					<dd>Nombre de la base de datos
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Boolean</code><br>Depende del resultado
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="hacerConsulta" id="_hacerConsulta">
+
+		<td class="attributes"><code>
+			 public 
+
+			Boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_hacerConsulta">#</a>
+		<code><a href="source-class-ModelInstaller.html#51-59" title="Go to source code">hacerConsulta</a>( <span>String <var>$sql</var></span>, <span>String <var>&amp; $error</var></span> )</code>
+
+		<div class="description short">
+			<p>Ejecuta una setencia</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Ejecuta una setencia</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$sql</var></dt>
+					<dd>Contiene la consulta a ejecutar
+</dd>
+					<dt><var>$error</var></dt>
+					<dd>Si hay algún error en la ejecucción, contiene dicho error
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Boolean</code><br>Depende del resultado de la consulta
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		Documentación de Sara API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js?721046668"></script>
+<script src="elementlist.js?3068130580"></script>
+</body>
+</html>

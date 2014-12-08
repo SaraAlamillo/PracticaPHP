@@ -1,11 +1,10 @@
 <?php
 
-/*
+/**
  * Clase encargada de gestionar las conexiones a la base de datos
  * 
  * @author Sara
  */
-
 class DataBase {
 
     /**
