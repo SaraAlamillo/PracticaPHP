@@ -17,7 +17,7 @@ define("URL_IMAGES", URL_ROOT . "Assets/images/");
 define("URL_JS", URL_ROOT . "Assets/js/");
 
 // Si no hay configuración, salta automáticamente el instalador
-if (!file_exists("Config.php") ) {
+if (!file_exists("Config.php")) {
     require_once RUTA_INSTALL . "index.php";
 } else {
     //Si se acaba de terminar la instalación, se eliminan los rastros en las variables GET
@@ -28,6 +28,7 @@ if (!file_exists("Config.php") ) {
 
     //Carga de los controladores, modelos, librerías y configuración
     require_once RUTA_APP . 'Config.php';
+    require_once RUTA_APP . 'configPlus.php';
     require_once RUTA_MODELS . 'ModelEnvios.php';
     require_once RUTA_MODELS . 'ModelProvincias.php';
     require_once RUTA_MODELS . 'ModelUsuarios.php';
@@ -38,6 +39,13 @@ if (!file_exists("Config.php") ) {
     require_once RUTA_LIBRARIES . 'validacion.php';
     require_once RUTA_LIBRARIES . 'DataBase.php';
     require_once RUTA_LIBRARIES . 'Helper.php';
+
+// Comprobación del último acceso a la aplicación para saber si se ha excedido el tiempo de conexión
+    if (isset($_SESSION['ultimoAcceso']) && (time() - $_SESSION['ultimoAcceso']) > configPlus::$tiempoSesion) {
+        session_destroy();
+    }
+
+    $_SESSION['ultimoAcceso'] = time();
 
     //Enrutamiento
     $map = [
@@ -58,7 +66,8 @@ if (!file_exists("Config.php") ) {
         'insertarZona' => array('controller' => 'ControllerZonas', 'action' => 'insertarZona'),
         'listarZonas' => array('controller' => 'ControllerZonas', 'action' => 'listarZonas'),
         'eliminarZona' => array('controller' => 'ControllerZonas', 'action' => 'eliminarZona'),
-        'modificarZona' => array('controller' => 'ControllerZonas', 'action' => 'modificarZona')
+        'modificarZona' => array('controller' => 'ControllerZonas', 'action' => 'modificarZona'),
+        'configParametros' => array('controller' => 'ControllerUsuarios', 'action' => 'configParametros')
     ];
 
     // Parseo de la ruta
@@ -92,7 +101,7 @@ if (!file_exists("Config.php") ) {
 
         $listadoZonas = call_user_func(array(new ModelZonas(), "listarZonas"));
         $instalador = FALSE;
-        isset($_SESSION['hora'])? $hora = date("H:m:s", $_SESSION['hora']) : NULL;
+        isset($_SESSION['hora']) ? $hora = date("H:m:s", $_SESSION['hora']) : NULL;
         include RUTA_VIEWS . 'layout.php';
     } else {
         header('Status: 404 Not Found');

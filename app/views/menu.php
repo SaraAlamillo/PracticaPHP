@@ -14,7 +14,8 @@
             <a href="index.php?action=listarUsuarios">listar</a> |
             <a href="index.php?action=insertarUsuario">insertar</a> |
             <a href="index.php?action=eliminarUsuario">eliminar</a> |
-            <a href="index.php?action=modificarUsuario">modificar datos</a>
+            <a href="index.php?action=modificarUsuario">modificar datos</a> |
+            <a href="index.php?action=configParametros">parámetros</a>
         </fieldset>
         <fieldset id="fZonas">
             <legend>Zonas</legend>

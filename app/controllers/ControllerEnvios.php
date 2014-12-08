@@ -102,9 +102,9 @@ class ControllerEnvios {
                 'destinatario' => '',
                 'telefono' => '',
                 'direccion' => '',
-                'poblacion' => '',
+                'poblacion' => configPlus::$valPorDefPoblacion,
                 'cod_postal' => '',
-                'provincia' => '',
+                'provincia' => configPlus::$valPorDefProvincia,
                 'email' => '',
                 'estado' => 'Pendiente',
                 'fecha_creacion' => date("Y-m-d"),
@@ -113,6 +113,7 @@ class ControllerEnvios {
             ],
             "provincias" => $this->modelProvincias->obtenerTodasProvincias()
         ];
+        
 
         if ($_POST) {
             $_POST['zona_envio'] = $this->modelZonas->obtenerID($_POST['zona_envio']);

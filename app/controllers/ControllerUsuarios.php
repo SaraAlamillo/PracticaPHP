@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Contiene diferentes funciones que emulan los diferentes controladores de la sección de usuarios
  *
@@ -11,7 +12,13 @@ class ControllerUsuarios {
      * @var Object
      */
     private $modelUsuarios;
-    
+
+    /**
+     * Contiene el acceso al modelo para las provincias
+     * @var Object
+     */
+    private $modelProvincias;
+
     /**
      * Contiene el acceso al modelo para las zonas
      * @var Object
@@ -24,6 +31,7 @@ class ControllerUsuarios {
     public function __construct() {
         $this->modelUsuarios = new ModelUsuarios();
         $this->modelZonas = new ModelZonas();
+        $this->modelProvincias = new ModelProvincias();
     }
 
     /**
@@ -38,7 +46,7 @@ class ControllerUsuarios {
                 ],
                 "zonas" => $this->modelZonas->listarZonas()
             ];
-            
+
             if (!$_POST) {
                 require RUTA_VIEWS . 'usuarios/login.php';
             } else {
@@ -58,7 +66,7 @@ class ControllerUsuarios {
                         } else {
                             $params['mensaje'] = "La zona seleccionada no existe";
                             $params['datos'] = $_POST;
-                        $params['datos']['clave'] = "";
+                            $params['datos']['clave'] = "";
                             require RUTA_VIEWS . 'usuarios/login.php';
                         }
                     } else {
@@ -70,8 +78,8 @@ class ControllerUsuarios {
                 } else {
                     $params['mensaje'] = "Usuario o contraseña incorrecta";
                     $params['datos'] = $_POST;
-                        $params['datos']['clave'] = "";
-                    
+                    $params['datos']['clave'] = "";
+
                     require RUTA_VIEWS . 'usuarios/login.php';
                 }
             }
@@ -195,7 +203,7 @@ class ControllerUsuarios {
                         $params['antiguo']['clave'] = "";
                         if ($_POST) {
                             if ($_POST['clave'] != "") {
-                            $_POST['clave'] = sha1($_POST['clave']);
+                                $_POST['clave'] = sha1($_POST['clave']);
                             } else {
                                 unset($_POST['clave']);
                             }
@@ -218,6 +226,71 @@ class ControllerUsuarios {
                 require RUTA_VIEWS . 'usuarios/formNomUsuarios.php';
             }
         }
+    }
+
+    /**
+     * Carga el formulario para configurar parámetros en la aplicación
+     */
+    public function configParametros() {
+        $params = [
+            "action" => $_GET['action'],
+            "provincias" => $this->modelProvincias->obtenerTodasProvincias(),
+            "antiguo" => Helper::obtenerParametros()
+        ];
+
+        if ($_POST) {
+            if ($_POST['medida'] == "horas") {
+                $_POST['tiempoSesion'] *= 3600;
+            } elseif ($_POST['medida'] == "minutos") {
+                $_POST['tiempoSesion'] *= 60;
+            }
+            $fichero = fopen(RUTA_APP . "configPlus.php", "w");
+            fwrite($fichero, "<?php\n");
+            fwrite($fichero, "\n");
+            fwrite($fichero, "/**\n");
+            fwrite($fichero, "* Configuración de los parámetros adicionales de la aplicación\n");
+            fwrite($fichero, "*\n");
+            fwrite($fichero, "* @author Sara\n");
+            fwrite($fichero, "*/\n");
+            fwrite($fichero, "class configPlus {\n");
+            fwrite($fichero, "/**\n");
+            fwrite($fichero, "* Tiempo de duración de cada sesión\n");
+            fwrite($fichero, "*/\n");
+            fwrite($fichero, "static public \$tiempoSesion = \"{$_POST['tiempoSesion']}\n");
+            fwrite($fichero, "\";\n");
+            fwrite($fichero, "\n");
+            fwrite($fichero, "/**\n");
+            fwrite($fichero, "* Valores por defecto para el campo provincia de los formularios\n");
+            fwrite($fichero, "*/\n");
+            fwrite($fichero, "static public \$valPorDefProvincia = \"{$_POST['provincia']}\n");
+            fwrite($fichero, "\";\n");
+            fwrite($fichero, "/**\n");
+            fwrite($fichero, "* Valores por defecto para el campo poblacion de los formularios\n");
+            fwrite($fichero, "*/\n");
+            fwrite($fichero, "static public \$valPorDefPoblacion = \"{$_POST['poblacion']}\n");
+            fwrite($fichero, "\";\n");
+            fwrite($fichero, "/**\n");
+            fwrite($fichero, "* Máximo de elementos por página en las listas paginadas\n");
+            fwrite($fichero, "*/\n");
+            fwrite($fichero, "static public \$elemPag = \"{$_POST['elemPag']}\n");
+            fwrite($fichero, "\";\n");
+            fwrite($fichero, "}\n");
+
+            $params = [
+                "action" => $_GET['action'],
+                "provincias" => $this->modelProvincias->obtenerTodasProvincias(),
+                'mensaje' => "Configuración almacenada correctamente",
+                'antiguo' => [
+                    'tiempoSesion' => $_POST['tiempoSesion'],
+                    'defecto' => [
+                        'provincia' => $_POST['provincia'],
+                        'poblacion' => $_POST['poblacion']
+                    ],
+                    'elemPag' => $_POST['elemPag']
+                ]
+            ];
+        }
+        require RUTA_VIEWS . 'parametros.php';
     }
 
 }
