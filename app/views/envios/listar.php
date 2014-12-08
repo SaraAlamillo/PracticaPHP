@@ -1,7 +1,7 @@
 <?php if ($params['action'] == 'buscar'): ?>
-<a href="index.php?action=<?=$params['action'] ?>&pagina=<?=$params['paginaActual'] ?>&nueva=true">
-    <p>Nueva búsqueda</p>
-</a>
+<button>
+    <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['paginaActual'] ?>&nueva=true">Nueva búsqueda</a>
+    </button>
 <?php endif; ?>
 <table border="1">
     <tr>
@@ -31,14 +31,14 @@
                 <?php
             endforeach;
             ?>
-            <td class="noLink">
+            <td>
                 <a href="index.php?action=modificar&id=<?= $envio['codigo'] ?>" title="Modificar envío">
-                    <img src="<?=URL_IMAGES ?>iconos/modificar.png" />
+                    <img src="<?= URL_IMAGES ?>iconos/modificar.png" />
                 </a>
             </td>
-            <td class="noLink">
+            <td>
                 <a href="index.php?action=eliminar&id=<?= $envio['codigo'] ?>" title="Eliminar envío">
-                    <img src="<?=URL_IMAGES ?>iconos/borrar.png" />
+                    <img src="<?= URL_IMAGES ?>iconos/borrar.png" />
                 </a>
             </td>
         </tr>
@@ -46,19 +46,17 @@
 </table>
 
 <p>
-    <a href="index.php?action=<?= $params['action'] ?>&pagina=1">
-        <button><<</button>
-    </a>
-    <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['paginaActual'] - 1 ?>">
-        <button><</button>
-    </a>
-
+    <button>
+        <a href="index.php?action=<?= $params['action'] ?>&pagina=1"><<</a>
+    </button>
+    <button>
+        <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['paginaActual'] - 1 ?>"><</a>
+    </button>
     <input type="number" id="paginaBuscada" value="<?= $params['paginaActual'] ?>" onchange="cambiarPagina('<?= $params['action'] ?>')" min="1" max="<?= $params['numeroDePaginas'] ?>" /> de <?= $params['numeroDePaginas'] ?>
-
-    <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['paginaActual'] + 1 ?>">
-        <button>></button>
-    </a>
-    <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['numeroDePaginas'] ?>">
-        <button>>></button>
-    </a>
+    <button>
+        <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['paginaActual'] + 1 ?>">></a>
+    </button>
+    <button>
+        <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['numeroDePaginas'] ?>">>></a>
+    </button>
 </p>

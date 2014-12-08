@@ -37,17 +37,6 @@ fieldset {
     width: auto;
 }
 
-
-h1 a:visited, h1 a:hover, h1 a:active, h1 a:link {
-    text-decoration: none;
-    box-shadow: none;
-    color: #603E2A;
-}
-.noLink a:visited, .noLink a:hover, .noLink a:active, .noLink a:link {
-    text-decoration: none;
-    box-shadow: none;
-}
-
 #cabecera {
     padding: 10px;
     box-sizing: border-box;
@@ -80,11 +69,9 @@ a:link, a:visited {
     text-decoration: none;
 }
 
-a:hover, a:active {
-    padding: 5px;
-    box-shadow: 1px 1px 1px 1px #603E2A;
-    border-radius: 10px;
-    color: #F3F0EA;
+a:hover, a:active, button:hover, button:active, input[type=submit]:hover, input[type=submit]:active {
+    filter: invert(100%);
+    -webkit-filter: invert(100%);
 }
 
 #contenido {

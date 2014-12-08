@@ -29,19 +29,17 @@
 </table>
 
 <p>
-    <a href="index.php?action=<?= $params['action'] ?>&pagina=1">
-        <button><<</button>
-    </a>
-    <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['paginaActual'] - 1 ?>">
-        <button><</button>
-    </a>
-
+    <button>
+        <a href="index.php?action=<?= $params['action'] ?>&pagina=1"><<</a>
+    </button>
+    <button>
+        <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['paginaActual'] - 1 ?>"><</a>
+    </button>
     <input type="number" id="paginaBuscada" value="<?= $params['paginaActual'] ?>" onchange="cambiarPagina('<?= $params['action'] ?>')" min="1" max="<?= $params['numeroDePaginas'] ?>" /> de <?= $params['numeroDePaginas'] ?>
-
-    <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['paginaActual'] + 1 ?>">
-        <button>></button>
-    </a>
-    <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['numeroDePaginas'] ?>">
-        <button>>></button>
-    </a>
+    <button>
+        <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['paginaActual'] + 1 ?>">></a>
+    </button>
+    <button>
+        <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['numeroDePaginas'] ?>">>></a>
+    </button>
 </p>
