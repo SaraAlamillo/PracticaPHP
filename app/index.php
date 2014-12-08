@@ -4,14 +4,16 @@ session_name('envios');
 session_start();
 
 // Definición de rutas
-define("RUTA_ROOT", $_SERVER['DOCUMENT_ROOT'] . "/PracticaPHP/");
+define("RUTA_ROOT", __DIR__ . "/../");
 define("RUTA_APP", RUTA_ROOT . "App/");
 define("RUTA_CONTROLLERS", RUTA_APP . "controllers/");
 define("RUTA_LIBRARIES", RUTA_APP . "libraries/");
 define("RUTA_MODELS", RUTA_APP . "models/");
 define("RUTA_VIEWS", RUTA_APP . "views/");
 define("RUTA_INSTALL", RUTA_ROOT . "install/");
-define("URL_ROOT", "http://" . $_SERVER['SERVER_NAME'] . "/PracticaPHP/");
+$rutaActual = "http://" . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+$sinFichero = substr($rutaActual, 0, strrpos($rutaActual, "/"));
+define("URL_ROOT", $sinFichero . "/../");
 define("URL_CSS", URL_ROOT . "Assets/css/");
 define("URL_IMAGES", URL_ROOT . "Assets/images/");
 define("URL_JS", URL_ROOT . "Assets/js/");
@@ -109,7 +111,7 @@ if (!file_exists("Config.php")) {
         <html>
             <body>
                 <h1>Error 404: El controlador <i><?= $controlador['controller'] ?>-><?= $controlador['action'] ?></i> no existe</h1>
-            </body>'
+            </body>
         </html>
         <?php
     }
