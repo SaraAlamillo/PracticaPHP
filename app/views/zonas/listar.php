@@ -16,12 +16,12 @@
             ?>
             <td class="noLink">
                 <a href="index.php?action=modificarZona&codigo=<?= $zona['codigo'] ?>" title="Modificar zona">
-                    <img src="<?=URL_IMAGES ?>iconos/modificar.png" />
+                    <img src="<?= URL_IMAGES ?>iconos/modificar.png" />
                 </a>
             </td>
             <td class="noLink">
                 <a href="index.php?action=eliminarZona&codigo=<?= $zona['codigo'] ?>" title="Eliminar zona">
-                    <img src="<?=URL_IMAGES ?>iconos/borrar.png" />
+                    <img src="<?= URL_IMAGES ?>iconos/borrar.png" />
                 </a>
             </td>
         </tr>

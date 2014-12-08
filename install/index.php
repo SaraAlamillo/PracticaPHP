@@ -1,5 +1,4 @@
 <?php
-
 // Carga del modelo, controlador y librerías
 require_once RUTA_INSTALL . 'ControllerInstaller.php';
 require_once RUTA_INSTALL . 'ModelInstaller.php';
@@ -25,7 +24,7 @@ if (isset($_GET['action'])) {
         ?> 
         <html>
             <body>
-                 <h1>Error 404: No existe la ruta <i><?=RUTA_ROOT ?>/<?=$_GET['action'] ?></i></h1>
+                <h1>Error 404: No existe la ruta <i><?= RUTA_ROOT ?>/<?= $_GET['action'] ?></i></h1>
             </body>
         </html>
         <?php

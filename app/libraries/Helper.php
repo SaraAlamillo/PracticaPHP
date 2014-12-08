@@ -135,7 +135,7 @@ class Helper {
     public static function obtenerParametros() {
         $fichero = file(RUTA_APP . "configPlus.php");
         $parametros = [];
-        
+
         foreach ($fichero as $linea) {
             if (preg_match("/tiempoSesion/", $linea)) {
                 $valor = substr($linea, 31);
@@ -151,7 +151,8 @@ class Helper {
                 $parametros['elemPag'] = trim($valor);
             }
         }
-       
+
         return $parametros;
     }
+
 }

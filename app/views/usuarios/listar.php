@@ -18,12 +18,12 @@
             ?>
             <td class="noLink">
                 <a href="index.php?action=modificarUsuario&usuario=<?= $usuario['codigo'] ?>" title="Modificar usuario">
-                    <img src="<?=URL_IMAGES ?>iconos/modificar.png" />
+                    <img src="<?= URL_IMAGES ?>iconos/modificar.png" />
                 </a>
             </td>
             <td class="noLink">
                 <a href="index.php?action=eliminarUsuario&usuario=<?= $usuario['codigo'] ?>" title="Eliminar usuario">
-                    <img src="<?=URL_IMAGES ?>iconos/borrar.png" />
+                    <img src="<?= URL_IMAGES ?>iconos/borrar.png" />
                 </a>
             </td>
         </tr>

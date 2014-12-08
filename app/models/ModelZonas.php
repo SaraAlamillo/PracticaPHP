@@ -44,7 +44,7 @@ class ModelZonas {
      */
     public function listarZonas($condiciones = NULL, $limite = NULL) {
         $resultado = $this->conexion->Seleccionar($this->tabla, "*", NULL, $limite, NULL);
-        
+
         foreach ($resultado as $clave => $valor) {
             if ($valor['codigo'] == '0') {
                 unset($resultado[$clave]);

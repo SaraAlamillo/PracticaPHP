@@ -12,16 +12,19 @@ class ModelEnvios {
      * @var Object 
      */
     private $conexion;
+
     /**
      * Enlace con el modelo de provincias
      * @var Object 
      */
     private $modelProvincias;
+
     /**
      * Nombre de la tabla sobre la que trabajará el modelo
      * @var String 
      */
     private $tabla = "envios";
+
     /**
      * Enlace con el modelo de zonas
      * @var Object
@@ -103,28 +106,31 @@ class ModelEnvios {
             return NULL;
         }
     }
-/**
- * Añade un nuevo envío
- * @param Array $valores Datos del nuevo envío
- * @return Boolean Según el resultado de la consulta
- */
+
+    /**
+     * Añade un nuevo envío
+     * @param Array $valores Datos del nuevo envío
+     * @return Boolean Según el resultado de la consulta
+     */
     public function insertarEnvio($valores) {
         return $this->conexion->Insertar($this->tabla, $valores);
     }
-/**
- * Actualiza los datos de un envío determinado
- * @param String $codigo Identificador del envío
- * @param Array $datos Datos nuevos para el envío
- * @return Boolean Según el resultado de la consulta
- */
+
+    /**
+     * Actualiza los datos de un envío determinado
+     * @param String $codigo Identificador del envío
+     * @param Array $datos Datos nuevos para el envío
+     * @return Boolean Según el resultado de la consulta
+     */
     public function modificarEnvio($codigo, $datos) {
         return $this->conexion->Actualizar($this->tabla, $codigo, "codigo", $datos);
     }
-/**
- * Elimina un envío determinado de la tabla
- * @param String $id Identificador del envío
- * @return Boolean Según el resultado de la consulta
- */
+
+    /**
+     * Elimina un envío determinado de la tabla
+     * @param String $id Identificador del envío
+     * @return Boolean Según el resultado de la consulta
+     */
     public function eliminarEnvio($id) {
         return $this->conexion->Borrar($this->tabla, "codigo", $id);
     }

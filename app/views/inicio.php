@@ -1,10 +1,10 @@
 <h1>Inicio</h1>
 <div id="infoApp">
     <div id="colum1">
-<p>Actividad:</p> 
-<p>Desarrolladora:</p> 
-<p>Módulo:</p> 
-<p>Curso:</p> 
+        <p>Actividad:</p> 
+        <p>Desarrolladora:</p> 
+        <p>Módulo:</p> 
+        <p>Curso:</p> 
     </div>
     <div id="colum2">
         <p>Práctica final del primer bloque de PHP</p>

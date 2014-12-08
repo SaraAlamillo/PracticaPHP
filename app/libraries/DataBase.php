@@ -26,18 +26,17 @@ class DataBase {
         }
     }
 
-/**
- * Eliminación de la función clonar para seguir el patrón Singleton
- */
+    /**
+     * Eliminación de la función clonar para seguir el patrón Singleton
+     */
     private function __clone() {
         
     }
 
- 
-/**
- * Comprueba si ya existe una instancia para la clase DataBase. Si no existe, la crea.
- * @return Object instancia de la clase DataBase
- */
+    /**
+     * Comprueba si ya existe una instancia para la clase DataBase. Si no existe, la crea.
+     * @return Object instancia de la clase DataBase
+     */
     public static function getInstance() {
         if (!(self::$_instance instanceof self)) {
             self::$_instance = new self ();
@@ -45,13 +44,13 @@ class DataBase {
         return self::$_instance;
     }
 
-/**
- * Realiza la conexión con la base de datos
- * @param String $hostname Nombre del servidor
- * @param String $bd Nombre de la base de datos
- * @param String $usuario Nombre del usuario
- * @param String $clave Contraseña para el usuario
- */
+    /**
+     * Realiza la conexión con la base de datos
+     * @param String $hostname Nombre del servidor
+     * @param String $bd Nombre de la base de datos
+     * @param String $usuario Nombre del usuario
+     * @param String $clave Contraseña para el usuario
+     */
     private function Conectar($hostname, $bd, $usuario, $clave) {
         $this->link = new mysqli($hostname, $usuario, $clave);
 

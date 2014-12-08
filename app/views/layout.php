@@ -23,10 +23,10 @@
         <?php endif; ?>
 
 
-        <section id="contenido">
-            <?= $contenido ?>
-        </section> 
+    <section id="contenido">
+        <?= $contenido ?>
+    </section> 
 
-        <script src="<?= URL_JS ?>paginacion.js"></script>
-    </body>
+    <script src="<?= URL_JS ?>paginacion.js"></script>
+</body>
 </html>

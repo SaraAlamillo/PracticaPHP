@@ -6,10 +6,11 @@
  * @author Sara
  */
 class ControllerInstaller {
-/**
- * Contiene el enlace con el modelo del instalador
- * @var Object
- */
+
+    /**
+     * Contiene el enlace con el modelo del instalador
+     * @var Object
+     */
     private $modelo;
 
     /**

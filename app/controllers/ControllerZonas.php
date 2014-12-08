@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Contiene diferentes funciones que emulan los diferentes controladores de la sección de zonas
  *

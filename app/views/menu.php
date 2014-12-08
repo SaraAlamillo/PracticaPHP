@@ -9,7 +9,7 @@
         <a href="index.php?action=modificar">modificar datos</a>
     </fieldset>
     <?php if (isset($_SESSION['admin'])): ?>
-    <fieldset id="fUsuarios">
+        <fieldset id="fUsuarios">
             <legend>Usuarios</legend>
             <a href="index.php?action=listarUsuarios">listar</a> |
             <a href="index.php?action=insertarUsuario">insertar</a> |
@@ -25,5 +25,5 @@
             <a href="index.php?action=modificarZona">modificar datos</a>
         </fieldset>
     <?php endif; ?>
-    
+
 </section>

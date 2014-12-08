@@ -1,5 +1,5 @@
 <?php if (isset($params['mensaje'])): ?>
-<p><?=$params['mensaje'] ?></p>
+    <p><?= $params['mensaje'] ?></p>
 <?php endif; ?>
 <form action="index.php?action=<?= $params['action'] ?>" method="POST">
     <table>
@@ -11,7 +11,7 @@
         </tr>
         <tr>
             <td colspan="2">
-    <input type="submit" value="Insertar" />
+                <input type="submit" value="Insertar" />
             </td>
         </tr>
     </table>

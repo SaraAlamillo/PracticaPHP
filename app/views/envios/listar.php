@@ -1,6 +1,6 @@
 <?php if ($params['action'] == 'buscar'): ?>
-<button>
-    <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['paginaActual'] ?>&nueva=true">Nueva búsqueda</a>
+    <button>
+        <a href="index.php?action=<?= $params['action'] ?>&pagina=<?= $params['paginaActual'] ?>&nueva=true">Nueva búsqueda</a>
     </button>
 <?php endif; ?>
 <table border="1">

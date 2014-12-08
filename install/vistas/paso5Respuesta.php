@@ -3,9 +3,9 @@
     <button>
         <a href="index.php?action=paso5">Volver a intentar</a>
     </button>
-<?php else: ?>
+    <?php else: ?>
     <p>Se han añadido los datos de prueba correctamente.</p>
-<?php endif; ?>
+    <?php endif; ?>
 <button>
     <a href="index.php?action=paso6">Continuar</a>
 </button>

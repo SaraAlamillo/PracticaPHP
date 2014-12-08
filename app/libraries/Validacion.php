@@ -34,7 +34,7 @@ class TratamientoFormularios {
     static function provincias($valor) {
         //Las provincias en España van numeradas desde el 01 hasta el 52.
         $permitidos = '/[1-9]|[1-4][0-9]|5[0-2]$/';
-       
+
         if (preg_match($permitidos, $valor)) {
             return true;
         } else {

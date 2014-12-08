@@ -1,15 +1,18 @@
 <?php
+
 /**
  * Contiene las diferentes funciones que emulan los modelos para los controladores
  *
  * @author Sara
  */
 class ModelProvincias {
-/**
+
+    /**
      * Enlace con la capa de abstacción de base de datos
      * @var Object 
      */
     private $conexion;
+
     /**
      * Nombre de la tabla sobre la que trabajará el modelo
      * @var String 
@@ -49,4 +52,5 @@ class ModelProvincias {
 
         return $resultado[0]['nombre'];
     }
+
 }

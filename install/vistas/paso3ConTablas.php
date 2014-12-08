@@ -1,10 +1,10 @@
 <?php if (isset($params['mensaje'])): ?>
-<p><?=$params['mensaje'] ?></p>
+    <p><?= $params['mensaje'] ?></p>
 <?php endif; ?>
 <p>Existen las siguientes tablas en la base de datos: </p>
 <ul>
     <?php foreach ($params['tablas'] as $tabla): ?>
-    <li><?=$tabla ?></li>
+        <li><?= $tabla ?></li>
     <?php endforeach; ?>
 </ul>
 <p>Dichas tablas serán eliminadas. ¿Está seguro?</p>

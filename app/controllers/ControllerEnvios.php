@@ -42,19 +42,19 @@ class ControllerEnvios {
               'filter' => FILTER_CALLBACK,
               'options' => "TratamientoFormularios::fecha") */
     );
-    
+
     /**
      * Recoge el acceso al modelo para envíos
      * @var Object 
      */
     private $modelEnvios;
-    
+
     /**
      * Recoge el acceso al modelo para provincias
      * @var Object 
      */
     private $modelProvincias;
-    
+
     /**
      * Recoge el acceso al modelo para zonas
      * @var Object 
@@ -113,7 +113,7 @@ class ControllerEnvios {
             ],
             "provincias" => $this->modelProvincias->obtenerTodasProvincias()
         ];
-        
+
 
         if ($_POST) {
             $_POST['zona_envio'] = $this->modelZonas->obtenerID($_POST['zona_envio']);
@@ -184,6 +184,12 @@ class ControllerEnvios {
             } else {
                 $_SESSION['criteriosBusqueda'] = $datos;
                 Helper::paginar($_GET['action'], $_GET['pagina'], $this->modelEnvios, "listarEnvios", $params, $_SESSION['criteriosBusqueda']);
+
+                if ($params['datos'] == NULL) {
+                    require RUTA_VIEWS . 'noDatos.php';
+                } else {
+                    require RUTA_VIEWS . 'envios/listar.php';
+                }
             }
         } else {
             require RUTA_VIEWS . 'envios/formBuscar.php';

@@ -27,7 +27,7 @@
         <tr>
             <th>Rol</th>
             <td>
-                <?=  Helper::creaListaDesplegable("rol", $params['roles'], $params['antiguo']['rol'], NULL) ?>
+                <?= Helper::creaListaDesplegable("rol", $params['roles'], $params['antiguo']['rol'], NULL) ?>
             </td>
         </tr>
         <tr>

@@ -6,19 +6,20 @@
  * @author 2daw
  */
 class ModelInstaller {
+
     /**
      * Enlace con la capa de abstracción de la base de datos
      * @var Object
      */
     private $conexion;
-    
+
     /**
      * Contructor de la clase ModelInstaller
      */
     public function __construct() {
         $this->conexion = DataBase::getInstance();
     }
-    
+
     /**
      * Comprueba si se puede realizar una conexión con los parámetros pasados
      * @param Array $parametros Contiene la configuración para realizar la prueba
@@ -28,14 +29,16 @@ class ModelInstaller {
     public static function probarConexion($parametros, &$error) {
         return DataBase::pruebaConexion($parametros, $error);
     }
+
     /**
      * Devuelve todas las tablas existentes en una base de datos determinada
      * @param String $bd Nombre de la base de datos
      * @return Array Conjunto de tablas
      */
-    public function tablasExistentes($bd){
+    public function tablasExistentes($bd) {
         return $this->conexion->mostrarTablas($bd);
     }
+
     /**
      * Borra todas las tablas de una base de datos determinada
      * @param String $bd Nombre de la base de datos
@@ -43,9 +46,8 @@ class ModelInstaller {
      */
     public function eliminarTablas($bd) {
         return $this->conexion->eliminarTodasTablas($bd);
-        
     }
-    
+
     /**
      * Ejecuta una setencia
      * @param String $sql Contiene la consulta a ejecutar
@@ -53,6 +55,7 @@ class ModelInstaller {
      * @return Boolean Depende del resultado de la consulta
      */
     public function hacerConsulta($sql, &$error) {
-    return $this->conexion->consulta($sql, $error);
+        return $this->conexion->consulta($sql, $error);
     }
+
 }
