@@ -35,11 +35,11 @@ class ModelProvincias {
     }
 
     /**
-     * Devuelve todos los campos de una provincia determinada
+     * Devuelve el nombre de una provincia determinada
      * @param String $codigo Identificador de la provincia
      * @return Array Datos de la provincia buscada
      */
-    public function obtenerUnaProvincia($codigo) {
+    public function obtenerUnNombre($codigo) {
         $condiciones = [
             [
                 "campo" => "codigo",
@@ -51,6 +51,25 @@ class ModelProvincias {
         $resultado = $this->conexion->Seleccionar($this->tabla, "nombre", $condiciones, NULL, NULL);
 
         return $resultado[0]['nombre'];
+    }
+
+    /**
+     * Devuelve el identificador de una provincia determinada
+     * @param String $nombre Nombre de la provincia
+     * @return Array Datos de la provincia buscada
+     */
+    public function obtenerUnId($nombre) {
+        $condiciones = [
+            [
+                "campo" => "nombre",
+                "conector" => "=",
+                "valor" => $nombre
+            ]
+        ];
+
+        $resultado = $this->conexion->Seleccionar($this->tabla, "codigo", $condiciones, NULL, NULL);
+
+        return $resultado[0]['codigo'];
     }
 
 }

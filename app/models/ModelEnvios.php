@@ -53,7 +53,7 @@ class ModelEnvios {
         foreach ($resultado as &$registro) {
             foreach ($registro as $clave => &$valor) {
                 if ($clave == 'provincia') {
-                    $valor = $this->modelProvincias->obtenerUnaProvincia($valor);
+                    $valor = $this->modelProvincias->obtenerUnNombre($valor);
                 } else if ($clave == 'fecha_creacion') {
                     $valor = $this->mostrarFecha($valor);
                 } else if ($clave == 'fecha_entrega') {
@@ -92,7 +92,7 @@ class ModelEnvios {
         foreach ($resultado as &$registro) {
             foreach ($registro as $clave => &$valor) {
                 if ($clave == 'provincia') {
-                    $valor = $this->modelProvincias->obtenerUnaProvincia($valor);
+                    $valor = $this->modelProvincias->obtenerUnNombre($valor);
                 } elseif ($clave == 'zona_envio') {
                     $valor = $this->modelZonas->obtenerNombre($valor);
                 } elseif ($clave == 'zona_recepcion' && !is_null($valor)) {
