@@ -7,6 +7,7 @@ require_once RUTA_LIBRARIES . 'Helper.php';
 
 // Enrutamiento
 $map = [
+    'inicio' => array('controller' => 'ControllerInstaller', 'action' => 'paso1'),
     'paso1' => array('controller' => 'ControllerInstaller', 'action' => 'paso1'),
     'paso2' => array('controller' => 'ControllerInstaller', 'action' => 'paso2'),
     'paso3' => array('controller' => 'ControllerInstaller', 'action' => 'paso3'),

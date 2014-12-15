@@ -41,7 +41,7 @@ class Helper {
      * @param Array $condiciones
      */
     public static function paginar($accion, &$pagina, $modelo, $metodo, &$parametrosVista, $condiciones = NULL) {
-        define("MaxPagina", configPlus::$elemPag);
+        define("MaxPagina", trim(configPlus::$elemPag));
         $numTotalPaginas = ceil(count($modelo->$metodo($condiciones)) / MaxPagina);
 
         if (empty($pagina)) {
@@ -126,33 +126,6 @@ class Helper {
             }
         }
         return true;
-    }
-
-    /**
-     * Obtiene los parámetros de configuración almacenados en configPlus.php
-     * @return Array Parámetros de la aplicación
-     */
-    public static function obtenerParametros() {
-        $fichero = file(RUTA_APP . "configPlus.php");
-        $parametros = [];
-
-        foreach ($fichero as $linea) {
-            if (preg_match("/tiempoSesion/", $linea)) {
-                $valor = substr($linea, 31);
-                $parametros['tiempoSesion'] = trim($valor);
-            } elseif (preg_match("/valPorDefProvincia/", $linea)) {
-                $valor = substr($linea, 37);
-                $parametros['defecto']['provincia'] = trim($valor);
-            } elseif (preg_match("/valPorDefPoblacion/", $linea)) {
-                $valor = substr($linea, 37);
-                $parametros['defecto']['poblacion'] = trim($valor);
-            } elseif (preg_match("/elemPag/", $linea)) {
-                $valor = substr($linea, 26);
-                $parametros['elemPag'] = trim($valor);
-            }
-        }
-
-        return $parametros;
     }
 
 }

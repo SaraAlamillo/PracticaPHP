@@ -44,7 +44,7 @@ if (!file_exists("Config.php")) {
     require_once RUTA_LIBRARIES . 'Helper.php';
 
 // Comprobación del último acceso a la aplicación para saber si se ha excedido el tiempo de conexión
-    if (isset($_SESSION['ultimoAcceso']) && (time() - $_SESSION['ultimoAcceso']) > configPlus::$tiempoSesion) {
+    if (isset($_SESSION['ultimoAcceso']) && (time() - $_SESSION['ultimoAcceso']) > trim(configPlus::$tiempoSesion)) {
         session_destroy();
     }
 

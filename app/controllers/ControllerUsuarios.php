@@ -235,7 +235,14 @@ class ControllerUsuarios {
         $params = [
             "action" => $_GET['action'],
             "provincias" => $this->modelProvincias->obtenerTodasProvincias(),
-            "antiguo" => Helper::obtenerParametros()
+            "antiguo" => [
+                "tiempoSesion" => trim(configPlus::$tiempoSesion),
+                "defecto" => [
+                    "provincia" => trim(configPlus::$valPorDefProvincia),
+                    "poblacion" => trim(configPlus::$valPorDefPoblacion)
+                ],
+                "elemPag" => trim(configPlus::$elemPag)
+            ]
         ];
 
         if ($_POST) {
